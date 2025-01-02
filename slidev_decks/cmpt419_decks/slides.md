@@ -1,636 +1,384 @@
 ---
-# You can also start simply with 'default'
-theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-# some information about your slides (markdown enabled)
-title: Welcome to Slidev
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
-# apply unocss classes to the current slide
+theme: default
+background: none
 class: text-center
-# https://sli.dev/features/drawing
+highlighter: shiki
+lineNumbers: false
 drawings:
   persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
 transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
+title: Intro
 mdc: true
+author: Prof. Nick Vincent
+institute: Simon Fraser University
+date: 2024-01-15
 ---
 
-# Welcome to Slidev
+# About
 
-Presentation slides for developers
+This deck contains lecture content for Jan 15, 2024 and Jan 24, 2024.
 
-<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
-  Press Space for next page <carbon:arrow-right />
+---
+
+<!-- Using v-click for animations instead of auto-animate -->
+<div class="flex justify-center gap-4">
+  <div v-click class="w-50 h-38 bg-[#00ff9f]"></div>
+  <div v-click class="w-50 h-38 bg-[#00b8ff]"></div>
+  <div v-click class="w-50 h-38 bg-[#001eff]"></div>
+  <div v-click class="w-50 h-38 bg-[#bd00ff]"></div>
 </div>
 
-<div class="abs-br m-6 text-xl">
-  <button @click="$slidev.nav.openInEditor" title="Open in Editor" class="slidev-icon-btn">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
-    <carbon:logo-github />
-  </a>
+---
+
+<div class="relative w-full h-full flex items-center justify-center">
+  <div class="absolute w-88 h-88 rounded-full bg-[#00ff9f]"></div>
+  <div class="absolute w-64 h-64 rounded-full bg-[#00b8ff]"></div>
+  <div class="absolute w-40 h-40 rounded-full bg-[#001eff]"></div>
+  <div class="absolute w-16 h-16 rounded-full bg-[#bd00ff]"></div>
 </div>
 
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
-
----
-transition: fade-out
 ---
 
-# What is Slidev?
+# Block 1
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
-
----
-transition: slide-up
-level: 2
----
-
-# Navigation
-
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
-
-## Keyboard Shortcuts
-
-|                                                     |                             |
-| --------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                 | next animation or slide     |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                       | previous slide              |
-| <kbd>down</kbd>                                     | next slide                  |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: two-cols
-layoutClass: gap-16
----
-
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1" />
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc text-sm minDepth="1" maxDepth="2" />
-
----
-layout: image-right
-image: https://cover.sli.dev
----
-
-# Code
-
-Use code snippets and get the highlighting directly, and even types hover!
-
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-
-import { computed, ref } from 'vue'
-
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
-
-doubled.value = 2
-```
-
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
-
----
-level: 2
----
-
-# Shiki Magic Move
-
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
-
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
-  }
-}
-```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
-```
-````
+For the Spring 2024 term, this was presented on 2024-01-15.
 
 ---
 
-# Components
+# While we file in
 
-<div grid="~ cols-2 gap-4">
-<div>
+<v-clicks>
 
-You can use Vue components directly inside your slides.
+- Check out Piazza link (Canvas announcements)
+- Anyone have AI-related news they want to discuss
+- Feel free to collect your thoughts re: strong reactions to readings
 
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
+</v-clicks>
 
-```html
-<Counter :count="10" />
-```
+---
 
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
+# Course Logistics
 
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
+<v-clicks>
+
+- Tentative course calendar on Canvas updated
+- Slides will go on GitHub
+- Submit reading response by Wed. this week (or email me if you just joined)
+- New readings posted
+
+</v-clicks>
+
+---
+
+# Agenda
+
+<v-clicks>
+
+- Today: Discuss readings for this week
+- Goals: highlight key takeaways, find areas of interest
+- At the end: Intro to readings for next week
+
+</v-clicks>
+
+---
+
+# HCML Reading (Chancellor 2023)
+
+---
+
+# Good and bad uses of AI -- some go to examples
+
+<v-clicks>
+
+- Auto complete
+- Predict malignant tumor
+- Deep fake
+- Discrimination (on many axes)
+
+</v-clicks>
+
+---
+
+# Progress? in AI
+
+<div class="grid grid-cols-2 gap-4">
+<div class="col-span-1">
+
+<v-clicks>
+
+- Deep learning "gains" don't always hold up to scrutinty
+
+</v-clicks>
 
 </div>
-<div>
+<div class="col-span-1">
 
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
+![](figs/worrying_trends.png)
 
 </div>
-</div>
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
-
----
-
-# Clicks Animations
-
-You can add `v-click` to elements to add a click animation.
-
-<div v-click>
-
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
-
 </div>
 
 <br>
 
-<v-click>
-
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
-
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn more](https://sli.dev/guide/animations#click-animation)
-
-</div>
+> There are more examples we can discuss! And of course we can keep an eye out for new research news.
 
 ---
 
-# Motions
+# People as "objects of prediction"
 
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
+<v-clicks>
 
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
+- How to counter this?
+  - Fairness, equality, justice
+- Note: computing often forces us to precisely define these concepts in a way that's illuminating
+- We might disagree
 
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn more](https://sli.dev/guide/animations.html#motion)
-
-</div>
+</v-clicks>
 
 ---
 
-# LaTeX
+# Sub-fields of CS
 
-LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
+Article mentions we should "refine HCML into a unifying and interdisciplinary force across CS rather than risk fracture with each sub-field of CS taking ownership of an independent vision of HCML"
 
-<div h-3 />
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$ {1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
-
-[Learn more](https://sli.dev/features/latex)
+What's the backstory here?
 
 ---
 
-# Diagrams
+# A bit of behind the scenes into CS research
 
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
+<v-clicks>
 
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
+- Subcommunities often run their own conferences
+- Drives a lot of the incentives of researchers
+- This might matter for research-related jobs in industry too
+- e.g., some ML jobs list NeurIps papers as a requirement, some Responsible AI jobs list FAccT
 
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
-
----
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
----
-
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <div class="i-carbon:arrow-up" />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/imported-slides.md
-hide: false
----
+</v-clicks>
 
 ---
 
-# Monaco Editor
+# Examples
 
-Slidev provides built-in Monaco Editor support.
+<v-clicks>
 
-Add `{monaco}` to the code block to turn it into an editor:
+- ML people send papers to NeurIPS, ICML, ICLR, and many more
+- HCI people send papers to CHI, CSCW, and many more
+- Philosophy people send papers to their own, pretty much entirely separate journals
 
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
-```
-
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
-
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
-
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
-```
+</v-clicks>
 
 ---
-layout: center
-class: text-center
+
+# Early HCML
+
+<v-clicks>
+
+- Chancellor highlights some of the history -- the "HCI" community and "FAccT" community played major roles
+  - FAccT is a relatively new conference which has gained a lot of momentum
+- Information Science and STS
+- CSCW also plays a major role
+- Various social sciences and fields of critical scholarships as well..
+- That's a lot of disciplines already
+
+</v-clicks>
+
 ---
 
-# Learn More
+# Acronym Cheatsheet thus far
 
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
+<v-clicks>
 
-<PoweredBySlidev mt-10 />
+- HCI: human-computer interaction. Main conference is "CHI", confusingly.
+- FAccT: Fairness, Accountability, and Transparency
+- CSCW: computer supported cooperative work (and social computing)
+- [STS](https://en.wikipedia.org/wiki/Science_and_technology_studies): Science and technology studies. Also, science, technology, and society
+
+</v-clicks>
+
+---
+
+# What Counts as HCML?
+
+---
+
+# Proposed definition statement
+
+"Human-centered machine learning is a set of practices for building, evaluating, deploying, and critiquing ML systems that balances technical innovation with an equivalent focus on human and social concerns."[^1]
+
+[^1]: [Chancellor 2023](https://cacm.acm.org/magazines/2023/3/270209-toward-practices-for-human-centered-machine-learning/fulltext)
+
+---
+
+# We can evaluate different practices to see if they fit in this set
+
+<v-clicks>
+
+- It's possible two different organizations both trying to build an AI system for the same *task* could differ substantially in whether they meet the "human-centered" definition
+- People can always disagree about what human and social concerns should be ranked most highly
+- But this gives us a starting point
+
+</v-clicks>
+
+---
+
+# Focusing on Practices 
+
+Five categories of suggestions are given, i.e. what can you do when you're a software engineer, manager, research scientist, professor, etc.
+
+<v-clicks>
+
+- should I use ML?
+- what's my "position"?[^2]
+- users vs. humans
+- credit other domains
+- iterate on failure
+
+</v-clicks>
+
+[^2]: See e.g. [positionality statements](https://en.wikipedia.org/wiki/Positionality_statement)
+
+---
+
+# What challenges might we expect to face?
+
+---
+
+# Institutional actions
+
+<v-clicks>
+
+- new norms at conference, e.g. negative impact statements (NeurIPS)
+- institutional support for interdisciplinary research
+- computing (broad) vs. computer science
+- support students who want to do interdisciplinary research!
+
+</v-clicks>
+
+---
+
+# Over to DCAI
+
+---
+
+# Problems with data
+
+<v-clicks>
+
+- "Differences in labeling": do you and I agree if a pill is "scratched"? Does my hospital notes system have a different coding system than yours?
+- "Emphasis on big data": what about a rare medical condition?
+- "Ad hoc data curation": need to systemize?
+
+</v-clicks>
+
+---
+
+# Finding label disputes
+
+<v-clicks>
+
+- We might use tools to find subsets of a dataset with high label dispute
+- Influence estimation provides one approach we'll see
+
+</v-clicks>
+
+---
+
+# Domain Expertise
+
+<v-clicks>
+
+- get the biologists to label the cells!
+- get former players to provide "labels" for sports analytics
+- many more examples
+- this is where the DCAI argument really starts to merge with the HCAI argument
+
+</v-clicks>
+
+---
+
+# More info
+
+- https://www.youtube.com/watch?v=TU6u_T-s68Y
+
+---
+
+# What is DataPerf
+
+<v-clicks>
+
+- a so-called "benchmark suite"
+- focused on data tasks
+- meant to be community run and led 
+
+</v-clicks>
+
+---
+
+# What's a "ML benchmark?"
+
+Conventional model-centric ML definition: "a standard, fixed dataset for model accuracy comparisons and performance measurement" (p2, Mazumber et al)
+
+---
+
+# Some terms
+
+<v-clicks>
+
+- from "Probabilistic Machine Learning: An Introduction", Murphy 2022 (https://probml.github.io/pml-book/book1.html)
+- task $T$ to learn mapping $f$ from inputs $x \in X$ to outputs $y \in Y$
+- x called features (or covariates, or predictors)
+- y is label (or target, or response)
+- we have N input-output pairs $D = {(x_n, y_n)}$ for $n \in (1,N)$. D is the training set, N is the sample size.
+
+</v-clicks>
+
+---
+
+# Comparing model-centric benchmark and data-centric benchmark
+
+<v-clicks>
+
+- in model-centric, we have a fixed dataset $D$ and we try a bunch of different ways to find $f$
+- change model architecture, change training hyperparameters, change task metrics
+- in data-centric, we keep all these fixed and just change $D$
+
+</v-clicks>
+
+---
+
+# Testable concept: is a benchmark data centric
+
+<v-clicks>
+
+- you might imagine a test question that describes several differents tasks and asks you to identify which one is "data-centric"
+
+</v-clicks>
+
+---
+
+# Six data centric operations
+
+data...
+
+<v-clicks>
+
+- parsing
+- augmentation
+- selection
+- quality assessment
+- acquisition
+- cleaning
+
+</v-clicks>
+
+---
+
+Hold time for:
+
+<v-clicks>
+
+- discuss next week's readings
+- questions that have popped up thus far
+
+</v-clicks>

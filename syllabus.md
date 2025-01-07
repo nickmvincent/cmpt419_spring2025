@@ -1,5 +1,15 @@
 # Syllabus: CMPT 419 D200, Nicholas Vincent, Spring 2025
 
+
+## Lectures and Office Hours
+
+Classes are on Tuesday/Thursday. See go.sfu.ca for exact location and time. 
+
+We will have office hours for an hour after class starting Week 2. Location TBA.
+
+We will have additional office hours by appointment and popular demand.
+
+
 ## General structure of our "lecture" time:
 
 - Each Tuesday (1 hr sessions), we’ll briefly discuss the previous week’s readings, I’ll introduce any readings and assignments for the week, and I'll start the "lecture content" for the week.

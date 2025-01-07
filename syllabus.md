@@ -2,9 +2,9 @@
 
 ## General structure of our "lecture" time:
 
-- Each Tuesday (1 hr sessions), we’ll discuss the previous week’s readings and I’ll introduce any readings and assignments for the week.
+- Each Tuesday (1 hr sessions), we’ll briefly discuss the previous week’s readings, I’ll introduce any readings and assignments for the week, and I'll start the "lecture content" for the week.
 - I’ll aim to hold at least 5-10 min every Monday to walk through assignments together and take questions – you’re welcome to use this time to start working and see if questions arise.
-- On Thursday (2 hr sessions), we’ll use about an hour for a more traditional slides-style lecture, and then typically use the second hour for some kind of activity. We may use some of this time to work on assignments and projects and to take quizzes or practice quizzes.
+- On Thursday (2 hr sessions), we’ll finish lecture content and have a discussion about the lecture/readings for the first hour, and then typically use the second hour for some kind of activity or "lab time". We may use some of this time to work on assignments and projects and to take quizzes or practice quizzes.
 - I’ll always take questions at the beginning and end of each lecture session. You’re always welcome to email me, but I may take 2-3 business days to respond to emails. Asking questions in class will provide a quicker response and your classmates may benefit from your questions as well!
 
 This course is designed to have a particularly heavy reading and discussion component. Please be prepared to read quite a bit of material, and to talk about it.

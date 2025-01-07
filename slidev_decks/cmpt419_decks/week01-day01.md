@@ -37,12 +37,13 @@ layout: two-cols
 - **Tuesdays (1hr)**
   - Discuss previous week's readings
   - Introduce new materials
-  - Assignment overview
+  - Start lecture content
 
 - **Thursdays (2hr)**
-  - Traditional lecture (1hr)
-  - Class activity (1hr)
-  - Quizzes & practice work
+  - Finish lecture (if needed)
+  - Discussion
+  - Class activity and/or lab time (assigments, projects, etc.) (1hr)
+  - Occasionally: Quizzes
 
 ---
 layout: center

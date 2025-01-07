@@ -1,4 +1,4 @@
-First draft: Jan 2. Final draft to be pushed on Jan 6 before our first lecture.
+# Syllabus: CMPT 419 D200, Nicholas Vincent, Spring 2025
 
 ## General structure of our "lecture" time:
 
@@ -18,10 +18,9 @@ Each week has a set of assigned readings:
 - For readings, I strongly recommend against AI assistant. I personally prefer that you submit bullet points rather than bullet points that prompt an LLM to output flowerly text.
 
 Reading schedule:
-- Assigned readings for Week X are considered “finalized” on Monday of the preceding week (Week X-1), and should be completed by Monday of Week X. Each reading response is due immediately before class begins.
-  - For example: During class on Monday of Week 1, I’ll post and tell you all the required readings for Week 2, which you should finish over the next 7 days.
-  - I’ll try to provide a solid "look ahead" of course material, but it may be subject to change based on your feedback, course progress, and even current events – so you should check the readings each Monday after class. For instance, in the past, I have extended time to complete readings that students found particularly dense.
-
+- Assigned readings for Week X are considered “finalized” on Tuesday of the preceding week (Week X-1), and should be completed by Tuesday of Week X. Each reading response is due immediately before class begins.
+  - For example: During class on Tuesday of Week 1, I’ll post and tell you all the required readings for Week 2, which you should finish over the next 7 days.
+  - I’ll try to provide a solid "look ahead" of course material, but it may be subject to change based on your feedback, course progress, and even current events – so you should check the readings each Tuesday after class. For instance, in the past, I have extended time to complete readings that students found particularly dense.
 
 ## About course organization
 
@@ -36,6 +35,7 @@ We will have one assignment per module (coding / data analysis).
 ## Grading
 
 - 10% reading responses
+  - 10 total reading responses, each worth 1%
 - 20% coding assignments
 - 30% quizzes
 - 40% final project

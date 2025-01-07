@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My Markdown Docs</title>
+  <!-- Include a library to parse Markdown on the client side -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      max-width: 800px;
+      margin: 40px auto;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Markdown Docs</h1>
+  <div id="content">Loading...</div>
+
+  <script>
+    // Load one of your markdown files (e.g., README.md)
+    fetch('README.md')
+      .then(response => response.text())
+      .then(mdText => {
+        // Convert markdown to HTML
+        document.getElementById('content').innerHTML = marked.parse(mdText);
+      })
+      .catch(err => {
+        document.getElementById('content').innerText = 
+          'Error loading markdown: ' + err;
+      });
+  </script>
+</body>
+</html>

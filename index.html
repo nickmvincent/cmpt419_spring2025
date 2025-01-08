@@ -2,8 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>My Markdown Docs</title>
-  <!-- Include a library to parse Markdown on the client side -->
+  <title>Auto-List Markdown Files</title>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     body {
@@ -11,24 +10,107 @@
       margin: 40px auto;
       font-family: sans-serif;
     }
+    nav {
+      margin-bottom: 2em;
+    }
+    nav ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    nav li {
+      margin: 0.3em 0;
+    }
+    #content {
+      border-top: 1px solid #ccc;
+      padding-top: 1em;
+    }
   </style>
 </head>
 <body>
-  <h1>My Markdown Docs</h1>
-  <div id="content">Loading...</div>
+  <h1>Markdown File Explorer for CMPT 419 D200 course content</h1>
+  <nav>
+    <ul id="fileList">Loading...</ul>
+  </nav>
+  <div id="content"></div>
 
   <script>
-    // Load one of your markdown files (e.g., README.md)
-    fetch('README.md')
-      .then(response => response.text())
-      .then(mdText => {
-        // Convert markdown to HTML
-        document.getElementById('content').innerHTML = marked.parse(mdText);
+    // ----- CONFIG: Update these to match your public repo -----
+    const owner = 'YOUR_GITHUB_USERNAME';
+    const repo = 'YOUR_REPO_NAME';
+    const branch = 'main'; // or 'master' or any branch
+    // ----------------------------------------------------------
+    
+    // Helper to load a single Markdown file’s content
+    function loadMarkdownFile(filePath) {
+      const rawFileUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${filePath}`;
+      fetch(rawFileUrl)
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`HTTP ${res.status} - ${res.statusText}`);
+          }
+          return res.text();
+        })
+        .then(mdText => {
+          document.getElementById('content').innerHTML = marked.parse(mdText);
+        })
+        .catch(err => {
+          document.getElementById('content').innerText = 'Error: ' + err;
+        });
+    }
+
+    // Use the Git Trees API (recursive=1) to list all files in the repo
+    function fetchMarkdownFiles() {
+      const apiUrl = `https://api.github.com/repos/${owner}/${repo}/git/trees/${branch}?recursive=1`;
+      return fetch(apiUrl)
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP ${res.status} - ${res.statusText}`);
+          return res.json();
+        })
+        .then(data => {
+          // data.tree is an array of { path, type }
+          return data.tree
+            .filter(item => item.type === 'blob' && item.path.endsWith('.md'))
+            .map(item => item.path);
+        });
+    }
+
+    // Build a list of .md files on the page
+    function buildFileList(mdFiles) {
+      const fileList = document.getElementById('fileList');
+      fileList.innerHTML = ''; // clear placeholder
+
+      mdFiles.forEach(path => {
+        const li = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = `#${path}`;
+        link.innerText = path;
+        li.appendChild(link);
+        fileList.appendChild(li);
+      });
+    }
+
+    // Load whichever file is in the hash
+    function onHashChange() {
+      const filePath = window.location.hash.slice(1);
+      if (filePath) {
+        loadMarkdownFile(filePath);
+      } else {
+        // If no hash, clear content or load a default file
+        document.getElementById('content').innerHTML = '<em>Select a file.</em>';
+      }
+    }
+
+    // Main init
+    fetchMarkdownFiles()
+      .then(mdFiles => {
+        buildFileList(mdFiles);
+        onHashChange(); // load file from hash if present
       })
       .catch(err => {
-        document.getElementById('content').innerText = 
-          'Error loading markdown: ' + err;
+        document.getElementById('fileList').innerText = 'Error: ' + err;
       });
+
+    window.addEventListener('hashchange', onHashChange);
   </script>
 </body>
 </html>

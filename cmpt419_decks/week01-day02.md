@@ -66,6 +66,25 @@ Important: I want to give you exposure to lots of (fresh) ideas in the space bef
 
 ---
 
+## Module 1's Learning goals and Testable material (Broad strokes)
+
+- Demonstrate familiarity with key concepts from readings
+  - identify similarities and differences between these approaches
+  - apply concepts from readings to example scenarios, e.g. product design
+
+
+---
+
+## Even more perspectives
+
+Some other syllabi if you're curious
+
+- https://philpeople.org/public_cache/file?content_type=application%2Fpdf&key=z1d1wj8yk9ztczwt4d9wspqbl6qb 
+- https://github.com/ChicagoHAI/human-centered-machine-learning/tree/main
+- more to be added somewhere prominent in the course repo
+
+---
+
 # Module 2: Data valuation and scaling
 
 Data valuation also has many definitions. We’ll read about some of them
@@ -135,12 +154,6 @@ i.e., why aren’t all human-centered AI classes about data?
 
 ---
 
-Some other syllabi if you're curious
-
-- https://philpeople.org/public_cache/file?content_type=application%2Fpdf&key=z1d1wj8yk9ztczwt4d9wspqbl6qb 
-
----
-
 ## Module 2's Learning goals and Testable material (Broad strokes)
 
 After this module, you can expect to be able to solve some problems such as:
@@ -152,6 +165,8 @@ After this module, you can expect to be able to solve some problems such as:
 - Describing observed data scaling patterns at a high level
 - Intrepret new data scaling results
   - If I give you a plot from a hypothetical paper, interpret it
+
+---
 
 
 ## Module 3: Online platforms and Content Ecosystems

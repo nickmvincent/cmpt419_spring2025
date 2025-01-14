@@ -49,7 +49,7 @@ Reading 3: Zha et al 2023.
 - Notes: you should read the short perspective paper. You may optionally also check out the longer survey paper and repo linked here: https://github.com/daochenzha/data-centric-AI
 
 
-Optional:
+Optional (mainly to give some more examples of academics using human- or data-centric framing):
 - https://dl.acm.org/doi/abs/10.1145/3517337
 - https://arxiv.org/abs/2311.06703v2
 - https://dl.acm.org/doi/10.1145/3544549.3585752
@@ -58,13 +58,17 @@ Optional:
 
 
 Imagine you are a manager at a large tech company tasked with developing a new AI product. You can pick one of the following three options based on your interests, or suggest your own product:
+
 - A large language model that will read physician notes and make suggestions about how to treat patients
 - A recommender system for a video-based content app
 - A facial recognition system that will be sold via API credits
     
 Q1: Thought experiment: Please write 1-2 paragraphs describing how adopting any of the suggestions from any of this week’s readings might change your product features (first define the product). Please directly reference (e.g. directly quote) one or more of the readings.
+
 Q2: Please list three examples of “harms” that might occur from a failure to do “data work” as defined in the Sambasivan reading. You can use the same AI product you picked for Q1, or discuss one or more different AI products. You don’t need to quote the reading directly for this part.
+
 Q3: Quick retrieval question: According to Zha et al., what category would each of the following techniques fall into: feature selection, creating images with randomly occluded patches, using Mechanical Turk to label documents.
+
 Q4: Please let me know roughly how the long the readings and responses took so we can calibrate!
 
 

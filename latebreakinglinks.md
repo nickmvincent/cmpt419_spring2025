@@ -3,11 +3,17 @@ This is a file where I'll record "late breaking links" -- things that we (the cl
 
 ## Week 1
 
-- An excellent post about programming with LLMS. Added by NMV, Jan 7. Found via hackernews. https://crawshaw.io/blog/programming-with-llms
+---
+
+An excellent post about programming with LLMs: https://crawshaw.io/blog/programming-with-llms
+
+---
 
 ## Week 2
 
-An academic position paper on data-centric AI https://aclanthology.org/2024.findings-emnlp.695/
+---
+
+An academic position paper on data-centric AI: https://aclanthology.org/2024.findings-emnlp.695/. Most relevant to Module 1.
 
 <details>
 <summary> BibTex </summary>
@@ -48,7 +54,9 @@ An academic position paper on data-centric AI https://aclanthology.org/2024.find
 
 </details>
 
-Zhang et al. 2024, New survey on data markets (likely to be integrated into module 4) https://arxiv.org/abs/2411.07267
+---
+
+Zhang et al. 2024, New survey on data markets: https://arxiv.org/abs/2411.07267. Most relevant to Module 4.
 
 <details> 
 <summary> BibTex </summary>
@@ -60,7 +68,9 @@ Zhang et al. 2024, New survey on data markets (likely to be integrated into modu
 }
 </details>
 
-Henderson and Lemley 2024, on AI Terms of Use https://arxiv.org/abs/2412.07066
+Henderson and Lemley 2024, on AI Terms of Use: https://arxiv.org/abs/2412.07066. Most relevant to Module 4.
+
+---
 
 <details> 
 <summary> BibTex </summary>
@@ -74,3 +84,10 @@ Henderson and Lemley 2024, on AI Terms of Use https://arxiv.org/abs/2412.07066
       url={https://arxiv.org/abs/2412.07066}, 
 }
 </details>
+
+---
+
+
+The "People's Capitalism Project": https://www.peoplescapitalism.org/. Most relevant to Module 4.
+
+---

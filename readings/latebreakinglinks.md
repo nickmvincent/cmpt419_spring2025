@@ -91,3 +91,9 @@ Henderson and Lemley 2024, on AI Terms of Use: https://arxiv.org/abs/2412.07066.
 The "People's Capitalism Project": https://www.peoplescapitalism.org/. Most relevant to Module 4.
 
 ---
+
+Documents from Kadrey vs. Meta (tons of interesting data-centric insights into llama training): https://www.courtlistener.com/docket/67569326/kadrey-v-meta-platforms-inc/?page=3
+
+---
+
+Some recent policy-related docs: OpenAI's economic blueprint: https://openai.com/global-affairs/openais-economic-blueprint/ and UK AI Opportunities Plan: https://www.gov.uk/government/publications/ai-opportunities-action-plan/ai-opportunities-action-plan

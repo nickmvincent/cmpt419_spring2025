@@ -70,12 +70,14 @@
           // data.tree is an array of { path, type }
           return data.tree
             .filter(item => {
-              // Only want .md files in top-level OR in 'misc_content'
+              // Only want .md files in top-level OR in certain folders
               // Top-level means no '/' in path.
               const isMarkdown = item.path.endsWith('.md');
               const inTopLevel = !item.path.includes('/');
               const inMiscFolder = item.path.startsWith('misc_content/');
-              return item.type === 'blob' && isMarkdown && (inTopLevel || inMiscFolder);
+              const inReadingsFolder = item.path.startsWith('readings/');
+              const inAssignmentsFolder = item.path.startsWith('assignments/');
+              return item.type === 'blob' && isMarkdown && (inTopLevel || inMiscFolder || inReadingsFolder || inAssignmentsFolder);
             })
             .map(item => item.path);
         });

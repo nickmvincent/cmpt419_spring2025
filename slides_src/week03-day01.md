@@ -265,7 +265,7 @@ The Zha paper gives us yet another model to describe the full "pipeline" of data
 
 ---
 
-# Quick intro to relevant interdisciplinary concents
+# Quick intro to relevant interdisciplinary concepts
 
 Goal: just a "Wikipedia tier" exposure
 
@@ -435,6 +435,7 @@ Prompt: what are distinct actions our CEO agent might take to improve their ML p
 
 Prompt: what are distinct actions regulators might take to maximize the positive impact of AI on society? Which might be seen as "human-centered" and which might be seen as supporting "data-centered" AI
 
+---
 
 ## Goal:
 

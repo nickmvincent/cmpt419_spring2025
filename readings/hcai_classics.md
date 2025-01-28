@@ -18,6 +18,8 @@ Early computing and AI:
 [Lucy Suchman](https://en.wikipedia.org/wiki/Lucy_Suchman)
 - "Plans and Situated Actions" (1987) - Influential critique of AI planning
 
+To add: 
+
 Philosophy:
 
 [John Rawls](https://en.wikipedia.org/wiki/John_Rawls)

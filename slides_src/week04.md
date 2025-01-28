@@ -17,6 +17,14 @@ date: 2025-01-28
 
 # Week 4: Fairness and HCAI
 
+
+---
+
+Logistics:
+
+- Hold time for Assignment 1
+- Quick silly story on slides clean-up
+
 ---
 
 Ideas that have come up:

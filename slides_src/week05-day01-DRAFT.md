@@ -14,10 +14,6 @@ institute: Simon Fraser University
 date: 
 ---
 
-<style>
-  @import './styles/auto-resize.css';
-</style>
-
 
 # Week 4: Training Data Influence
 

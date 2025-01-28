@@ -1,5 +1,5 @@
 ---
-theme: apple-basic
+theme: eloc
 background: none
 class: text-center
 highlighter: shiki
@@ -7,7 +7,7 @@ lineNumbers: false
 drawings:
   persist: false
 transition: slide-left
-title: Week 3
+title: Week 4
 mdc: true
 author: Prof. Nick Vincent
 institute: Simon Fraser University
@@ -19,13 +19,17 @@ date: 2025-01-28
 
 ---
 
-We've broadly seen one way to specifically instantiate human-centered AI is to select some human values (such as a particular notion of fairness) and then change some part of the "AI Pipeline" so it better aligns with that values
+Ideas that have come up:
+
+- one way to specifically instantiate human-centered AI is to select some human values (such as a particular notion of fairness) 
+- and then change some part of the "AI Pipeline" so it better aligns with that values
 
 
 ---
 
-TLDR, we can start to make claims along the lines of "Project A is more human-centered than Project B because of alignment with this set of values"
+## TLDR, we can start to make claims along the lines of "Project A is more human-centered than Project B because of alignment with this set of values"
 
+- we might disagree with each toher
 
 ---
 
@@ -52,6 +56,7 @@ TLDR, we can start to make claims along the lines of "Project A is more human-ce
   - Not really computing focused at all!
 - value sensitive design: 1908s, UW, Batya Friedman and Peter Kahn
   - More grounded in computing and HCI
+  - Batya Friedman also cited in FairML Intro: Friedman, Batya, and Helen Nissenbaum. “Bias in Computer Systems.” ACM Transactions on Information Systems (TOIS) 14, no. 3 (1996): 330–47. 
 - participatory design / cooperative design: 1970s, Scandinavia
   - Big influence on some branches of computing work 
 
@@ -65,6 +70,52 @@ All have pretty specific processes and if you say you're using one in a paper, y
 Provides a number of ideas that might be seen as HCAI (though doesn't explicitly say so)
 
 ---
+
+Peak at technical work cited
+
+Joachims, Thorsten, Adith Swaminathan, and Tobias Schnabel. “Unbiased Learning-to-Rank with Biased Feedback.” In Proc. 1010Th International Conference on Web Search and Data Mining, 781–89. ACM, 2017. 
+
+
+<img src="./images/joachims-sec3-screenshot.png">
+
+
+---
+
+Summary of screenshot from Joachims, Swaminathan, and Schnabel paper:
+
+- We want to rank items based on relevance
+- Assume we have ground-truth relevance labels
+- query x and documents y
+- rel(x,y) gives relevance, Δ(y∣x) gives loss, could be NDCG
+- R(s) is risk, gives loss over all queries
+- Need to use empirical risk, approximated using sample
+- Empirical risk minimization - do best we can for sample
+
+---
+
+But, "when using implicit feedback as a relevance sig-
+nal, unobserved feedback is an even greater problem than
+missing judgments in the pooling setting. In particular, im-
+plicit feedback is distorted by presentation bias, and it is
+not missing completely at random"
+
+(This is just to start providing some examples of specific tasks!)
+
+---
+
+Torralba, Antonio, and Alexei A Efros. “Unbiased Look at Dataset Bias.” In Proc. CVPR, 1521–28. IEEE, 2011. 
+
+<img src="./images/Torralba-Efros-table1.png">
+
+
+---
+
+Zhang, Junzhe, and Elias Bareinboim. “Fairness in Decision-Making — the Causal Explanation Formula.” In Proc. 3232Nd AAAI, 2018. 
+
+<img src="./images/Zhang-Bareinboim-fig1.png"
+
+---
+
 
 ## Demographic disparities
 
@@ -94,11 +145,13 @@ graph LR
     D[Subjects of Model] --> A
 ```
 
+---
+
 ## State of the world
 
 Is messy, ultra high dimensional, and thus complicated to capture.
 
---
+---
 
 ## Measurement: From state of the world to data
 
@@ -204,5 +257,7 @@ Using the ML Learning Loop to Situate All of Our Readings thus far: different en
 
 - Some aspects of measurement
 - but also deeply concerned with "predictions" acting in the world
+
+---
 
 ## We can start to stitch together a picture of HCAI and DCAI

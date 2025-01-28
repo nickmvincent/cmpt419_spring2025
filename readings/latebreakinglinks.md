@@ -97,3 +97,8 @@ Documents from Kadrey vs. Meta (tons of interesting data-centric insights into l
 ---
 
 Some recent policy-related docs: OpenAI's economic blueprint: https://openai.com/global-affairs/openais-economic-blueprint/ and UK AI Opportunities Plan: https://www.gov.uk/government/publications/ai-opportunities-action-plan/ai-opportunities-action-plan
+
+
+## Week 3
+
+https://s.mirror.xyz/djByMntM2rQF4tqUISYS2MAO3oCfSWoOZSOpZjsYwaw

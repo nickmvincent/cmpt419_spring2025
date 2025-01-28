@@ -65,6 +65,9 @@ Ideas that have come up:
 - value sensitive design: 1908s, UW, Batya Friedman and Peter Kahn
   - More grounded in computing and HCI
   - Batya Friedman also cited in FairML Intro: Friedman, Batya, and Helen Nissenbaum. “Bias in Computer Systems.” ACM Transactions on Information Systems (TOIS) 14, no. 3 (1996): 330–47. 
+
+---
+
 - participatory design / cooperative design: 1970s, Scandinavia
   - Big influence on some branches of computing work 
 
@@ -79,12 +82,16 @@ Provides a number of ideas that might be seen as HCAI (though doesn't explicitly
 
 ---
 
-Peak at technical work cited
+## Peek at technical work cited
 
-Joachims, Thorsten, Adith Swaminathan, and Tobias Schnabel. “Unbiased Learning-to-Rank with Biased Feedback.” In Proc. 1010Th International Conference on Web Search and Data Mining, 781–89. ACM, 2017. 
+---
 
 
-<img src="./images/joachims-sec3-screenshot.png">
+
+
+<img src="./images/joachims-sec3-screenshot.png" style="width:600px">
+
+<p style="font-size:16px">Joachims, Thorsten, Adith Swaminathan, and Tobias Schnabel. “Unbiased Learning-to-Rank with Biased Feedback.” In Proc. 1010Th International Conference on Web Search and Data Mining, 781–89. ACM, 2017. </p>
 
 
 ---
@@ -101,26 +108,28 @@ Summary of screenshot from Joachims, Swaminathan, and Schnabel paper:
 
 ---
 
-But, "when using implicit feedback as a relevance sig-
-nal, unobserved feedback is an even greater problem than
-missing judgments in the pooling setting. In particular, im-
-plicit feedback is distorted by presentation bias, and it is
+But, "when using implicit feedback as a relevance signal, unobserved feedback is an even greater problem than
+missing judgments in the pooling setting. In particular, implicit feedback is distorted by presentation bias, and it is
 not missing completely at random"
+
 
 (This is just to start providing some examples of specific tasks!)
 
 ---
 
-Torralba, Antonio, and Alexei A Efros. “Unbiased Look at Dataset Bias.” In Proc. CVPR, 1521–28. IEEE, 2011. 
 
-<img src="./images/Torralba-Efros-table1.png">
 
+<img src="./images/Torralba-Efros-table1.png" style="width:800px">
+
+<p style="font-size:16px">Torralba, Antonio, and Alexei A Efros. “Unbiased Look at Dataset Bias.” In Proc. CVPR, 1521–28. IEEE, 2011. </p>
 
 ---
 
-Zhang, Junzhe, and Elias Bareinboim. “Fairness in Decision-Making — the Causal Explanation Formula.” In Proc. 3232Nd AAAI, 2018. 
+<img src="./images/Zhang-Bareinboim-fig1.png">
 
-<img src="./images/Zhang-Bareinboim-fig1.png"
+<p style="font-size:16px">Zhang, Junzhe, and Elias Bareinboim. “Fairness in Decision-Making — the Causal Explanation Formula.” In Proc. 3232Nd AAAI, 2018. </p>
+
+
 
 ---
 
@@ -143,14 +152,6 @@ Zhang, Junzhe, and Elias Bareinboim. “Fairness in Decision-Making — the Caus
 
 ## The machine learning loop
 
-Abbrevatied version of Fig. 1
-
-```{mermaid}
-graph LR
-    A[State of the world] --> B
-    B[Data] --> C
-    C[Model] --> D
-    D[Subjects of Model] --> A
 ```
 
 ---
@@ -237,6 +238,9 @@ Using the ML Learning Loop to Situate All of Our Readings thus far: different en
 
 - "Ensure ML is the right solution and approach to take" suggests not setting up a loop
 - "Acknowledge ML problem statements take positions" suggests modeler positionality - may affect the learning, may affected how predictions are used
+
+--- 
+
 - "Move beyond users and interaction as the definition of human" could change measurement
 - "Legitimize domain contributions/collaborations as field priorities" will definitely change measurement
 - "Design HCML anticipating and iterating on sociotechnical failure" focuses on how predictions act on people

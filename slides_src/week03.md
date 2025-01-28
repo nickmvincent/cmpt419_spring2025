@@ -1,5 +1,5 @@
 ---
-theme: apple-basic
+theme: eloc
 background: none
 class: text-center
 highlighter: shiki
@@ -13,10 +13,6 @@ author: Prof. Nick Vincent
 institute: Simon Fraser University
 date: 2025-01-21
 ---
-
-<style>
-  @import './styles/auto-resize.css';
-</style>
 
 
 # Week 3: Human-centered and Data-centric Machine Learning 
@@ -47,10 +43,6 @@ About: This deck contains lecture content for Jan 21, 2025.
 - heuristic I'll use: could you talk about the material in a job interview or research context?
 
 ---
-class: auto-resize-slide
----
-
-<div class="auto-resize-content">
 
 ## Two Questions
 
@@ -59,13 +51,9 @@ class: auto-resize-slide
   - Today's DCAI paper provides another
   - To expand, we might imagine a few *running scenarios* that will be useful throughout our course
 
-</div>
 
 ---
-class: auto-resize-slide
----
 
-<div class="auto-resize-content">
 
 ## Running scenario 1: you're a startup founder!
 
@@ -73,7 +61,6 @@ class: auto-resize-slide
 - We're trying to build one specific product. Perhaps it's a movie recommender system, or computer vision system that looks at pictures of a fridge and suggests a recipe, or a domain-specific chatbot such as a medical assistant
 - Core challenge of allocation resources
 
-</div>
 
 ---
 
@@ -161,6 +148,8 @@ TLDR: Reliable, Safe & Trustworthy
 - Safe = what you'd expect
 - Trustworthy = trust based on oversight
 
+---
+
 "intuitive meaning of these terms should also be clear"
 
 Fun fact: anyone notice the reference for systems that "support human responsibility"?
@@ -215,6 +204,8 @@ Let's look at the paper's figures together (alt-tab as needed).
 
 Key idea: be aware of "data cascades" concept and think about how it will affect your work!
 
+---
+
 Some other notes:
 - exposure to qualitative research on data supply chains
 - see connections w/ previous readings
@@ -265,13 +256,11 @@ The Zha paper gives us yet another model to describe the full "pipeline" of data
 
 ---
 
-# Quick intro to relevant interdisciplinary concepts
+## Quick intro to relevant interdisciplinary concepts
 
-Goal: just a "Wikipedia tier" exposure
+Goal: just a "Wikipedia tier" exposure. We'll cover more specific aspects as needed.
 
-We'll cover more specific aspects as needed.
-
-Caveat: we all must endeavor to keep learning about these things, myself included! ^[There's a running joke about economists and CS folks in particular being guilty of reading the Wikipedia page from another discipline and assuming they know everything about it!]
+Caveat: we all must endeavor to keep learning about these things, myself included! <p style="font-size:16px">(There's a running joke about economists and CS folks in particular being guilty of reading the Wikipedia page from another discipline and assuming they know everything about it!)</p>
 
 ---
 
@@ -302,11 +291,11 @@ Caveat: we all must endeavor to keep learning about these things, myself include
 
 ## Knowledge sharing
 
-- On the positive side, some might argue that AI industry creates some *positive externalities*
+On the positive side, some might argue that AI industry creates some *positive externalities*
 - open source software
 - search engines and LLMs, if done correctly, have the potential to increase access to knowledge
 - recommender help cut through the noise
-- genAI help when people have unequal access to resources to practice a language, etc. ^[One currently hot ethical debate centers around the use of genAI to help produce art vs. the use of genAI to help people write in their non-first language.]
+- genAI help when people have unequal access to resources to practice a language, etc.
 
 ---
 
@@ -370,6 +359,8 @@ Caveat: we all must endeavor to keep learning about these things, myself include
 
 # Crash Course, Some Other Relevant Concepts
 
+---
+
 ##  Norms
 - "Normative sentences imply "ought-to" types of statements and assertions"
 - https://en.wikipedia.org/wiki/Norm_(philosophy)
@@ -421,11 +412,14 @@ Caveat: we all must endeavor to keep learning about these things, myself include
 
 - https://dl.acm.org/doi/abs/10.1145/3531146.3533245
 - Is calibration a fairness requirement?: An argument from the point of view of moral philosophy and decision theory, Loi and Heitz
-- "For any thorough moral analysis, the meaning of the term “fairness” has to be made explicit and defined properly. For our paper, we equate fairness with (non-)discrimination, which is a legitimate understanding in the discussion about group fairness. More specifically, we equate it with “prima facie wrongful discrimination” in the sense this is used in Prof. Lippert-Rasmussen's treatment of this definition"
 
 ---
 
-# Activity: Co-writing our running examples (and moving towards a unified definition of HCAI and DCAI)
+"For any thorough moral analysis, the meaning of the term “fairness” has to be made explicit and defined properly. For our paper, we equate fairness with (non-)discrimination, which is a legitimate understanding in the discussion about group fairness. More specifically, we equate it with “prima facie wrongful discrimination” in the sense this is used in Prof. Lippert-Rasmussen's treatment of this definition"
+
+---
+
+Activity: Co-writing our running examples (and moving towards a unified definition of HCAI and DCAI)
 
 Let's say we're going to write up a short sort of "simulation" or "game". We our two scenarios (start up founder and policymaker). We want to define all the actions available to them. Let's use our readings thus far and then get started on the next set of readings.
 

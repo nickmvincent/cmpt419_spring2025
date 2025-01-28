@@ -374,6 +374,8 @@ Caveat: we all must endeavor to keep learning about these things, myself include
 - "Normative sentences imply "ought-to" types of statements and assertions"
 - https://en.wikipedia.org/wiki/Norm_(philosophy)
 
+---
+
 ## Normative goals
 
 - We might see this in some HCAI and Responsible AI work.

@@ -85,9 +85,7 @@ Please read the Introduction of FairML: https://fairmlbook.org/introduction.html
 - While our course material will differ in some ways from a Special Topics course that's entirely focused on fair ML, there's quite a bit of conceptual overlap between being human-centered and trying to achieve some notion of fairness.
 - For our purposes, the concept of the "machine learning loop", and especially measurements and going "from data to models" will be highly salient to almost all the topics we discuss, so try to read this one closely! We'll discuss this quite a bit together in class as well.
 
-Please read the Introduction of “Value-Sensitive Algorithm Design: Method, Case Study, and Lessons” by Zhu et al, published in CSCW
-
-    https://dl.acm.org/doi/10.1145/3274463 
+Please read the Introduction of “Value-Sensitive Algorithm Design: Method, Case Study, and Lessons” by Zhu et al, published in CSCW: https://dl.acm.org/doi/10.1145/3274463 
 
 The goal of this reading is to see another example of how a research project might concretely seek to incorporate values into design. You don't need to read the full paper, though if you're particularly interested in working on algorithm design you might want to!
 
@@ -104,12 +102,9 @@ Q4: Please let me know roughly how the long the readings and responses took so I
 ## Week 5
 
 This week, we are going to start reading a long piece that surveys training data influence:
-Training Data Influence Analysis and Estimation: A Survey
-Zayd Hammoudeh, Daniel Lowd
+Training Data Influence Analysis and Estimation: A Survey, Zayd Hammoudeh, Daniel Lowd: https://arxiv.org/abs/2212.04612
 
-
-
-This piece will represent a large jump from reading about high-level frameworks that consider social factors, incentives, etc. to a much more mathematical framework for thinking about data-centricity. Accordingly, we're going to work through this piece (and some excerpts from the key citations) fairly slowly. For this week, you should just read pages 1-10.
+This piece will represent a large jump from reading about high-level frameworks that consider social factors, incentives, etc. to a much more mathematical framework for thinking about data-centricity. Accordingly, we're going to work through this piece (and some excerpts from the key citations) fairly slowly. For this week, you should just read pages 1-10 (on the arxiv version -- up to Section 4).
 
 For this week's reading responses, you do not need to answer any questions. Instead, please use the reading response as a chance to record any questions that come up (if you want to just ask them in lecture, that's great too!)
 

@@ -73,7 +73,6 @@ If you wish to pursue this option, please consult with the instructor first to d
 References:
 
 
-
 * BookCorpus datasheet:[ https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/54229abfcfa5649e7003b83dd4755294-Paper-round1.pd](https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/54229abfcfa5649e7003b83dd4755294-Paper-round1.pdf)
 * Mozilla's Common Crawl data investigation:[ https://foundation.mozilla.org/en/blog/Mozilla-Report-How-Common-Crawl-Data-Infrastructure-Shaped-the-Battle-Royale-over-Generative-AI/](https://foundation.mozilla.org/en/blog/Mozilla-Report-How-Common-Crawl-Data-Infrastructure-Shaped-the-Battle-Royale-over-Generative-AI/)
 

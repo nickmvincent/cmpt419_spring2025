@@ -102,3 +102,7 @@ Some recent policy-related docs: OpenAI's economic blueprint: https://openai.com
 ## Week 3
 
 https://s.mirror.xyz/djByMntM2rQF4tqUISYS2MAO3oCfSWoOZSOpZjsYwaw
+
+## Week 4
+
+https://gradual-disempowerment.ai/

@@ -1,5 +1,5 @@
 ---
-theme: apple-basic
+theme: eloc
 background: none
 class: text-center
 highlighter: shiki
@@ -7,7 +7,7 @@ lineNumbers: false
 drawings:
   persist: false
 transition: slide-left
-title: Week 4
+title: Week 5
 mdc: true
 author: Prof. Nick Vincent
 institute: Simon Fraser University
@@ -15,7 +15,9 @@ date:
 ---
 
 
-# Week 4: Training Data Influence
+# Week 5: Training Data Influence
+
+---
 
 ## Our starting point
 
@@ -49,7 +51,7 @@ In general, these are all very hard questions. Quantitative social scientists, e
 
 ## 
 
-But often in real life, we'll just never know how your CS career would have gone if you {did / did not} play high school {basketball / hockey / basketball}.
+But often in real life, we'll just never know how your CS career would have gone if you did / did not play high school basketball / hockey / basketball.
 
 ---
 
@@ -154,7 +156,7 @@ Well, if retraining was free...
 - It's a survey of the many perspective, definitions, and estimation approaches for training data influence
 - The authors taxonomize the approaches
 
---
+---
 
 ## For the purposes of our course
 
@@ -185,15 +187,15 @@ $\mathbb{1}[a]$. The indicator function is equal to 1 when the predicate $a$ is 
 
 ## More notation
 
-$x \in \mathscr{X} \subseteq \mathbb{R}^d$
-
-is a feature vector
+$x \in \mathscr{X} \subseteq \mathbb{R}^d$ is a feature vector
 
 $y \in \mathscr{Y}$ is our target
 
 $D$ in our training set
 
 it's a set of $n$ tuples $z_i$, each tuple is $(x_i, y_i)$
+
+---
 
 - subscript $i$ means it's a train examples
 - subscript $te$ means it's a test examples, e.g. $z_{te}$ is $(x_{te}, y_{te})$
@@ -202,11 +204,9 @@ it's a set of $n$ tuples $z_i$, each tuple is $(x_i, y_i)$
 
 ## 
 
-Our model is $f$
+Our model is $f$. It's a function that maps from \mathscr{X} to \mathscr{Y}
 
-It's a function that maps from \mathscr{X} to \mathscr{Y}
-
-Paramaters are $\theta \in \mathbb{R}^p$
+Parameters are $\theta \in \mathbb{R}^p$
 
 $p := |\theta|$, i.e. $p$ is our number of parameters.
 
@@ -248,6 +248,8 @@ We won't worry to much about hyperparameters when we're dealing with data valuat
 We get *training gradients* defined as 
 
 $\nabla_{\theta} L(z_i ; \theta^{(t)})$
+
+---
 
 That is, the gradient (with respect to parameters theta) of the empirical risk of instance $z_i$ for parameters at time step t.^[Wikipedia's article on the gradient in vector calculus is pretty helpful as far as math articles goes! https://en.wikipedia.org/wiki/Gradient]
 

@@ -106,3 +106,11 @@ https://s.mirror.xyz/djByMntM2rQF4tqUISYS2MAO3oCfSWoOZSOpZjsYwaw
 ## Week 4
 
 https://gradual-disempowerment.ai/
+
+## Week 5
+
+https://ieeexplore.ieee.org/document/5197422
+
+https://arxiv.org/abs/2501.18887
+
+https://github.com/google-research/tuning_playbook

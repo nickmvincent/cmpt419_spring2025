@@ -123,13 +123,36 @@ Q2) What is the main issue with calculating retraining-based data values, as des
 
 Q3) If you were asked to run a new data market that makes use of influence estimates, which approach from the reading would you use and why? There is no correct answer to question, but you should aim to think through some of the trade-offs.
 
-## Week 7
+## Week 7 (Reading Week)
 
-TBA
+This week, please read: https://arxiv.org/pdf/1712.00409.pdf
+
+For your response, please answer the following 3 questions:
+
+Q1) Please describe the consistent finding across all ML domains in this study.
+
+Q2) What are the three "learning regions" that the authors identify?
+
+Q3) About how long did this reading take?
 
 ## Week 8
 
-TBA
+This week, we're going to start talking about online platforms and their role a key AI training data source. We'll orient much of our discussion around recent advances in Large Language Models, but with the caveat that the core ideas are equally relevant to search, recommendation, and classification systems in many applied domains of interest to our class (e.g. medicine, analytics for sports and games).
+
+First, please read these two short blog posts from 2020 and 2022.
+
+https://dataleverage.substack.com/p/dont-give-openai-all-the-credit-for
+
+https://dataleverage.substack.com/p/chatgpt-is-awesome-and-scary-you-deserve-credit
+
+
+Next, please read Sections 1 and 2 of this pre-print paper:
+
+https://arxiv.org/abs/2101.00027
+
+
+For this week, please list three specific online platforms that are useful for AI training.
+
 
 ## Week 9 
 

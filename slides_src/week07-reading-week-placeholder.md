@@ -1,0 +1,1 @@
+No slides for Week 7, reading week (at least in Spring 2025). Included for completeness.

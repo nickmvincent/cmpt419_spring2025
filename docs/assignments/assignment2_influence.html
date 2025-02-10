@@ -1,0 +1,114 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Assignment2 Influence</title>
+            <link rel="stylesheet" href="/assets/style.css">
+        </head>
+        <body>
+            <div class="sidebar">
+                <nav><ul class="nav-list">
+<li class="nav-section">
+<div class="nav-section-header">readings</div>
+<ul class="nav-items">
+<li><a href="/readings/hcai_classics.html">Hcai Classics</a></li>
+<li><a href="/readings/latebreakinglinks.html">Latebreakinglinks</a></li>
+<li><a href="/readings/readings.html">Readings</a></li>
+<li><a href="/readings/readings_tldr.html">Readings Tldr</a></li>
+</ul></li>
+<li class="nav-section">
+<div class="nav-section-header">assignments</div>
+<ul class="nav-items">
+<li><a href="/assignments/assignment1_tools.html">Assignment1 Tools</a></li>
+<li><a href="/assignments/assignment2_influence.html">Assignment2 Influence</a></li>
+<li><a href="/assignments/project_proposal.html">Project Proposal</a></li>
+<li><a href="/assignments/project_rubric.html">Project Rubric</a></li>
+</ul></li>
+<li class="nav-section">
+<div class="nav-section-header">misc_materials</div>
+<ul class="nav-items">
+<li><a href="/misc_materials/prereq.html">Prereq</a></li>
+<li><a href="/misc_materials/week6_onwards.html">Week6 Onwards</a></li>
+</ul></li>
+<li class="nav-section">
+<div class="nav-section-header">slides_pdfs</div>
+<ul class="nav-items">
+<li><a href="/slides_pdfs/Week 2 - Slidev.pdf">Week 2 - Slidev</a></li>
+<li><a href="/slides_pdfs/Week 3 - Slidev.pdf">Week 3 - Slidev</a></li>
+<li><a href="/slides_pdfs/Week 4 - Slidev.pdf">Week 4 - Slidev</a></li>
+<li><a href="/slides_pdfs/Week 5 - Slidev.pdf">Week 5 - Slidev</a></li>
+<li><a href="/slides_pdfs/readme.html">Readme</a></li>
+<li><a href="/slides_pdfs/week01-day01-export.pdf">Week01-Day01-Export</a></li>
+<li><a href="/slides_pdfs/week01-day02-export.pdf">Week01-Day02-Export</a></li>
+</ul></li>
+</ul></nav>
+            </div>
+            <div class="content">
+                <h1 id="assignment-2">Assignment 2</h1>
+<p>Our Module 2 content is focused on understanding the broad question: <em>Which groups of observations – or groups of people – are “responsible” for a given model output or “capability”?</em></p>
+<p>In this assignment, we&rsquo;ll get some hands-on experience with the concept of training data influence.</p>
+<p>There are four parts to the assignment. You&rsquo;ll need to write code to train a ML model and produce influence values for some of the training data in the model. Below, the requirements for each part are described.</p>
+<p>Each part will have a coding component and a report component. You will turn in one file (or multiple) with code (e.g., a `.py` file or `.ipynb` file) and one report PDF. If using computational notebooks like a Jupyter notebook, you may combine these two into a single file (e.g. a notebook exported to a PDF with code visible.</p>
+<p>In your code, you can use comments to designate which parts of your code correspond to each part.</p>
+<p>Note 1: you may work on this assignment in groups of 1-3.</p>
+<p>Note 2: you may use generative AI on this assignment, and must report your use. FYI – the instructor has tried out several models, and they’re definitely useful, but you’ll need to be careful about explaining your choices. In fact, I’ll even provide you some example outputs of what you get from directly copy-pasting the assignment into several strong models!</p>
+<p>Note 3: Finally, as an additional incentive to avoid literally just copy-pasting the assignment in your favorite consumer AI product, I may randomly select some students to explain their solutions in class.</p>
+<h3 id="part-1-preliminaries"><strong>Part 1: Preliminaries</strong></h3>
+<p>First, you should select a dataset to work with, define a specific classification (must do classification for this assignment) task, and establish a baseline model.</p>
+<p>If you&rsquo;re looking for inspiration, you might consider selecting something from <a href="https://archive.ics.uci.edu/">https://archive.ics.uci.edu/</a></p>
+<p>You will not be graded based on your dataset choice, task choice, or achieving a certain level of performance.</p>
+<p>Rather, you will be graded based on your ability to describe, in a scientifically complete fashion, the choices you&rsquo;ve made.</p>
+<p>You are recommended to select a dataset from a domain of your interest and then take a small random sample of that dataset (e.g., 10000 rows &ndash; though you can lower this if using high-dimensional data, want to use deep learning, etc. &ndash; ask us if you&rsquo;re unsure) to ensure that you can complete this assignment quickly, without being burdened by excessive computational costs. What constitutes &ldquo;excessive&rdquo; here will depend on your access to computing resources (you may wish to explore using an online tool with some degree of free compute like Google Colab).</p>
+<p>If you select a dataset you are interested in, you may be able to reuse some of your code you write for this assignment for your project.</p>
+<p>Suggested approach: I recommend first training several models on the &ldquo;full dataset&rdquo; (e.g. logistic regression, basic random forest, KNN, XGBoost). See how long this takes. Then, try subsampling 10% or 1% of your data and see if the training time falls low enough that you think you can reasonably retrain a model at least 50 total times.</p>
+<p>Specifically, you should write code to do the following:</p>
+<ul>
+<li>Load a dataset into memory. Describe the dataset in your report. (2 marks)  </li>
+<li>Process into features and labels. Describe the features and labels in your report. (2 marks)  </li>
+<li>Split into train and test sets. Describe your specific approach (e.g. random 80/20 split, time-based split, etc.) (2 marks)  </li>
+<li>Train some classifier. It does not need to be the &ldquo;best&rdquo; possible performance for your chosen dataset, though you may want to try a few options if feasible to do so. (2 marks)  </li>
+<li>Report performance of your baseline classifier: accuracy, confusion matrix. You are encouraged to include a precision-recall curve or TPR vs. FPR curve (i.e. AUROC curve), though if you think it isn&rsquo;t helpful you can just mention why not. You must choose a &ldquo;primary metric&rdquo; that you will use for your data value estimates, and you should briefly justify this choice. (2 marks)</li>
+</ul>
+<p>10 marks total for part 1</p>
+<h3 id="part-2-brute-force-loo-influence"><strong>Part 2: Brute force LOO influence</strong></h3>
+<p>Next, you should select (manually or randomly) 10 training data points (i.e., observations) and compute the exact leave-one-out LOO influence of these examples on your chosen primary metric.</p>
+<p>You can earn up to 4 marks for clean and correct code.</p>
+<p>Report the influence score for each of your observations. You may do this in a table or plot. (2 marks).</p>
+<p>Please briefly comment on any trends you observe with your influence scores. Are any points with high influence unusual in any way? It&rsquo;s OK if they&rsquo;re not, but you should demonstrate that you looked. (2 marks)</p>
+<p>8 marks total for part 2.</p>
+<h3 id="part-3-group-level-influence"><strong>Part 3: Group-level influence</strong></h3>
+<p>Next, you should select (manually or randomly) 10 different <em>groups</em> of data points of different sizes. For instance, you might randomly select 10%, 20%, 30%, etc. of the training data. You should compute the exact leave-entire-group-out influence for each group.</p>
+<p>You can earn up to 4 marks for clean and correct code.</p>
+<p>Report the influence score for each of your groups. (2 marks)</p>
+<p>For part 3, you must also include a plot that shows group size compared with influence. (2 marks)</p>
+<p>8 marks total for part 3.</p>
+<h3 id="part-4-shapley-values"><strong>Part 4: Shapley values</strong></h3>
+<p>Finally, we will roughly estimate Shapley values for our training data.</p>
+<p>For each observation and each group, you should compute the Shapley value using Truncated Monte Carlo Shapley Value Estimation (described briefly in our survey reading and in more detail here: <a href="http://proceedings.mlr.press/v97/ghorbani19c/ghorbani19c.pdf">http://proceedings.mlr.press/v97/ghorbani19c/ghorbani19c.pdf</a>).</p>
+<p>This will involve a coding challenge: implementing this particular Shapley value estimation algorithm.</p>
+<p>In the Ghorbani and Zou paper, the authors suggest using a truncation cut-off: if performance for a given point / time step is very close to full performance V(D), we don&rsquo;t need to retrain again.</p>
+<p>We will go a step further and use the following rule to ensure our code doesn&rsquo;t take too long to run: we should take our best guess at the Shapley value for each training data point after only 10 total permutations have been examined. In other words, your code should just re-shuffle the training data 10 times, compute the marginal impact of each training point, and then average these across the 10 permutations.</p>
+<p>Furthermore, you may further subsample your training data (E.g. if you started with 100k rows and have only been using 10k so far, and need to drop down to 1k&hellip; you can) for this part if needed to complete the assignment in time.</p>
+<p>You can earn up to 4 marks for clean and correct code.</p>
+<p>Here, you need only to plot the distribution of all Shapley values. (2 marks)</p>
+<p>If you have extra time, you are encouraged to compute more accurate Shapley value estimates by using more permutations and compare the Shapley values to LOO influence from part 2, but this is optional.</p>
+<p>6 marks total for part 4.</p>
+<h3 id="grading"><strong>Grading</strong></h3>
+<p>This assignment will be graded based on both code correctness and an accompanying report. You can earn marks for each of these separately (i.e. if you have errors in your influence calculations, you can still earn the marks for reporting and visualizing the potentially erroneous data values).</p>
+<p>To recap, there are:</p>
+<ul>
+<li>10 marks available in part 1  </li>
+<li>8 in part 2  </li>
+<li>8 in part 3  </li>
+<li>6 in part 4  </li>
+<li>for a total of 32 marks.</li>
+</ul>
+<p>Part 4 will likely be the most difficult, but offers the least marks, so you should consider completing the earlier sections first.</p>
+<p>If you submitted with a group, your report must include a &lsquo;contribution statement&rsquo; that describes how each member contributed.</p>
+            </div>
+            <script src="/assets/script.js"></script>
+        </body>
+        </html>
+        

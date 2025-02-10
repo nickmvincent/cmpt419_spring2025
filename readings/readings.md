@@ -135,6 +135,8 @@ Q2) What are the three "learning regions" that the authors identify?
 
 Q3) About how long did this reading take?
 
+The reading response for this week will be due Week 8 (i.e., two responses due Week 8!)
+
 ## Week 8
 
 This week, we're going to start talking about online platforms and their role a key AI training data source. We'll orient much of our discussion around recent advances in Large Language Models, but with the caveat that the core ideas are equally relevant to search, recommendation, and classification systems in many applied domains of interest to our class (e.g. medicine, analytics for sports and games).

@@ -15,3 +15,15 @@ This file contains the bare minimum info about the readings: links and special i
 
 - https://fairmlbook.org/introduction.html
 - https://dl.acm.org/doi/10.1145/3274463, just read the intro
+
+## Week 5
+
+- https://arxiv.org/abs/2212.04612, p1-10
+
+## Week 6
+
+- https://arxiv.org/abs/2212.04612, p10-21
+
+## Week 7
+
+- https://arxiv.org/pdf/1712.00409.pdf

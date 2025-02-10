@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Influence Functions: Math (Left) + JS (Right)</title>
+
+  <!-- 1) Configure MathJax to render LaTeX. 
+       We remove "async" so that MathJax loads before body content. -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+  <!-- 2) Basic CSS for side-by-side layout -->
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    h1, h2, h3 {
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+    .container {
+      display: flex;           /* side by side */
+      flex-wrap: wrap;         /* wrap on smaller screens */
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .left-pane, .right-pane {
+      flex: 1 1 45%;
+      min-width: 300px;
+    }
+    .left-pane {
+      border-right: 1px solid #ccc;
+      padding-right: 1rem;
+    }
+    .right-pane {
+      padding-left: 1rem;
+    }
+    pre, code {
+      background: #f8f8f8;
+      padding: 1rem;
+      display: block;
+      white-space: pre;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 1em;
+      font-size: 1em;
+      padding: 0.4em 0.8em;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 1em;
+      padding: 1em;
+      background: #f0f0ff;
+      border: 1px solid #ccc;
+      white-space: pre;
+      min-height: 3em;
+    }
+  </style>
+</head>
+
+<body>
+<h1 style="text-align:center;">
+  Influence Functions Demo (Math on Left, JavaScript on Right)
+</h1>
+
+<div class="container">
+  <!-- ============ LEFT: MATH DERIVATION ============ -->
+  <div class="left-pane">
+    <h2>Math Derivation</h2>
+    <p>
+      We have a <strong>logistic regression</strong> model with two parameters 
+      \\((w, b)\\). The predicted probability is 
+      \\[
+        \hat{y}(x) = \sigma(w x + b), \quad 
+        \sigma(z) = \frac{1}{1 + e^{-z}}.
+      \\]
+      Our small training set is:
+      \\[
+        (x_0, y_0) = (0,0),\quad
+        (x_1, y_1) = (1,0),\quad
+        (x_2, y_2) = (2,1).
+      \\]
+      We <em>fix</em> \\((w^*, b^*)=(2, -3)\\), 
+      as if already fit, to illustrate exact calculations.
+    </p>
+
+    <h3>Logistic Loss &amp; Gradients</h3>
+    <p>
+      For a single example \\((x_i, y_i)\\), the negative log-likelihood is
+      \\[
+        L_i(w,b) = 
+          -\bigl[y_i \ln(\hat{y}_i) + (1-y_i)\ln\bigl(1-\hat{y}_i\bigr)\bigr].
+      \\]
+      Its gradient w.r.t. \\((w,b)\\) is:
+      \\[
+        \nabla_{(w,b)} L_i 
+          = (\hat{y}_i - y_i) \begin{pmatrix} x_i \\ 1 \end{pmatrix},
+        \quad \text{where } \hat{y}_i = \sigma(w x_i + b).
+      \\]
+    </p>
+
+    <h3>Hessian &amp; Influence</h3>
+    <p>
+      The total Hessian at \\((w^*, b^*)\\) is
+      \\[
+        \nabla^2 L_{\text{train}} 
+          = \sum_i p_i(1-p_i) 
+            \begin{pmatrix} x_i^2 & x_i \\ x_i & 1 \end{pmatrix},
+        \quad p_i = \sigma(w^* x_i + b^*).
+      \\]
+      Then the <em>influence</em> on a test point 
+      \\((x_{\text{test}}, y_{\text{test}})\\) is
+      \\[
+        \mathcal{I}_{\text{up,loss}}(z_{\text{test}}, z_i)
+          = -\,\nabla_\theta L(z_{\text{test}})^\top\,
+            \Bigl[\nabla^2_\theta L_{\text{train}}\Bigr]^{-1}\,
+            \nabla_\theta L(z_i).
+      \\]
+      A <em>negative</em> result means removing the point would <em>increase</em> test loss (it helped), while a <em>positive</em> result means it hurt.
+    </p>
+  </div><!-- end left-pane -->
+
+  <!-- ============ RIGHT: JAVASCRIPT EXAMPLE ============ -->
+  <div class="right-pane">
+    <h2>JavaScript Example</h2>
+
+    <!-- For display only: show code in <pre><code> -->
+    <pre><code>
+// We fix w=2, b=-3 and compute influence on test point (1.5, 1).
+
+function sigmoid(z) {
+  return 1 / (1 + Math.exp(-z));
+}
+
+function gradSingleExample(w, b, x, y) {
+  const p = sigmoid(w*x + b);
+  return [(p - y)*x, (p - y)];
+}
+
+function hessian(w, b, X, Y) {
+  let H00=0, H01=0, H10=0, H11=0;
+  for (let i=0; i<X.length; i++) {
+    const p = sigmoid(w*X[i] + b);
+    const fac = p*(1-p);
+    H00 += fac*X[i]*X[i];
+    H01 += fac*X[i];
+    H10 += fac*X[i];
+    H11 += fac;
+  }
+  return [[H00,H01],[H10,H11]];
+}
+
+function invert2x2(M) {
+  const [A,B] = M[0], [C,D] = M[1];
+  const det = A*D - B*C;
+  return [
+    [ D/det, -B/det ],
+    [ -C/det, A/det ]
+  ];
+}
+
+function mat2x2TimesVec(M, v) {
+  return [
+    M[0][0]*v[0] + M[0][1]*v[1],
+    M[1][0]*v[0] + M[1][1]*v[1]
+  ];
+}
+
+function dot2(u, v) {
+  return u[0]*v[0] + u[1]*v[1];
+}
+
+function computeInfluences() {
+  const X_train = [0,1,2];
+  const y_train = [0,0,1];
+  const X_test = 1.5, y_test = 1;
+
+  // Fix parameters
+  const w=2, b=-3;
+
+  // Gradient for test
+  const gTest = gradSingleExample(w,b,X_test,y_test);
+
+  // Hessian + inverse
+  const H = hessian(w,b,X_train,y_train);
+  const H_inv = invert2x2(H);
+
+  let result = `Parameters: w=${w}, b=${b}\n`;
+  result += `Hessian: [[${H[0][0].toFixed(6)}, ${H[0][1].toFixed(6)}], [${H[1][0].toFixed(6)}, ${H[1][1].toFixed(6)}]]\n`;
+  result += `Inv(H): [[${H_inv[0][0].toFixed(6)}, ${H_inv[0][1].toFixed(6)}], [${H_inv[1][0].toFixed(6)}, ${H_inv[1][1].toFixed(6)}]]\n\n`;
+
+  for (let i=0; i< X_train.length; i++) {
+    const g_i = gradSingleExample(w,b,X_train[i],y_train[i]);
+    // influence = - dot( gTest, (H_inv*g_i) )
+    const tmp = mat2x2TimesVec(H_inv,g_i);
+    const influence = -dot2(gTest,tmp);
+    result += `Point ${i} (x=${X_train[i]},y=${y_train[i]}): influence=${influence.toFixed(6)}\n`;
+  }
+  return result;
+}
+    </code></pre>
+
+    <button id="btnCompute">Compute Influences</button>
+    <div id="output" class="output"></div>
+  </div><!-- end right-pane -->
+
+</div><!-- end container -->
+
+<!-- The actual JS logic that the browser will execute -->
+<script>
+/* === Same code as above, but actual script for the browser to run === */
+
+// We fix w=2, b=-3 and compute influence on test point (1.5, 1).
+
+function sigmoid(z) {
+  return 1 / (1 + Math.exp(-z));
+}
+
+function gradSingleExample(w, b, x, y) {
+  const p = sigmoid(w*x + b);
+  return [(p - y)*x, (p - y)];
+}
+
+function hessian(w, b, X, Y) {
+  let H00=0, H01=0, H10=0, H11=0;
+  for (let i=0; i<X.length; i++) {
+    const p = sigmoid(w*X[i] + b);
+    const fac = p*(1-p);
+    H00 += fac*X[i]*X[i];
+    H01 += fac*X[i];
+    H10 += fac*X[i];
+    H11 += fac;
+  }
+  return [[H00,H01],[H10,H11]];
+}
+
+function invert2x2(M) {
+  const [A,B] = M[0], [C,D] = M[1];
+  const det = A*D - B*C;
+  return [
+    [ D/det, -B/det ],
+    [ -C/det, A/det ]
+  ];
+}
+
+function mat2x2TimesVec(M, v) {
+  return [
+    M[0][0]*v[0] + M[0][1]*v[1],
+    M[1][0]*v[0] + M[1][1]*v[1]
+  ];
+}
+
+function dot2(u, v) {
+  return u[0]*v[0] + u[1]*v[1];
+}
+
+function computeInfluences() {
+  const X_train = [0,1,2];
+  const y_train = [0,0,1];
+  const X_test = 1.5, y_test = 1;
+
+  // Fix parameters
+  const w=2, b=-3;
+
+  // Gradient for test
+  const gTest = gradSingleExample(w,b,X_test,y_test);
+
+  // Hessian + inverse
+  const H = hessian(w,b,X_train,y_train);
+  const H_inv = invert2x2(H);
+
+  let result = `Parameters: w=${w}, b=${b}\n`;
+  result += `Hessian: [[${H[0][0].toFixed(6)}, ${H[0][1].toFixed(6)}], [${H[1][0].toFixed(6)}, ${H[1][1].toFixed(6)}]]\n`;
+  result += `Inv(H): [[${H_inv[0][0].toFixed(6)}, ${H_inv[0][1].toFixed(6)}], [${H_inv[1][0].toFixed(6)}, ${H_inv[1][1].toFixed(6)}]]\n\n`;
+
+  for (let i=0; i< X_train.length; i++) {
+    const g_i = gradSingleExample(w,b,X_train[i],y_train[i]);
+    // influence = - dot( gTest, H_inv*g_i )
+    const tmp = mat2x2TimesVec(H_inv,g_i);
+    const influence = -dot2(gTest, tmp);
+    result += `Point ${i} (x=${X_train[i]},y=${y_train[i]}): influence=${influence.toFixed(6)}\n`;
+  }
+  return result;
+}
+
+// Attach event to the button
+document.getElementById('btnCompute').addEventListener('click', () => {
+  const res = computeInfluences();
+  document.getElementById('output').textContent = res;
+});
+</script>
+
+</body>
+</html>

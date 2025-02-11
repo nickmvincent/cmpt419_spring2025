@@ -16,6 +16,14 @@ date:
 
 ## Slide for logistics and news
 
+- lots of AI news! 
+  - DeepSeek, Paris Summit
+- logistics
+  - assignment 2 posted 
+
+---
+
+
 ## Agenda for this deck
 
 - Discuss training data influence methods from our reading
@@ -35,6 +43,8 @@ date:
 # Leave-one-out influence 
 
 Our first retraining-based method
+
+---
 
 ## Notation reminder
 
@@ -72,7 +82,7 @@ Our first retraining-based method
 ---
 
 - simple, easy to understand
-- used for fairness, see [BF21] in H+L
+- used for fairness, see BF21 in H+L
 - but: extremely expensive!
 - need to retrain even more if you want to account for variance in model training
 
@@ -80,9 +90,9 @@ Our first retraining-based method
 
 ## Additional notes on LOO
 
-- can efficiently calculate for KNN, see [Jia+21a] in H+L
+- can efficiently calculate for KNN, see Jia+21a in H+L
 - $O(n log(n))$ to calculate very close to exact value (vs. $O(nT)$, where T is probably pretty big)
-- can also efficiently calculate for decision tree, see [Sha+18b]
+- can also efficiently calculate for decision tree, see Sha+18b
 - can efficiently estimate for linear regression
 - group influence: we can easily extend to "leave $m$ out", $n \choose m$
 
@@ -161,6 +171,9 @@ Our second retraining-based approach!
 
 - as K goes up and m gets bigger (closer to $n$, $\frac{m}{n}$ gets closer to 1), we get closer to just calculating loo
 - if $m$ is really small, we get something very different from LOO (but perhaps still interesting: what do you think?)
+
+---
+
 - we can do downsampling for groups: compare all the cases in which the whole group is missing!
 - for groups: if m/n gets too smaller (e.g. imagine we're only grabbing 2 instances at a time - what would happen)
 
@@ -176,6 +189,8 @@ How specifically could we apply this to groups?
 # Shapley values 
 
 Our third retraining-based approach!
+
+---
 
 ## Shapley value: the Idea
 
@@ -216,7 +231,7 @@ Well, each time we construct a set, each item can either be in the set or not.
 
 Order doesn't matter.
 
-{A in / A out} * {B in / B out} * ...
+A in / A out * B in / B out * ...
 
 $2 * 2 * ... 2$ -> $2^n$
 
@@ -312,7 +327,10 @@ Idea: weight "low cardinality" examples more heavily (e.g. the "what if I was ad
 
 - We're just going to the discuss the Monte Carlo approach
 - Basic idea: shuffle your training data
-- Running example: [1,2,3,4] - > e.g. [4,2,3,1]
+- Running example: 1,2,3,4 - > e.g. 4,2,3,1
+
+---
+
 - "Work left to right" through your shuffled data: Find L([4]), then L([4,2]), then L([4,2,3]), then L([4,2,3,1])
 - Each time you add a training data, this counts towards its running marginal contribution
 - Optional: if we hit some "performance threshold", stop (if we already got to our expected accuracy halfway through, just give all the remaining data points score of 0)
@@ -366,6 +384,8 @@ For influence functions:
 - Inverse Hessian tells you how to scale updates in different directions
 - Key part of influence function formula (appears as H^-1)
 
+---
+
 Main challenge:
 - O(p²) parameters for p-param model
 - Usually need approximations
@@ -401,6 +421,8 @@ Worked example:
 
 Check out several implementations, e.g. https://github.com/kohpangwei/influence-release, https://github.com/nimarb/pytorch_influence_functions/blob/master/pytorch_influence_functions/calc_influence_function.py https://github.com/alstonlo/torch-influence/blob/main/torch_influence/base.py
 
+---
+
 
 ## My suggested mental model: which "teams" are allowed
 
@@ -417,6 +439,7 @@ The second dimension is: how "close" to accurate do we want to be (do we want ju
 - Downsampling says: we'll consider a variety of teams, of some fixed size set by the researchers, say 70%
   - but effectively similar to LOO 
 
+---
 
 ## What does this all have to do with human-centered AI
 

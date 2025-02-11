@@ -164,7 +164,7 @@ class CourseWebsiteGenerator:
             
             for item in section['items']:
                 html.append(
-                    f'<li><a href="/{item["path"]}">{item["title"]}</a></li>'
+                    f'<li><a href="{item["path"]}">{item["title"]}</a></li>'
                 )
             
             html.append('</ul></li>')

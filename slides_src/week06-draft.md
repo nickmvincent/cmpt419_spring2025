@@ -16,10 +16,10 @@ date:
 
 ## Slide for logistics and news
 
-- lots of AI news! 
-  - DeepSeek, Paris Summit
+- Torrent of AI news! 
+  - DeepSeek, Paris Summit, more.
 - logistics
-  - assignment 2 posted 
+  - Assignment 2 posted 
 
 ---
 
@@ -76,10 +76,9 @@ Our first retraining-based method
 
 - incremental complexity here refers to the time it takes to calculate influence for additional *test* instances
 
+---
 
 ## LOO pros and cons
-
----
 
 - simple, easy to understand
 - used for fairness, see BF21 in H+L
@@ -155,7 +154,7 @@ Our second retraining-based approach!
 ## Downsampling and training variance
 
 - LOO had some issues with randomness in training / the idea that we'll get variance in our model performance if we just retrain with the same architecture and data over and over
-- Downsampling is likley better in this regard
+- Downsampling is likely better in this regard
 
 ---
 
@@ -169,22 +168,15 @@ Our second retraining-based approach!
 ## Downsampling: bounds and using it for groups, a few comments
  
 
-- as K goes up and m gets bigger (closer to $n$, $\frac{m}{n}$ gets closer to 1), we get closer to just calculating loo
+- as K goes up and m gets bigger (closer to $n$, $\frac{m}{n}$ gets closer to 1), we get closer to just calculating LOO
 - if $m$ is really small, we get something very different from LOO (but perhaps still interesting: what do you think?)
 
 ---
 
 - we can do downsampling for groups: compare all the cases in which the whole group is missing!
-- for groups: if m/n gets too smaller (e.g. imagine we're only grabbing 2 instances at a time - what would happen)
+- for groups: if m/n gets too small (e.g. imagine we're only grabbing 2 instances at a time - what would happen), probably not so useful... but interesting?
 
 ---
-
-## Downsampling Discussion Question
-
-How specifically could we apply this to groups?
-
----
-
 
 # Shapley values 
 
@@ -208,8 +200,16 @@ We want to give each player a score, but that score should account for all the p
 
 ---
 
-## Shapley value: The Teams
+## Why Shapley?
 
+- basic idea is to devise a mathematically principled way to distribute rewards to people who contribute to some cooperative endeavor
+- ex: carbon emissions
+- ex: distribute bonus to employees
+- ex: marketing attribution (how did IG ads and YouTube ads "work together" to get you to buy something)
+
+---
+
+## Shapley value: The Teams
 
 Imagine 4 players: Alice, Bob, Chen, and Di
 
@@ -221,7 +221,7 @@ All groups of size 4, all groups of size 3, all groups of size 2, all groups of 
 
 ---
 
-## Shapley value: How many teams
+## Shapley value: How many teams?
 
 The Power set - all subsets of all sizes.
 
@@ -229,11 +229,7 @@ How many subsets in the power set?
 
 Well, each time we construct a set, each item can either be in the set or not.
 
-Order doesn't matter.
-
-A in / A out * B in / B out * ...
-
-$2 * 2 * ... 2$ -> $2^n$
+$2^n$
 
 See Wikipedia for much more detailed explanation:
 https://en.wikipedia.org/wiki/Power_set
@@ -246,25 +242,36 @@ https://en.wikipedia.org/wiki/Power_set
 
 ---
 
-- For all the "coalitions" A without item i, compare the "score" with i and without i. 
-- Each time, divide by the binomial coefficient (n-1, cardinality of A), i.e. n-1 choose size of A. 
+- For all the "coalitions" S without item i, compare the "score" with i and without i. 
+- Each time, divide by the binomial coefficient (n-1, cardinality of S), i.e. n-1 choose size of S. 
 - This tells us how many other ways there are to create a team of the same size, and we want to weight things relative how many other combinations exist
 
 ---
 
 ## Example
 
-- Example 1: n=10 and cardinality of A is 1 (i.e. coalition is just one player). There's only 9 other teams of this size, so we divide by 9
-- Example 2: n=10 and cardinality of A is 7 (i.e. coalitions of size 8). There's 36 other teams of this size (calculate using binomial coefficient), so we divide by 36 so that each one is weighted less heavily
+We have 10 data points. We omit point 1 (i=1). S has size 9, so the LOO value gets divided
+by "9 choose 9" = 1.
+
+Next we examine all datasets of size 8 (missing 1+2, missing 1+3...). |S| = 8, so 9 choose 8 gives us 9. Each of these 9 coalitions gets divided by 9.
+
+Next we examine all datasets of size 7 (missing 1+2+3, missing 1+2+4...). |S| = 8, so 9 choose 7 gives us 36. Each of these 36 coalitions gets its influence divided by 36.
+
 - the goal is to weight all coalitions *sizes* equally
+
+
+---
+
+- denominator essentially weights each marginal contribution [v(S ∪ {i}) - v(S)] by the probability of that particular sequence occurring if we were to take all players, randomly shuffle them into a line to build teams
+- hence, Shapley values represent an "average" or "expected" marginal contribution - they literally average over all possible sequences in which coalitions could form, with each sequence equally likely.
 
 ---
 
 ## Shapley values
 
-- it's the weighted impact on risk when $z_i$ is added to a random training subset of any size
-- we add weights so that e.g. for n=10, all 9 teams of size 1 have the same weight as all 36 teams of size 7
-- we don't have to weight all sizes equally, though
+- Gives us the weighted impact on risk when $z_i$ is added to a random training subset of any size
+- We add weights so that e.g. for n=10 and i=1, all 9 teams of size 2 have the same weight as all 36 teams of size 7
+- Looking forward: we don't have to weight all sizes equally, though
 - can think of it as a LOO influence that accounts for all possible subsets of $D$
 
 ---
@@ -301,10 +308,11 @@ Idea: weight "low cardinality" examples more heavily (e.g. the "what if I was ad
 ## Shapley properties
 
 - researchers like the nice theoretical properties
-- dummy player = player $i$ adds same value to any coalition as amount they receive on their own
-- symmetrical
-- linear
-- accounts for multiple training set sizes
+- Null player: add no marginal value to any coalition -> receive zero payoff
+- Symmetrical - "equal treatment of equals" (from [wp](https://en.wikipedia.org/wiki/Shapley_value))
+- Linear - Shapley value of a sum of games equals the sum of their individual Shapley values
+- Pareto Optimality 
+- Accounts for multiple training set sizes
 
 ---
 
@@ -335,10 +343,6 @@ Idea: weight "low cardinality" examples more heavily (e.g. the "what if I was ad
 - Each time you add a training data, this counts towards its running marginal contribution
 - Optional: if we hit some "performance threshold", stop (if we already got to our expected accuracy halfway through, just give all the remaining data points score of 0)
 
-
----
-
-## Monte Carlo Shapley algo
 
 ---
 

@@ -132,7 +132,7 @@ class CourseWebsiteGenerator:
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>{title}</title>
-            <link rel="stylesheet" href="/assets/style.css">
+            <link rel="stylesheet" href="assets/style.css">
         </head>
         <body>
             <div class="sidebar">
@@ -141,7 +141,7 @@ class CourseWebsiteGenerator:
             <div class="content">
                 {content}
             </div>
-            <script src="/assets/script.js"></script>
+            <script src="assets/script.js"></script>
         </body>
         </html>
         """

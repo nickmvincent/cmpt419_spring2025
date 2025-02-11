@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Influence Functions: Math (Left) + JS (Right)</title>
-
-  <!-- 1) Configure MathJax to render LaTeX. 
-       We remove "async" so that MathJax loads before body content. -->
+  <title>Influence Functions Demo: Detailed Math & JavaScript</title>
+  <!-- Configure MathJax to render LaTeX before the body loads -->
   <script>
     window.MathJax = {
       tex: {
@@ -16,7 +14,7 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
-  <!-- 2) Basic CSS for side-by-side layout -->
+  <!-- Basic CSS for side-by-side layout -->
   <style>
     body {
       margin: 0;
@@ -27,8 +25,8 @@
       margin-bottom: 0.5em;
     }
     .container {
-      display: flex;           /* side by side */
-      flex-wrap: wrap;         /* wrap on smaller screens */
+      display: flex;
+      flex-wrap: wrap;
       gap: 2rem;
       padding: 2rem;
     }
@@ -65,240 +63,392 @@
       white-space: pre;
       min-height: 3em;
     }
+    details {
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+      border: 1px solid #aaa;
+      padding: 0.5em;
+      border-radius: 4px;
+      background-color: #fafafa;
+    }
+    details summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
 
 <body>
-<h1 style="text-align:center;">
-  Influence Functions Demo (Math on Left, JavaScript on Right)
-</h1>
+  <h1 style="text-align:center;">
+    Influence Functions Demo (Detailed Math on Left, Detailed JavaScript on Right). AI DISCLAIMER: produced via
+    long "chat" with o3-mini-high, Feb 11, 2025.
+  </h1>
 
-<div class="container">
-  <!-- ============ LEFT: MATH DERIVATION ============ -->
-  <div class="left-pane">
-    <h2>Math Derivation</h2>
-    <p>
-      We have a <strong>logistic regression</strong> model with two parameters 
-      \\((w, b)\\). The predicted probability is 
-      \\[
-        \hat{y}(x) = \sigma(w x + b), \quad 
-        \sigma(z) = \frac{1}{1 + e^{-z}}.
-      \\]
-      Our small training set is:
-      \\[
-        (x_0, y_0) = (0,0),\quad
-        (x_1, y_1) = (1,0),\quad
-        (x_2, y_2) = (2,1).
-      \\]
-      We <em>fix</em> \\((w^*, b^*)=(2, -3)\\), 
-      as if already fit, to illustrate exact calculations.
-    </p>
+  <div class="container">
+    <!-- LEFT: Mathematical Derivation -->
+    <div class="left-pane">
+      <h2>Mathematical Derivation</h2>
+      <p>
+        We consider a <strong>logistic regression</strong> model with parameters 
+        $w$ and $b$. The predicted probability for an input $x$ is given by
+        $$\hat{y}(x)=\sigma(wx+b), \quad \text{with} \quad \sigma(z)=\frac{1}{1+e^{-z}}.$$
+      </p>
+      <p>
+        Our training set is:
+        $$ (x_0,y_0)=(0,0),\quad (x_1,y_1)=(1,0),\quad (x_2,y_2)=(2,1). $$
+        We <em>fix</em> the parameters to
+        $$w^*=2,\quad b^*=-3,$$
+        so that we can perform explicit numerical calculations.
+      </p>
 
-    <h3>Logistic Loss &amp; Gradients</h3>
-    <p>
-      For a single example \\((x_i, y_i)\\), the negative log-likelihood is
-      \\[
-        L_i(w,b) = 
-          -\bigl[y_i \ln(\hat{y}_i) + (1-y_i)\ln\bigl(1-\hat{y}_i\bigr)\bigr].
-      \\]
-      Its gradient w.r.t. \\((w,b)\\) is:
-      \\[
-        \nabla_{(w,b)} L_i 
-          = (\hat{y}_i - y_i) \begin{pmatrix} x_i \\ 1 \end{pmatrix},
-        \quad \text{where } \hat{y}_i = \sigma(w x_i + b).
-      \\]
-    </p>
+      <h3>Step 1: Compute Predicted Probabilities</h3>
+      <p>
+        For each training point, we calculate 
+        $$p_i=\sigma(w^*x_i+b^*).$$
+        <br>
+        For $x_0=0$: 
+        $$z_0=2\cdot 0-3=-3,\quad p_0=\sigma(-3)=\frac{1}{1+e^{3}}\approx 0.0474.$$
+        <br>
+        For $x_1=1$: 
+        $$z_1=2\cdot 1-3=-1,\quad p_1=\sigma(-1)=\frac{1}{1+e}\approx 0.2689.$$
+        <br>
+        For $x_2=2$: 
+        $$z_2=2\cdot 2-3=1,\quad p_2=\sigma(1)=\frac{1}{1+e^{-1}}\approx 0.7311.$$
+      </p>
 
-    <h3>Hessian &amp; Influence</h3>
-    <p>
-      The total Hessian at \\((w^*, b^*)\\) is
-      \\[
-        \nabla^2 L_{\text{train}} 
-          = \sum_i p_i(1-p_i) 
-            \begin{pmatrix} x_i^2 & x_i \\ x_i & 1 \end{pmatrix},
-        \quad p_i = \sigma(w^* x_i + b^*).
-      \\]
-      Then the <em>influence</em> on a test point 
-      \\((x_{\text{test}}, y_{\text{test}})\\) is
-      \\[
-        \mathcal{I}_{\text{up,loss}}(z_{\text{test}}, z_i)
-          = -\,\nabla_\theta L(z_{\text{test}})^\top\,
-            \Bigl[\nabla^2_\theta L_{\text{train}}\Bigr]^{-1}\,
-            \nabla_\theta L(z_i).
-      \\]
-      A <em>negative</em> result means removing the point would <em>increase</em> test loss (it helped), while a <em>positive</em> result means it hurt.
-    </p>
-  </div><!-- end left-pane -->
+      <h3>Step 2: Logistic Loss and Gradient</h3>
+      <p>
+        The negative log-likelihood for an example $(x_i,y_i)$ is
+        $$L_i(w,b)=-\Bigl[y_i\ln(\hat{y}_i)+(1-y_i)\ln(1-\hat{y}_i)\Bigr].$$
+        Its gradient is given by
+        $$\nabla_{(w,b)}L_i=(\hat{y}_i-y_i)
+          \begin{pmatrix} x_i \\ 1 \end{pmatrix}.$$
+      </p>
 
-  <!-- ============ RIGHT: JAVASCRIPT EXAMPLE ============ -->
-  <div class="right-pane">
-    <h2>JavaScript Example</h2>
+      <!-- Expandable derivation of the gradient -->
+      <details>
+        <summary>Derivation of the Gradient</summary>
+        <p>
+          The logistic loss for a single example is 
+          $$L(w,b)=-\Bigl[y\ln(\sigma(z))+(1-y)\ln(1-\sigma(z))\Bigr],$$ 
+          where 
+          $$\sigma(z)=\frac{1}{1+e^{-z}}, \quad z=wx+b.$$
+          Differentiating with respect to $z$ yields
+          $$\frac{\partial L}{\partial z}=\sigma(z)-y.$$
+          By the chain rule, since
+          $$\frac{\partial z}{\partial w}=x \quad \text{and} \quad \frac{\partial z}{\partial b}=1,$$
+          the gradient with respect to $(w,b)$ is
+          $$\nabla_{(w,b)}L=(\sigma(z)-y)
+             \begin{pmatrix} x \\ 1 \end{pmatrix}.$$
+        </p>
+      </details>
 
-    <!-- For display only: show code in <pre><code> -->
-    <pre><code>
-// We fix w=2, b=-3 and compute influence on test point (1.5, 1).
+      <h3>Step 3: Hessian Matrix</h3>
+      <p>
+        The Hessian for the training set is
+        $$\nabla^2 L_{\text{train}}=\sum_{i}p_i(1-p_i)
+           \begin{pmatrix} x_i^2 & x_i \\ x_i & 1 \end{pmatrix}.$$
+        Compute the contributions:
+        <br>
+        For $i=0$ ($x_0=0$):
+        $$p_0(1-p_0)\approx 0.0474 \cdot 0.9526 \approx 0.0452,$$
+        yielding
+        $$0.0452\begin{pmatrix}0 & 0\\ 0 & 1\end{pmatrix}=
+           \begin{pmatrix}0 & 0\\ 0 & 0.0452\end{pmatrix}.$$
+        <br>
+        For $i=1$ ($x_1=1$):
+        $$p_1(1-p_1)\approx 0.2689 \cdot 0.7311 \approx 0.1966,$$
+        yielding
+        $$0.1966\begin{pmatrix}1 & 1\\ 1 & 1\end{pmatrix}=
+           \begin{pmatrix}0.1966 & 0.1966\\ 0.1966 & 0.1966\end{pmatrix}.$$
+        <br>
+        For $i=2$ ($x_2=2$):
+        $$p_2(1-p_2)\approx 0.7311 \cdot 0.2689 \approx 0.1966,$$
+        yielding
+        $$0.1966\begin{pmatrix}4 & 2\\ 2 & 1\end{pmatrix}=
+           \begin{pmatrix}0.7864 & 0.3932\\ 0.3932 & 0.1966\end{pmatrix}.$$
+        <br>
+        <em>Summing up the contributions:</em>
+        $$\nabla^2 L_{\text{train}}\approx
+           \begin{pmatrix}0+0.1966+0.7864 & 0+0.1966+0.3932\\[6pt]
+                           0+0.1966+0.3932 & 0.0452+0.1966+0.1966\end{pmatrix}
+           =\begin{pmatrix}0.9830 & 0.5898\\[4pt]0.5898 & 0.4384\end{pmatrix}.$$
+      </p>
 
-function sigmoid(z) {
-  return 1 / (1 + Math.exp(-z));
-}
+      <!-- Expandable derivation of the Hessian -->
+      <details>
+        <summary>Derivation of the Hessian</summary>
+        <p>
+          Starting from the gradient for a single example,
+          $$\nabla_{(w,b)}L=(\sigma(z)-y)
+             \begin{pmatrix} x \\ 1 \end{pmatrix},$$
+          we differentiate with respect to $(w,b)$.
+          <br><br>
+          First, note that 
+          $$\frac{d}{dz}\sigma(z)=\sigma(z)(1-\sigma(z)).$$
+          <br><br>
+          Since $z=wx+b$, we have:
+          $$\frac{\partial^2 L}{\partial w^2}=\sigma(z)(1-\sigma(z))\,x^2,$$
+          $$\frac{\partial^2 L}{\partial w \partial b}=\sigma(z)(1-\sigma(z))\,x,$$
+          $$\frac{\partial^2 L}{\partial b^2}=\sigma(z)(1-\sigma(z)).$$
+          <br><br>
+          Hence, for a single example, the Hessian is:
+          $$\nabla^2_{(w,b)}L=\sigma(z)(1-\sigma(z))
+             \begin{pmatrix} x^2 & x \\ x & 1 \end{pmatrix}.$$
+          <br><br>
+          For the entire training set, we sum over all examples:
+          $$\nabla^2 L_{\text{train}}=\sum_i \sigma(z_i)(1-\sigma(z_i))
+             \begin{pmatrix} x_i^2 & x_i \\ x_i & 1 \end{pmatrix}.$$
+        </p>
+      </details>
 
-function gradSingleExample(w, b, x, y) {
-  const p = sigmoid(w*x + b);
-  return [(p - y)*x, (p - y)];
-}
+      <h3>Step 4: Influence Calculation</h3>
+      <p>
+        The influence of removing a training point $(x_i,y_i)$ on the test loss is
+        $$\mathcal{I}_{\mathrm{up,loss}}(z_{\mathrm{test}},z_i)
+           = -\,\nabla_\theta L(z_{\mathrm{test}})^\top\Bigl[\nabla^2L_{\mathrm{train}}\Bigr]^{-1}
+           \nabla_\theta L(z_i).$$
+        A negative value means that removing the point would increase the test loss (the point was helpful),
+        while a positive value indicates a harmful effect.
+      </p>
+    </div><!-- end left-pane -->
 
-function hessian(w, b, X, Y) {
-  let H00=0, H01=0, H10=0, H11=0;
-  for (let i=0; i<X.length; i++) {
-    const p = sigmoid(w*X[i] + b);
-    const fac = p*(1-p);
-    H00 += fac*X[i]*X[i];
-    H01 += fac*X[i];
-    H10 += fac*X[i];
-    H11 += fac;
-  }
-  return [[H00,H01],[H10,H11]];
-}
-
-function invert2x2(M) {
-  const [A,B] = M[0], [C,D] = M[1];
-  const det = A*D - B*C;
-  return [
-    [ D/det, -B/det ],
-    [ -C/det, A/det ]
-  ];
-}
-
-function mat2x2TimesVec(M, v) {
-  return [
-    M[0][0]*v[0] + M[0][1]*v[1],
-    M[1][0]*v[0] + M[1][1]*v[1]
-  ];
-}
-
-function dot2(u, v) {
-  return u[0]*v[0] + u[1]*v[1];
-}
-
-function computeInfluences() {
-  const X_train = [0,1,2];
-  const y_train = [0,0,1];
-  const X_test = 1.5, y_test = 1;
-
-  // Fix parameters
-  const w=2, b=-3;
-
-  // Gradient for test
-  const gTest = gradSingleExample(w,b,X_test,y_test);
-
-  // Hessian + inverse
-  const H = hessian(w,b,X_train,y_train);
-  const H_inv = invert2x2(H);
-
-  let result = `Parameters: w=${w}, b=${b}\n`;
-  result += `Hessian: [[${H[0][0].toFixed(6)}, ${H[0][1].toFixed(6)}], [${H[1][0].toFixed(6)}, ${H[1][1].toFixed(6)}]]\n`;
-  result += `Inv(H): [[${H_inv[0][0].toFixed(6)}, ${H_inv[0][1].toFixed(6)}], [${H_inv[1][0].toFixed(6)}, ${H_inv[1][1].toFixed(6)}]]\n\n`;
-
-  for (let i=0; i< X_train.length; i++) {
-    const g_i = gradSingleExample(w,b,X_train[i],y_train[i]);
-    // influence = - dot( gTest, (H_inv*g_i) )
-    const tmp = mat2x2TimesVec(H_inv,g_i);
-    const influence = -dot2(gTest,tmp);
-    result += `Point ${i} (x=${X_train[i]},y=${y_train[i]}): influence=${influence.toFixed(6)}\n`;
-  }
-  return result;
-}
-    </code></pre>
-
-    <button id="btnCompute">Compute Influences</button>
-    <div id="output" class="output"></div>
-  </div><!-- end right-pane -->
-
-</div><!-- end container -->
-
-<!-- The actual JS logic that the browser will execute -->
-<script>
-/* === Same code as above, but actual script for the browser to run === */
-
-// We fix w=2, b=-3 and compute influence on test point (1.5, 1).
+    <!-- RIGHT: JavaScript Computation (Display Only) -->
+    <div class="right-pane">
+      <h2>JavaScript Computation Code (Display Only)</h2>
+      <pre><code>
+// Fixed parameters: w = 2, b = -3
+// Training set: (0,0), (1,0), (2,1)
+// Test point: (1.5, 1)
 
 function sigmoid(z) {
   return 1 / (1 + Math.exp(-z));
 }
 
 function gradSingleExample(w, b, x, y) {
-  const p = sigmoid(w*x + b);
-  return [(p - y)*x, (p - y)];
+  const z = w * x + b;
+  const p = sigmoid(z);
+  const grad = [(p - y) * x, (p - y)];
+  return { z: z, p: p, grad: grad };
 }
 
-function hessian(w, b, X, Y) {
-  let H00=0, H01=0, H10=0, H11=0;
-  for (let i=0; i<X.length; i++) {
-    const p = sigmoid(w*X[i] + b);
-    const fac = p*(1-p);
-    H00 += fac*X[i]*X[i];
-    H01 += fac*X[i];
-    H10 += fac*X[i];
-    H11 += fac;
-  }
-  return [[H00,H01],[H10,H11]];
+function hessian(w, b, X) {
+  let H00 = 0, H01 = 0, H11 = 0;
+  X.forEach(x => {
+    const z = w * x + b;
+    const p = sigmoid(z);
+    const factor = p * (1 - p);
+    H00 += factor * x * x;
+    H01 += factor * x;
+    H11 += factor;
+  });
+  return { H: [[H00, H01], [H01, H11]] };
 }
 
 function invert2x2(M) {
-  const [A,B] = M[0], [C,D] = M[1];
-  const det = A*D - B*C;
+  const A = M[0][0], B = M[0][1], C = M[1][0], D = M[1][1];
+  const det = A * D - B * C;
+  if (Math.abs(det) < 1e-10) {
+    throw new Error("Determinant too close to zero.");
+  }
   return [
-    [ D/det, -B/det ],
-    [ -C/det, A/det ]
+    [ D / det, -B / det ],
+    [ -C / det, A / det ]
   ];
 }
 
-function mat2x2TimesVec(M, v) {
+function mat2x2TimesVec(M, vec) {
   return [
-    M[0][0]*v[0] + M[0][1]*v[1],
-    M[1][0]*v[0] + M[1][1]*v[1]
+    M[0][0] * vec[0] + M[0][1] * vec[1],
+    M[1][0] * vec[0] + M[1][1] * vec[1]
   ];
 }
 
-function dot2(u, v) {
-  return u[0]*v[0] + u[1]*v[1];
+function dot(u, v) {
+  return u[0] * v[0] + u[1] * v[1];
 }
 
 function computeInfluences() {
-  const X_train = [0,1,2];
-  const y_train = [0,0,1];
+  const X_train = [0, 1, 2];
+  const y_train = [0, 0, 1];
   const X_test = 1.5, y_test = 1;
-
-  // Fix parameters
-  const w=2, b=-3;
-
-  // Gradient for test
-  const gTest = gradSingleExample(w,b,X_test,y_test);
-
-  // Hessian + inverse
-  const H = hessian(w,b,X_train,y_train);
+  const w = 2, b = -3;
+  
+  let output = "";
+  output += "=== Influence Function Detailed Computation ===\n\n";
+  
+  // Step 1: Parameters and Test Point Gradient
+  output += "Step 1: Fixed Parameters\n";
+  output += "  Parameters: w = " + w + ", b = " + b + "\n\n";
+  
+  output += "Step 2: Test Point Gradient Calculation\n";
+  output += "  For the test point (x = " + X_test + ", y = " + y_test + "):\n";
+  const testCalc = gradSingleExample(w, b, X_test, y_test);
+  output += "    Compute z: z_test = " + w + " * " + X_test + " + (" + b + ") = " + testCalc.z.toFixed(6) + "\n";
+  output += "    Compute p: p_test = sigmoid(z_test) = " + testCalc.p.toFixed(6) + "\n";
+  output += "    Gradient (test) = (p_test - y_test) * [x, 1] = [ " + testCalc.grad[0].toFixed(6) + ", " + testCalc.grad[1].toFixed(6) + " ]\n\n";
+  
+  // Step 3: Hessian Calculation
+  output += "Step 3: Hessian Matrix Calculation\n";
+  output += "  The Hessian is the sum over training examples of p*(1-p)*[[x^2, x], [x, 1]].\n";
+  const hessResult = hessian(w, b, X_train);
+  const H = hessResult.H;
+  output += "  Hessian matrix:\n";
+  output += "    [[ " + H[0][0].toFixed(6) + ", " + H[0][1].toFixed(6) + " ],\n";
+  output += "     [ " + H[1][0].toFixed(6) + ", " + H[1][1].toFixed(6) + " ]]\n\n";
+  
+  // Step 4: Inversion of the Hessian
+  output += "Step 4: Inversion of the Hessian\n";
   const H_inv = invert2x2(H);
-
-  let result = `Parameters: w=${w}, b=${b}\n`;
-  result += `Hessian: [[${H[0][0].toFixed(6)}, ${H[0][1].toFixed(6)}], [${H[1][0].toFixed(6)}, ${H[1][1].toFixed(6)}]]\n`;
-  result += `Inv(H): [[${H_inv[0][0].toFixed(6)}, ${H_inv[0][1].toFixed(6)}], [${H_inv[1][0].toFixed(6)}, ${H_inv[1][1].toFixed(6)}]]\n\n`;
-
-  for (let i=0; i< X_train.length; i++) {
-    const g_i = gradSingleExample(w,b,X_train[i],y_train[i]);
-    // influence = - dot( gTest, H_inv*g_i )
-    const tmp = mat2x2TimesVec(H_inv,g_i);
-    const influence = -dot2(gTest, tmp);
-    result += `Point ${i} (x=${X_train[i]},y=${y_train[i]}): influence=${influence.toFixed(6)}\n`;
-  }
-  return result;
+  output += "  The inverse Hessian (needed for influence computation):\n";
+  output += "    [[ " + H_inv[0][0].toFixed(6) + ", " + H_inv[0][1].toFixed(6) + " ],\n";
+  output += "     [ " + H_inv[1][0].toFixed(6) + ", " + H_inv[1][1].toFixed(6) + " ]]\n\n";
+  
+  // Step 5: Compute Influence for Each Training Point
+  output += "Step 5: Influence Computation for Each Training Point\n";
+  output += "  For each training example, we compute its gradient and then the influence as:\n";
+  output += "    influence = - (test gradient) dot (H_inv * training gradient)\n\n";
+  
+  X_train.forEach((x, i) => {
+    const calc = gradSingleExample(w, b, x, y_train[i]);
+    output += "  --- Training Point " + i + " (x = " + x + ", y = " + y_train[i] + ") ---\n";
+    output += "    Compute z: z = " + w + " * " + x + " + (" + b + ") = " + calc.z.toFixed(6) + "\n";
+    output += "    Compute p: p = sigmoid(z) = " + calc.p.toFixed(6) + "\n";
+    output += "    Gradient = (p - y) * [x, 1] = [ " + calc.grad[0].toFixed(6) + ", " + calc.grad[1].toFixed(6) + " ]\n";
+    const Hinv_grad = mat2x2TimesVec(H_inv, calc.grad);
+    output += "    Multiplying by the inverse Hessian: H_inv * gradient = [ " + Hinv_grad[0].toFixed(6) + ", " + Hinv_grad[1].toFixed(6) + " ]\n";
+    const infl = - dot(testCalc.grad, Hinv_grad);
+    output += "    Influence = - (test gradient) dot (H_inv * training gradient) = " + infl.toFixed(6) + "\n\n";
+  });
+  
+  output += "Note: A negative influence indicates that removing the training point would increase the test loss (i.e., the point is beneficial), while a positive influence indicates that removing it would decrease the test loss (i.e., the point is harmful).\n";
+  output += "=== End of Detailed Computation ===\n";
+  return output;
 }
+</code></pre>
+      <button id="btnCompute">Compute Detailed Influences</button>
+      <div id="output" class="output"></div>
+    </div><!-- end right-pane -->
+  </div><!-- end container -->
 
-// Attach event to the button
-document.getElementById('btnCompute').addEventListener('click', () => {
-  const res = computeInfluences();
-  document.getElementById('output').textContent = res;
-});
-</script>
+  <!-- Executable JavaScript: Actual Function Definitions and Event Listener -->
+  <script>
+    // Define all functions so they are available globally
 
+    function sigmoid(z) {
+      return 1 / (1 + Math.exp(-z));
+    }
+
+    function gradSingleExample(w, b, x, y) {
+      const z = w * x + b;
+      const p = sigmoid(z);
+      const grad = [(p - y) * x, (p - y)];
+      return { z: z, p: p, grad: grad };
+    }
+
+    function hessian(w, b, X) {
+      let H00 = 0, H01 = 0, H11 = 0;
+      X.forEach(x => {
+        const z = w * x + b;
+        const p = sigmoid(z);
+        const factor = p * (1 - p);
+        H00 += factor * x * x;
+        H01 += factor * x;
+        H11 += factor;
+      });
+      return { H: [[H00, H01], [H01, H11]] };
+    }
+
+    function invert2x2(M) {
+      const A = M[0][0], B = M[0][1], C = M[1][0], D = M[1][1];
+      const det = A * D - B * C;
+      if (Math.abs(det) < 1e-10) {
+        throw new Error("Determinant too close to zero.");
+      }
+      return [
+        [ D / det, -B / det ],
+        [ -C / det, A / det ]
+      ];
+    }
+
+    function mat2x2TimesVec(M, vec) {
+      return [
+        M[0][0] * vec[0] + M[0][1] * vec[1],
+        M[1][0] * vec[0] + M[1][1] * vec[1]
+      ];
+    }
+
+    function dot(u, v) {
+      return u[0] * v[0] + u[1] * v[1];
+    }
+
+    function computeInfluences() {
+      const X_train = [0, 1, 2];
+      const y_train = [0, 0, 1];
+      const X_test = 1.5, y_test = 1;
+      const w = 2, b = -3;
+      
+      let output = "";
+      output += "=== Influence Function Detailed Computation ===\n\n";
+      
+      // Step 1: Parameters and Test Point Gradient
+      output += "Step 1: Fixed Parameters\n";
+      output += "  Parameters: w = " + w + ", b = " + b + "\n\n";
+      
+      output += "Step 2: Test Point Gradient Calculation\n";
+      output += "  For the test point (x = " + X_test + ", y = " + y_test + "):\n";
+      const testCalc = gradSingleExample(w, b, X_test, y_test);
+      output += "    Compute z: z_test = " + w + " * " + X_test + " + (" + b + ") = " + testCalc.z.toFixed(6) + "\n";
+      output += "    Compute p: p_test = sigmoid(z_test) = " + testCalc.p.toFixed(6) + "\n";
+      output += "    Gradient (test) = (p_test - y_test) * [x, 1] = [ " + testCalc.grad[0].toFixed(6) + ", " + testCalc.grad[1].toFixed(6) + " ]\n\n";
+      
+      // Step 3: Hessian Calculation
+      output += "Step 3: Hessian Matrix Calculation\n";
+      output += "  The Hessian is the sum over training examples of p*(1-p)*[[x^2, x], [x, 1]].\n";
+      const hessResult = hessian(w, b, X_train);
+      const H = hessResult.H;
+      output += "  Hessian matrix:\n";
+      output += "    [[ " + H[0][0].toFixed(6) + ", " + H[0][1].toFixed(6) + " ],\n";
+      output += "     [ " + H[1][0].toFixed(6) + ", " + H[1][1].toFixed(6) + " ]]\n\n";
+      
+      // Step 4: Inversion of the Hessian
+      output += "Step 4: Inversion of the Hessian\n";
+      const H_inv = invert2x2(H);
+      output += "  The inverse Hessian (needed for influence computation):\n";
+      output += "    [[ " + H_inv[0][0].toFixed(6) + ", " + H_inv[0][1].toFixed(6) + " ],\n";
+      output += "     [ " + H_inv[1][0].toFixed(6) + ", " + H_inv[1][1].toFixed(6) + " ]]\n\n";
+      
+      // Step 5: Compute Influence for Each Training Point
+      output += "Step 5: Influence Computation for Each Training Point\n";
+      output += "  For each training example, we compute its gradient and then the influence as:\n";
+      output += "    influence = - (test gradient) dot (H_inv * training gradient)\n\n";
+      
+      X_train.forEach((x, i) => {
+        const calc = gradSingleExample(w, b, x, y_train[i]);
+        output += "  --- Training Point " + i + " (x = " + x + ", y = " + y_train[i] + ") ---\n";
+        output += "    Compute z: z = " + w + " * " + x + " + (" + b + ") = " + calc.z.toFixed(6) + "\n";
+        output += "    Compute p: p = sigmoid(z) = " + calc.p.toFixed(6) + "\n";
+        output += "    Gradient = (p - y) * [x, 1] = [ " + calc.grad[0].toFixed(6) + ", " + calc.grad[1].toFixed(6) + " ]\n";
+        const Hinv_grad = mat2x2TimesVec(H_inv, calc.grad);
+        output += "    Multiplying by the inverse Hessian: H_inv * gradient = [ " + Hinv_grad[0].toFixed(6) + ", " + Hinv_grad[1].toFixed(6) + " ]\n";
+        const infl = - dot(testCalc.grad, Hinv_grad);
+        output += "    Influence = - (test gradient) dot (H_inv * training gradient) = " + infl.toFixed(6) + "\n\n";
+      });
+      
+      output += "Note: A negative influence indicates that removing the training point would increase the test loss (i.e., the point is beneficial), while a positive influence indicates that removing it would decrease the test loss (i.e., the point is harmful).\n";
+      output += "=== End of Detailed Computation ===\n";
+      return output;
+    }
+
+    // Attach event listener now that everything is defined
+    document.getElementById("btnCompute").addEventListener("click", function() {
+      try {
+        const res = computeInfluences();
+        document.getElementById("output").textContent = res;
+      } catch (error) {
+        document.getElementById("output").textContent = "Error: " + error.message;
+      }
+    });
+  </script>
 </body>
 </html>

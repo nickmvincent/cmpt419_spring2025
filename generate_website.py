@@ -16,7 +16,7 @@ class CourseWebsiteGenerator:
             'readings',
             'assignments',
             'slides',
-            'misc_materials',
+            'misc',
             'slides_pdfs'
         ]
     

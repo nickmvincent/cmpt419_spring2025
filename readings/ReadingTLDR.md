@@ -7,7 +7,7 @@ This file contains the bare minimum info about the readings: links and special i
 
 ## Week 3
 
--  https://arxiv.org/abs/2002.04087
+- https://arxiv.org/abs/2002.04087
 - https://research.google/pubs/everyone-wants-to-do-the-model-work-not-the-data-work-data-cascades-in-high-stakes-ai/
 - https://epubs.siam.org/doi/abs/10.1137/1.9781611977653.ch106
 
@@ -27,3 +27,9 @@ This file contains the bare minimum info about the readings: links and special i
 ## Week 7
 
 - https://arxiv.org/pdf/1712.00409.pdf
+
+## Week 8
+
+- https://dataleverage.substack.com/p/dont-give-openai-all-the-credit-for
+- https://dataleverage.substack.com/p/chatgpt-is-awesome-and-scary-you-deserve-credit
+- https://arxiv.org/abs/2101.00027, Sections 1 and 2.

@@ -3,11 +3,13 @@
 The goal of the week 2 readings is to begin getting some exposure to what different researchers mean when they refer to human and data centered ML/AI. We want to start developing some intuiton for when human-centered practices or data-centred thinking might materially change how we design a system, come up with a research question, or deploy a model.
 
 Reading 1: Chancellor 2023.
+
 - Citation: Chancellor, S., 2023. Toward practices for human-centered machine learning. Communications of the ACM, 66(3), pp.78-85.
 - About: First, we'll read “Toward Practices for Human-Centered Machine Learning” by Stevie Chancellor, published in the Communications of the ACM. CACM is a venue in which experts in various fields of computing write broad pieces for the entire computing community.
 - How to access: Visit https://cacm.acm.org/magazines/2023/3/270209-toward-practices-for-human-centered-machine-learning/fulltext
 
 Reading 2: Mazmunder et al. 2022.
+
 - Citation: Mazumder, M., Banbury, C., Yao, X., Karlaš, B., Gaviria Rojas, W., Diamos, S., Diamos, G., He, L., Parrish, A., Kirk, H.R. and Quaye, J., 2023. Dataperf: Benchmarks for data-centric ai development. Advances in Neural Information Processing Systems, 36, pp.5320-5347.
 - About: Second, we'll read the Introduction of the DataPerfs paper, published in NeurIPS 2023 Datasets and Benchmarks Track.
 - How to access: Visit https://arxiv.org/abs/2207.10062 
@@ -23,6 +25,7 @@ If you submit any reasonable formatted submission for this reading response, you
 For this reading response, you'll submit via CourSys.
 
 Optional reading
+
 - If interested in data-centric approach to large language models, check out this blog: https://sebastianraschka.com/blog/2023/optimizing-LLMs-dataset-perspective.html 
 
 
@@ -33,16 +36,19 @@ The goal of the week 3 reading is to gain further exposure to various frameworks
 Note this week is a bit longer than than Week 2. We'll check in on how it's going, workflow wise, to complete these readings, and focus on challenges that may come up for those who haven't had many reading heavy computing classes previously.
 
 Reading 1: Shneiderman 2020.
+
 - Citation: Shneiderman, B., 2020. Human-centered artificial intelligence: Reliable, safe & trustworthy. International Journal of Human–Computer Interaction, 36(6), pp.495-504.
 - About: This is a paper published in the International Journal of Human–Computer Interaction.
 - How to access: visit https://www.tandfonline.com/doi/full/10.1080/10447318.2020.1741118 on campus or https://arxiv.org/abs/2002.04087 off campus
 
 Reading 2: Sambasivan et al 2021.
+
 - Citation: Sambasivan, N., Kapania, S., Highfill, H., Akrong, D., Paritosh, P. and Aroyo, L.M., 2021, May. “Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI. In proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (pp. 1-15).
 - About: This is a paper published in ACM CHI, the main venue for human-computer interaction research. 
 - How to access: visit https://research.google/pubs/everyone-wants-to-do-the-model-work-not-the-data-work-data-cascades-in-high-stakes-ai/
 
 Reading 3: Zha et al 2023.
+
 - Citation: Zha, D., Bhat, Z.P., Lai, K.H., Yang, F. and Hu, X., 2023. Data-centric ai: Perspectives and challenges. In Proceedings of the 2023 SIAM International Conference on Data Mining (SDM) (pp. 945-948). Society for Industrial and Applied Mathematics.
 - About: This is a short perspective paper in a data mining conference.
 - How to access: visit https://epubs.siam.org/doi/abs/10.1137/1.9781611977653.ch106
@@ -50,6 +56,7 @@ Reading 3: Zha et al 2023.
 
 
 Optional (mainly to give some more examples of academics using human- or data-centric framing):
+
 - https://dl.acm.org/doi/abs/10.1145/3517337
 - https://arxiv.org/abs/2311.06703v2
 - https://dl.acm.org/doi/10.1145/3544549.3585752
@@ -102,7 +109,9 @@ Q4: Please let me know roughly how the long the readings and responses took so I
 ## Week 5
 
 This week, we are going to start reading a long piece that surveys training data influence:
-Training Data Influence Analysis and Estimation: A Survey, Zayd Hammoudeh, Daniel Lowd: https://arxiv.org/abs/2212.04612
+
+- Citation: Hammoudeh, Z. and Lowd, D., 2024. Training data influence analysis and estimation: A survey. Machine Learning, 113(5), pp.2351-2403.
+- How to access: https://arxiv.org/abs/2212.04612
 
 This piece will represent a large jump from reading about high-level frameworks that consider social factors, incentives, etc. to a much more mathematical framework for thinking about data-centricity. Accordingly, we're going to work through this piece (and some excerpts from the key citations) fairly slowly. For this week, you should just read pages 1-10 (on the arxiv version -- up to Section 4).
 
@@ -125,7 +134,10 @@ Q3) If you were asked to run a new data market that makes use of influence estim
 
 ## Week 7 (Reading Week)
 
-This week, please read: https://arxiv.org/pdf/1712.00409.pdf
+This week, please read: 
+
+- Citation: Hestness, J., Narang, S., Ardalani, N., Diamos, G., Jun, H., Kianinejad, H., Patwary, M.M.A., Yang, Y. and Zhou, Y., 2017. Deep learning scaling is predictable, empirically. arXiv preprint arXiv:1712.00409.
+- How to access: https://arxiv.org/pdf/1712.00409.pdf
 
 For your response, please answer the following 3 questions:
 
@@ -143,14 +155,13 @@ This week, we're going to start talking about online platforms and their role a 
 
 First, please read these two short blog posts from 2020 and 2022.
 
-https://dataleverage.substack.com/p/dont-give-openai-all-the-credit-for
-
-https://dataleverage.substack.com/p/chatgpt-is-awesome-and-scary-you-deserve-credit
+- https://dataleverage.substack.com/p/dont-give-openai-all-the-credit-for
+- https://dataleverage.substack.com/p/chatgpt-is-awesome-and-scary-you-deserve-credit
 
 
 Next, please read Sections 1 and 2 of this pre-print paper:
 
-https://arxiv.org/abs/2101.00027
+- https://arxiv.org/abs/2101.00027
 
 
 For this week, please list three specific online platforms that are useful for AI training.

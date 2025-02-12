@@ -1,6 +1,8 @@
 ## Project Proposal
 
-We're going to start thinking about our projects relatively early in the term! To scaffold the project ideation, you'll be asked to turn in an initial **project proposal** on Feb 26.
+DEADLINE (Spring 2025): Feb 28 11:59pm.
+
+We're going to start thinking about our projects relatively early in the term! To scaffold the project ideation, you'll be asked to turn in an initial **project proposal** on Feb 28.
 
 You can submit a 1-2 page PDF, text, or Markdown file. Exact length is not critical here: as long as it contains the key ideas, you're good to go.
 

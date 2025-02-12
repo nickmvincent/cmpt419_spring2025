@@ -1,5 +1,7 @@
 # Assignment 2
 
+DEADLINE (Spring 2025): Mar 4, 11:59pm.
+
 Our Module 2 content is focused on understanding the broad question: *Which groups of observations – or groups of people – are “responsible” for a given model output or “capability”?*
 
 In this assignment, we'll get some hands-on experience with the concept of training data influence.

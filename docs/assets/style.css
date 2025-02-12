@@ -1,97 +1,67 @@
 
-        body {
-            display: flex;
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-        
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background: #f5f5f5;
-            padding: 20px;
-            overflow-y: auto;
-            position: fixed;
-        }
-        
-        .content {
-            margin-left: 290px;
-            padding: 20px;
-            max-width: 800px;
-        }
-        
-        .nav-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .nav-section {
-            margin-bottom: 15px;
-        }
-        
-        .nav-section-header {
-            font-weight: bold;
-            cursor: pointer;
-            padding: 5px;
-            background: #e0e0e0;
-            border-radius: 4px;
-        }
-        
-        .nav-items {
-            list-style: none;
-            padding-left: 15px;
-            display: none;
-        }
-        
-        .nav-items.active {
-            display: block;
-        }
-        
-        .nav-items a {
-            color: #333;
-            text-decoration: none;
-            display: block;
-            padding: 5px;
-        }
-        
-        .nav-items a:hover {
-            background: #e0e0e0;
-            border-radius: 4px;
-        }
-        
-        /* Enhanced nested list styling */
-        .content ul,
-        .content ol {
-            padding-left: 2em;
-            margin-bottom: 1em;
-        }
-        
-        .content ul ul,
-        .content ol ol,
-        .content ul ol,
-        .content ol ul {
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-        }
-        
-        .content li {
-            margin-bottom: 0.5em;
-        }
-        
-        .content ul > li {
-            list-style-type: disc;
-        }
-        
-        .content ul > li > ul > li {
-            list-style-type: circle;
-        }
-        
-        .content ul > li > ul > li > ul > li {
-            list-style-type: square;
-        }
-        
-        .pdf-container {
-            width: 100%;
-            height: 100%;
-        }
-        
+body {
+    display: flex;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #f5f5f5;
+    padding: 20px;
+    overflow-y: auto;
+    position: fixed;
+}
+.content {
+    margin-left: 290px;
+    padding: 20px;
+    max-width: 800px;
+}
+.nav-list {
+    list-style: none;
+    padding: 0;
+}
+.nav-section {
+    margin-bottom: 15px;
+}
+.nav-section-header {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px;
+    background: #e0e0e0;
+    border-radius: 4px;
+}
+.nav-items {
+    list-style: none;
+    padding-left: 15px;
+    display: none;
+}
+.nav-items.active {
+    display: block;
+}
+.nav-items a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+}
+.nav-items a:hover {
+    background: #e0e0e0;
+    border-radius: 4px;
+}
+/* Nested list styling */
+.content ul,
+.content ol {
+    padding-left: 2em;
+    margin-bottom: 1em;
+}
+.content li {
+    margin-bottom: 0.5em;
+}
+/* Single-page sections */
+.page-section {
+    display: none;
+}
+.page-section.active {
+    display: block;
+}

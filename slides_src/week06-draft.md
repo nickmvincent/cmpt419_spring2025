@@ -262,7 +262,7 @@ Next we examine all datasets of size 7 (missing 1+2+3, missing 1+2+4...). |S| = 
 
 ---
 
-- denominator essentially weights each marginal contribution [v(S ∪ {i}) - v(S)] by the probability of that particular sequence occurring if we were to take all players, randomly shuffle them into a line to build teams
+- denominator essentially weights each marginal contribution [v(S ∪ \{i\}) - v(S)] by the probability of that particular sequence occurring if we were to take all players, randomly shuffle them into a line to build teams
 - hence, Shapley values represent an "average" or "expected" marginal contribution - they literally average over all possible sequences in which coalitions could form, with each sequence equally likely.
 
 ---

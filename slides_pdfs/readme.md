@@ -1,1 +1,0 @@
-No slide PDF for week01_day01.md -- just read the Syllabus.

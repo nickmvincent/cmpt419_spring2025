@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Influence Functions Demo: 2-Layer Neural Network</title>
+  <!-- Configure MathJax to render LaTeX before body loads -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <!-- Basic CSS for side-by-side layout -->
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    h1, h2, h3 {
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .left-pane, .right-pane {
+      flex: 1 1 45%;
+      min-width: 300px;
+    }
+    .left-pane {
+      border-right: 1px solid #ccc;
+      padding-right: 1rem;
+    }
+    .right-pane {
+      padding-left: 1rem;
+    }
+    pre, code {
+      background: #f8f8f8;
+      padding: 1rem;
+      display: block;
+      white-space: pre;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 1em;
+      font-size: 1em;
+      padding: 0.4em 0.8em;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 1em;
+      padding: 1em;
+      background: #f0f0ff;
+      border: 1px solid #ccc;
+      white-space: pre;
+      min-height: 3em;
+    }
+    details {
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+      border: 1px solid #aaa;
+      padding: 0.5em;
+      border-radius: 4px;
+      background-color: #fafafa;
+    }
+    details summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .panel-labels {
+      font-size: 0.9em;
+      background: #eee;
+      border: 1px solid #ddd;
+      padding: 0.4em;
+      margin-bottom: 1em;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="text-align:center;">
+    Influence Functions Demo: 2-Layer Neural Network<br>
+    (Detailed Math on Left, Detailed JavaScript on Right)
+  </h1>
+
+  <div class="container">
+    <!-- LEFT: Mathematical Derivation -->
+    <div class="left-pane">
+      <h2>Mathematical Derivation for a 2-Layer Neural Network</h2>
+      <div class="panel-labels">
+        <strong>Panel Labels:</strong> [A] Neural Network Predictions, [B] Loss &amp; Gradient, [C] Hessian (Gauss–Newton Approx.), [D] Influence Calculation
+      </div>
+      <p>
+        We consider a simple 2-layer neural network for binary classification. For an input \(x\), the network computes
+        \[
+        z^{(1)} = w_1 x + b_1,\quad h=\sigma(z^{(1)}),
+        \]
+        and then
+        \[
+        z^{(2)} = w_2 h + b_2,\quad \hat{y}=\sigma(z^{(2)}).
+        \]
+      </p>
+      <p>
+        Our training set is
+        \[
+        (x_0,y_0)=(0,0),\quad (x_1,y_1)=(1,0),\quad (x_2,y_2)=(2,1),\quad (x_3,y_3)=(3,1).
+        \]
+        We fix the parameters to
+        \[
+        w_1=2,\quad b_1=-1,\quad w_2=3,\quad b_2=-2.
+        \]
+      </p>
+      
+      <!-- [A] Neural Network Predictions -->
+      <h3>Step 1: Neural Network Predictions <small>[A]</small></h3>
+      <p>
+        For an input \(x\), the hidden layer computes
+        \[
+        z^{(1)} = 2x - 1,\quad h=\sigma(2x-1),
+        \]
+        and the output layer computes
+        \[
+        z^{(2)} = 3h - 2,\quad \hat{y}=\sigma(3h-2).
+        \]
+      </p>
+      
+      <!-- [B] Loss and Gradient -->
+      <h3>Step 2: Loss and Gradient <small>[B]</small></h3>
+      <p>
+        The loss is given by the negative log‑likelihood
+        \[
+        L = -\Bigl[y\ln(\hat{y})+(1-y)\ln(1-\hat{y})\Bigr].
+        \]
+        By the chain rule the gradients are:
+        \[
+        \nabla_{w_2}L = (\hat{y}-y)\,h,\quad \nabla_{b_2}L = (\hat{y}-y),
+        \]
+        \[
+        \nabla_{w_1}L = (\hat{y}-y)\,w_2\,h(1-h)\,x,\quad \nabla_{b_1}L = (\hat{y}-y)\,w_2\,h(1-h).
+        \]
+        Defining
+        \[
+        g(x)=\begin{pmatrix} w_2\,h(1-h)\,x \\ w_2\,h(1-h) \\ h \\ 1 \end{pmatrix},
+        \]
+        we have
+        \[
+        \nabla_{\theta}L = (\hat{y}-y)\,g(x).
+        \]
+      </p>
+      <details>
+        <summary>Derivation of the Gradient</summary>
+        <p>
+          With \(\hat{y}=\sigma(z^{(2)})\) and \(z^{(2)}=w_2 h+b_2\), we have
+          \[
+          \frac{\partial L}{\partial z^{(2)}}=\hat{y}-y.
+          \]
+          Since
+          \[
+          \frac{\partial z^{(2)}}{\partial w_2}=h,\quad \frac{\partial z^{(2)}}{\partial b_2}=1,
+          \]
+          and by the chain rule for the hidden layer,
+          \[
+          \frac{\partial z^{(2)}}{\partial h}=w_2,\quad h=\sigma(z^{(1)}),\quad \frac{dh}{dz^{(1)}}=h(1-h),
+          \]
+          with
+          \[
+          \frac{\partial z^{(1)}}{\partial w_1}=x,\quad \frac{\partial z^{(1)}}{\partial b_1}=1,
+          \]
+          it follows that
+          \[
+          \frac{\partial L}{\partial w_1}=(\hat{y}-y)w_2\,h(1-h)x,\quad
+          \frac{\partial L}{\partial b_1}=(\hat{y}-y)w_2\,h(1-h).
+          \]
+        </p>
+      </details>
+      
+      <!-- [C] Hessian (Gauss–Newton Approximation) -->
+      <h3>Step 3: Hessian Matrix (Gauss–Newton Approx.) <small>[C]</small></h3>
+      <p>
+        Define the network’s pre‑activation output as
+        \[
+        f(x)=w_2\,h+b_2.
+        \]
+        Its gradient with respect to \(\theta=[w_1,\,b_1,\,w_2,\,b_2]\) is
+        \[
+        \frac{\partial f}{\partial w_1}=w_2\,h(1-h)x,\quad \frac{\partial f}{\partial b_1}=w_2\,h(1-h),
+        \]
+        \[
+        \frac{\partial f}{\partial w_2}=h,\quad \frac{\partial f}{\partial b_2}=1.
+        \]
+        Writing
+        \[
+        g(x)=\begin{pmatrix} w_2\,h(1-h)x \\ w_2\,h(1-h) \\ h \\ 1 \end{pmatrix},
+        \]
+        the Gauss–Newton Hessian is approximated as
+        \[
+        H\approx \sum_{i}\hat{y}_i(1-\hat{y}_i)\,g(x_i)g(x_i)^\top.
+        \]
+      </p>
+      <details>
+        <summary>Derivation of the Hessian (Gauss–Newton Approx.)</summary>
+        <p>
+          For a network with \(\hat{y}=\sigma(f(x))\), a common approximation to the Hessian is
+          \[
+          H\approx \sum_i \Bigl(\frac{\partial f(x_i)}{\partial \theta}\Bigr)^\top\Bigl(\frac{\partial f(x_i)}{\partial \theta}\Bigr)\,\hat{y}_i(1-\hat{y}_i).
+          \]
+          With
+          \[
+          \frac{\partial f(x)}{\partial \theta}=g(x),
+          \]
+          we obtain
+          \[
+          H\approx \sum_i \hat{y}_i(1-\hat{y}_i)\,g(x_i)g(x_i)^\top.
+          \]
+        </p>
+      </details>
+      
+      <!-- [D] Influence Calculation -->
+      <h3>Step 4: Influence Calculation <small>[D]</small></h3>
+      <p>
+        The influence of removing a training point \((x_i,y_i)\) on the test loss is given by
+        \[
+        \mathcal{I}_{\mathrm{up,loss}}(z_{\mathrm{test}},z_i)
+        = -\,\nabla_{\theta} L(z_{\mathrm{test}})^\top\,H^{-1}\,\nabla_{\theta} L(z_i),
+        \]
+        where
+        \[
+        \nabla_{\theta} L(z)=(\hat{y}-y)\,g(x).
+        \]
+        A negative influence means that removing the training point would increase the test loss (i.e., the point is beneficial), while a positive influence indicates that removal would decrease the test loss (i.e., the point is harmful).
+      </p>
+    </div><!-- end left-pane -->
+
+    <!-- RIGHT: JavaScript Computation -->
+    <div class="right-pane">
+      <h2>JavaScript Computation Code (Display Only) for 2-Layer Neural Network</h2>
+      <div class="panel-labels">
+        <strong>Panel Labels:</strong> [A] Test Point &amp; Training Gradients, [B] Hessian Calculation, [C] Hessian Inversion, [D] Influence Computation
+      </div>
+      <pre><code>
+// Panel [A]: Test Point and Training Gradients
+// Fixed parameters: w1 = 2, b1 = -1, w2 = 3, b2 = -2
+// Training set: (0,0), (1,0), (2,1), (3,1)
+// Test point: (1.5, 1)
+
+function sigmoid(z) {
+  return 1 / (1 + Math.exp(-z));
+}
+
+function forward(x, params) {
+  // params: {w1, b1, w2, b2}
+  const z1 = params.w1 * x + params.b1;
+  const h = sigmoid(z1);
+  const z2 = params.w2 * h + params.b2;
+  const yPred = sigmoid(z2);
+  return { z1: z1, h: h, z2: z2, yPred: yPred };
+}
+
+function gradSingleExample(params, x, y) {
+  // Forward pass
+  const { z1, h, z2, yPred } = forward(x, params);
+  // Compute gradient of f(x)=w2*h+b2 with respect to parameters [w1, b1, w2, b2]:
+  const g = [
+    params.w2 * h * (1 - h) * x,  // d f/dw1
+    params.w2 * h * (1 - h),        // d f/db1
+    h,                            // d f/dw2
+    1                             // d f/db2
+  ];
+  // Loss gradient: (yPred - y) * g
+  const scale = yPred - y;
+  const grad = g.map(val => scale * val);
+  return { grad: grad, g: g, yPred: yPred, h: h };
+}
+
+// Panel [B]: Hessian Calculation (Gauss–Newton Approximation)
+// Hessian H ≈ Σ [yPred*(1-yPred)]·[g(x)·g(x)^T]
+function computeHessian(params, X_train, y_train) {
+  // Initialize 4x4 zero matrix
+  let H = [];
+  for (let i = 0; i < 4; i++) {
+    H.push([0, 0, 0, 0]);
+  }
+  for (let i = 0; i < X_train.length; i++) {
+    const { g, yPred } = gradSingleExample(params, X_train[i], y_train[i]);
+    const weight = yPred * (1 - yPred);
+    for (let j = 0; j < 4; j++) {
+      for (let k = 0; k < 4; k++) {
+        H[j][k] += weight * g[j] * g[k];
+      }
+    }
+  }
+  return H;
+}
+
+// Panel [C]: Hessian Inversion using Gauss–Jordan elimination for 4x4 matrix
+function invertMatrix(matrix) {
+  const n = matrix.length;
+  let aug = [];
+  for (let i = 0; i < n; i++) {
+    aug[i] = matrix[i].slice();
+    for (let j = 0; j < n; j++) {
+      aug[i].push(i === j ? 1 : 0);
+    }
+  }
+  for (let i = 0; i < n; i++) {
+    let pivot = aug[i][i];
+    if (Math.abs(pivot) < 1e-10) {
+      throw new Error("Matrix is singular or nearly singular");
+    }
+    for (let j = 0; j < 2 * n; j++) {
+      aug[i][j] /= pivot;
+    }
+    for (let k = 0; k < n; k++) {
+      if (k !== i) {
+        let factor = aug[k][i];
+        for (let j = 0; j < 2 * n; j++) {
+          aug[k][j] -= factor * aug[i][j];
+        }
+      }
+    }
+  }
+  let inv = [];
+  for (let i = 0; i < n; i++) {
+    inv[i] = aug[i].slice(n, 2 * n);
+  }
+  return inv;
+}
+
+// Panel [D]: Influence Computation
+function dot(u, v) {
+  return u.reduce((sum, ui, i) => sum + ui * v[i], 0);
+}
+
+function matVecMultiply(M, v) {
+  return M.map(row => dot(row, v));
+}
+
+function computeInfluences(params) {
+  const X_train = [0, 1, 2, 3];
+  const y_train = [0, 0, 1, 1];
+  const X_test = 1.5, y_test = 1;
+  
+  let output = "";
+  output += "=== Influence Function Detailed Computation ===\n\n";
+  
+  // Panel [A]
+  output += "Label [A]: Fixed Parameters & Test Point Gradient\n";
+  output += "  Parameters: w1 = " + params.w1 + ", b1 = " + params.b1 + ", w2 = " + params.w2 + ", b2 = " + params.b2 + "\n";
+  output += "  For test point (x = " + X_test + ", y = " + y_test + "):\n";
+  const testCalc = gradSingleExample(params, X_test, y_test);
+  output += "    Test gradient = [ " + testCalc.grad.map(val => val.toFixed(6)).join(", ") + " ]\n\n";
+  
+  // Panel [B]
+  output += "Label [B]: Hessian Matrix Calculation\n";
+  const H = computeHessian(params, X_train, y_train);
+  output += "  Hessian matrix (Gauss–Newton Approximation):\n";
+  H.forEach(row => {
+    output += "    [ " + row.map(val => val.toFixed(6)).join(", ") + " ]\n";
+  });
+  output += "\n";
+  
+  // Panel [C]
+  output += "Label [C]: Inversion of the Hessian\n";
+  const H_inv = invertMatrix(H);
+  output += "  Inverted Hessian:\n";
+  H_inv.forEach(row => {
+    output += "    [ " + row.map(val => val.toFixed(6)).join(", ") + " ]\n";
+  });
+  output += "\n";
+  
+  // Panel [D]
+  output += "Label [D]: Influence Computation for Each Training Point\n";
+  output += "  Influence = - (test gradient) dot (H_inv * training gradient)\n\n";
+  
+  for (let i = 0; i < X_train.length; i++) {
+    const calc = gradSingleExample(params, X_train[i], y_train[i]);
+    output += "  --- Training Point " + i + " (x = " + X_train[i] + ", y = " + y_train[i] + ") ---\n";
+    output += "    Training gradient = [ " + calc.grad.map(val => val.toFixed(6)).join(", ") + " ]\n";
+    const Hinv_grad = matVecMultiply(H_inv, calc.grad);
+    output += "    H_inv * training gradient = [ " + Hinv_grad.map(val => val.toFixed(6)).join(", ") + " ]\n";
+    const infl = - dot(testCalc.grad, Hinv_grad);
+    output += "    Influence = " + infl.toFixed(6) + "\n\n";
+  }
+  
+  output += "Note: A negative influence indicates that removing the training point would increase the test loss (i.e., the point is beneficial),\n";
+  output += "      while a positive influence indicates that removing it would decrease the test loss (i.e., the point is harmful).\n";
+  output += "=== End of Detailed Computation ===\n";
+  return output;
+}
+</code></pre>
+      <button id="btnCompute">Compute Detailed Influences</button>
+      <div id="output" class="output"></div>
+    </div><!-- end right-pane -->
+  </div><!-- end container -->
+
+  <!-- Executable JavaScript Code -->
+  <script>
+    // Define global parameters for the 2-layer neural network
+    const params = { w1: 2, b1: -1, w2: 3, b2: -2 };
+
+    // (Functions defined above are redefined here for execution)
+    function sigmoid(z) {
+      return 1 / (1 + Math.exp(-z));
+    }
+
+    function forward(x, params) {
+      const z1 = params.w1 * x + params.b1;
+      const h = sigmoid(z1);
+      const z2 = params.w2 * h + params.b2;
+      const yPred = sigmoid(z2);
+      return { z1: z1, h: h, z2: z2, yPred: yPred };
+    }
+
+    function gradSingleExample(params, x, y) {
+      const { z1, h, z2, yPred } = forward(x, params);
+      const g = [
+        params.w2 * h * (1 - h) * x,
+        params.w2 * h * (1 - h),
+        h,
+        1
+      ];
+      const scale = yPred - y;
+      const grad = g.map(val => scale * val);
+      return { grad: grad, g: g, yPred: yPred, h: h };
+    }
+
+    function computeHessian(params, X_train, y_train) {
+      let H = [];
+      for (let i = 0; i < 4; i++) {
+        H.push([0, 0, 0, 0]);
+      }
+      for (let i = 0; i < X_train.length; i++) {
+        const { g, yPred } = gradSingleExample(params, X_train[i], y_train[i]);
+        const weight = yPred * (1 - yPred);
+        for (let j = 0; j < 4; j++) {
+          for (let k = 0; k < 4; k++) {
+            H[j][k] += weight * g[j] * g[k];
+          }
+        }
+      }
+      return H;
+    }
+
+    function invertMatrix(matrix) {
+      const n = matrix.length;
+      let aug = [];
+      for (let i = 0; i < n; i++) {
+        aug[i] = matrix[i].slice();
+        for (let j = 0; j < n; j++) {
+          aug[i].push(i === j ? 1 : 0);
+        }
+      }
+      for (let i = 0; i < n; i++) {
+        let pivot = aug[i][i];
+        if (Math.abs(pivot) < 1e-10) {
+          throw new Error("Matrix is singular or nearly singular");
+        }
+        for (let j = 0; j < 2 * n; j++) {
+          aug[i][j] /= pivot;
+        }
+        for (let k = 0; k < n; k++) {
+          if (k !== i) {
+            let factor = aug[k][i];
+            for (let j = 0; j < 2 * n; j++) {
+              aug[k][j] -= factor * aug[i][j];
+            }
+          }
+        }
+      }
+      let inv = [];
+      for (let i = 0; i < n; i++) {
+        inv[i] = aug[i].slice(n, 2 * n);
+      }
+      return inv;
+    }
+
+    function dot(u, v) {
+      return u.reduce((sum, ui, i) => sum + ui * v[i], 0);
+    }
+
+    function matVecMultiply(M, v) {
+      return M.map(row => dot(row, v));
+    }
+
+    function computeInfluences(params) {
+      const X_train = [0, 1, 2, 3];
+      const y_train = [0, 0, 1, 1];
+      const X_test = 1.5, y_test = 1;
+      
+      let output = "";
+      output += "=== Influence Function Detailed Computation ===\n\n";
+      output += "Label [A]: Fixed Parameters & Test Point Gradient\n";
+      output += "  Parameters: w1 = " + params.w1 + ", b1 = " + params.b1 + ", w2 = " + params.w2 + ", b2 = " + params.b2 + "\n";
+      output += "  For test point (x = " + X_test + ", y = " + y_test + "):\n";
+      const testCalc = gradSingleExample(params, X_test, y_test);
+      output += "    Test gradient = [ " + testCalc.grad.map(val => val.toFixed(6)).join(", ") + " ]\n\n";
+      
+      output += "Label [B]: Hessian Matrix Calculation\n";
+      const H = computeHessian(params, X_train, y_train);
+      output += "  Hessian matrix:\n";
+      H.forEach(row => {
+        output += "    [ " + row.map(val => val.toFixed(6)).join(", ") + " ]\n";
+      });
+      output += "\n";
+      
+      output += "Label [C]: Inversion of the Hessian\n";
+      const H_inv = invertMatrix(H);
+      output += "  Inverted Hessian:\n";
+      H_inv.forEach(row => {
+        output += "    [ " + row.map(val => val.toFixed(6)).join(", ") + " ]\n";
+      });
+      output += "\n";
+      
+      output += "Label [D]: Influence Computation for Each Training Point\n";
+      output += "  Influence = - (test gradient) dot (H_inv * training gradient)\n\n";
+      
+      for (let i = 0; i < X_train.length; i++) {
+        const calc = gradSingleExample(params, X_train[i], y_train[i]);
+        output += "  --- Training Point " + i + " (x = " + X_train[i] + ", y = " + y_train[i] + ") ---\n";
+        output += "    Training gradient = [ " + calc.grad.map(val => val.toFixed(6)).join(", ") + " ]\n";
+        const Hinv_grad = matVecMultiply(H_inv, calc.grad);
+        output += "    H_inv * training gradient = [ " + Hinv_grad.map(val => val.toFixed(6)).join(", ") + " ]\n";
+        const infl = - dot(testCalc.grad, Hinv_grad);
+        output += "    Influence = " + infl.toFixed(6) + "\n\n";
+      }
+      
+      output += "Note: A negative influence indicates that removing the training point would increase the test loss (i.e., the point is beneficial),\n";
+      output += "      while a positive influence indicates that removing it would decrease the test loss (i.e., the point is harmful).\n";
+      output += "=== End of Detailed Computation ===\n";
+      return output;
+    }
+
+    document.getElementById("btnCompute").addEventListener("click", function() {
+      try {
+        const res = computeInfluences(params);
+        document.getElementById("output").textContent = res;
+      } catch (error) {
+        document.getElementById("output").textContent = "Error: " + error.message;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -75,19 +75,29 @@
       font-weight: bold;
       cursor: pointer;
     }
+    .panel-labels {
+      font-size: 0.9em;
+      background: #eee;
+      border: 1px solid #ddd;
+      padding: 0.4em;
+      margin-bottom: 1em;
+      border-radius: 4px;
+    }
   </style>
 </head>
 
 <body>
   <h1 style="text-align:center;">
-    Influence Functions Demo (Detailed Math on Left, Detailed JavaScript on Right). AI DISCLAIMER: produced via
-    long "chat" with o3-mini-high, Feb 11, 2025.
+    Influence Functions Demo (Detailed Math on Left, Detailed JavaScript on Right)
   </h1>
 
   <div class="container">
     <!-- LEFT: Mathematical Derivation -->
     <div class="left-pane">
       <h2>Mathematical Derivation</h2>
+      <div class="panel-labels">
+        <strong>Panel Labels:</strong> [A] Predicted Probabilities, [B] Logistic Loss &amp; Gradient, [C] Hessian Matrix, [D] Influence Calculation
+      </div>
       <p>
         We consider a <strong>logistic regression</strong> model with parameters 
         $w$ and $b$. The predicted probability for an input $x$ is given by
@@ -101,7 +111,8 @@
         so that we can perform explicit numerical calculations.
       </p>
 
-      <h3>Step 1: Compute Predicted Probabilities</h3>
+      <!-- [A] Predicted Probabilities -->
+      <h3>Step 1: Compute Predicted Probabilities <small>[A]</small></h3>
       <p>
         For each training point, we calculate 
         $$p_i=\sigma(w^*x_i+b^*).$$
@@ -116,7 +127,8 @@
         $$z_2=2\cdot 2-3=1,\quad p_2=\sigma(1)=\frac{1}{1+e^{-1}}\approx 0.7311.$$
       </p>
 
-      <h3>Step 2: Logistic Loss and Gradient</h3>
+      <!-- [B] Logistic Loss and Gradient -->
+      <h3>Step 2: Logistic Loss and Gradient <small>[B]</small></h3>
       <p>
         The negative log-likelihood for an example $(x_i,y_i)$ is
         $$L_i(w,b)=-\Bigl[y_i\ln(\hat{y}_i)+(1-y_i)\ln(1-\hat{y}_i)\Bigr].$$
@@ -124,8 +136,6 @@
         $$\nabla_{(w,b)}L_i=(\hat{y}_i-y_i)
           \begin{pmatrix} x_i \\ 1 \end{pmatrix}.$$
       </p>
-
-      <!-- Expandable derivation of the gradient -->
       <details>
         <summary>Derivation of the Gradient</summary>
         <p>
@@ -143,7 +153,8 @@
         </p>
       </details>
 
-      <h3>Step 3: Hessian Matrix</h3>
+      <!-- [C] Hessian Matrix -->
+      <h3>Step 3: Hessian Matrix <small>[C]</small></h3>
       <p>
         The Hessian for the training set is
         $$\nabla^2 L_{\text{train}}=\sum_{i}p_i(1-p_i)
@@ -166,7 +177,7 @@
         $$p_2(1-p_2)\approx 0.7311 \cdot 0.2689 \approx 0.1966,$$
         yielding
         $$0.1966\begin{pmatrix}4 & 2\\ 2 & 1\end{pmatrix}=
-           \begin{pmatrix}0.7864 & 0.3932\\ 0.3932 & 0.1966\end{pmatrix}.$$
+           \begin{pmatrix}0.7864 & 0.3932\\ 0.3932 & 0.1966\end{pmatrix}.$>
         <br>
         <em>Summing up the contributions:</em>
         $$\nabla^2 L_{\text{train}}\approx
@@ -174,8 +185,6 @@
                            0+0.1966+0.3932 & 0.0452+0.1966+0.1966\end{pmatrix}
            =\begin{pmatrix}0.9830 & 0.5898\\[4pt]0.5898 & 0.4384\end{pmatrix}.$$
       </p>
-
-      <!-- Expandable derivation of the Hessian -->
       <details>
         <summary>Derivation of the Hessian</summary>
         <p>
@@ -202,21 +211,26 @@
         </p>
       </details>
 
-      <h3>Step 4: Influence Calculation</h3>
+      <!-- [D] Influence Calculation -->
+      <h3>Step 4: Influence Calculation <small>[D]</small></h3>
       <p>
         The influence of removing a training point $(x_i,y_i)$ on the test loss is
         $$\mathcal{I}_{\mathrm{up,loss}}(z_{\mathrm{test}},z_i)
            = -\,\nabla_\theta L(z_{\mathrm{test}})^\top\Bigl[\nabla^2L_{\mathrm{train}}\Bigr]^{-1}
            \nabla_\theta L(z_i).$$
-        A negative value means that removing the point would increase the test loss (the point was helpful),
+        A negative value means that removing the point would increase the test loss (i.e., the point is beneficial),
         while a positive value indicates a harmful effect.
       </p>
     </div><!-- end left-pane -->
 
-    <!-- RIGHT: JavaScript Computation (Display Only) -->
+    <!-- RIGHT: JavaScript Computation -->
     <div class="right-pane">
       <h2>JavaScript Computation Code (Display Only)</h2>
+      <div class="panel-labels">
+        <strong>Panel Labels:</strong> [A] Test Point &amp; Training Gradients, [B] Hessian Calculation, [C] Hessian Inversion, [D] Influence Computation
+      </div>
       <pre><code>
+// Label [A]: Test Point and Training Gradients
 // Fixed parameters: w = 2, b = -3
 // Training set: (0,0), (1,0), (2,1)
 // Test point: (1.5, 1)
@@ -228,10 +242,12 @@ function sigmoid(z) {
 function gradSingleExample(w, b, x, y) {
   const z = w * x + b;
   const p = sigmoid(z);
+  // Loss gradient: (p - y) * [x, 1]
   const grad = [(p - y) * x, (p - y)];
   return { z: z, p: p, grad: grad };
 }
 
+// Label [B]: Hessian Calculation
 function hessian(w, b, X) {
   let H00 = 0, H01 = 0, H11 = 0;
   X.forEach(x => {
@@ -245,6 +261,7 @@ function hessian(w, b, X) {
   return { H: [[H00, H01], [H01, H11]] };
 }
 
+// Label [C]: Hessian Inversion
 function invert2x2(M) {
   const A = M[0][0], B = M[0][1], C = M[1][0], D = M[1][1];
   const det = A * D - B * C;
@@ -268,6 +285,7 @@ function dot(u, v) {
   return u[0] * v[0] + u[1] * v[1];
 }
 
+// Label [D]: Influence Computation
 function computeInfluences() {
   const X_train = [0, 1, 2];
   const y_train = [0, 0, 1];
@@ -277,51 +295,48 @@ function computeInfluences() {
   let output = "";
   output += "=== Influence Function Detailed Computation ===\n\n";
   
-  // Step 1: Parameters and Test Point Gradient
-  output += "Step 1: Fixed Parameters\n";
-  output += "  Parameters: w = " + w + ", b = " + b + "\n\n";
-  
-  output += "Step 2: Test Point Gradient Calculation\n";
-  output += "  For the test point (x = " + X_test + ", y = " + y_test + "):\n";
+  // Label [A]
+  output += "Label [A]: Fixed Parameters & Test Point Gradient\n";
+  output += "  Parameters: w = " + w + ", b = " + b + "\n";
+  output += "  For test point (x = " + X_test + ", y = " + y_test + "):\n";
   const testCalc = gradSingleExample(w, b, X_test, y_test);
   output += "    Compute z: z_test = " + w + " * " + X_test + " + (" + b + ") = " + testCalc.z.toFixed(6) + "\n";
   output += "    Compute p: p_test = sigmoid(z_test) = " + testCalc.p.toFixed(6) + "\n";
-  output += "    Gradient (test) = (p_test - y_test) * [x, 1] = [ " + testCalc.grad[0].toFixed(6) + ", " + testCalc.grad[1].toFixed(6) + " ]\n\n";
+  output += "    Test gradient = (p_test - y_test) * [x, 1] = [ " + testCalc.grad[0].toFixed(6) + ", " + testCalc.grad[1].toFixed(6) + " ]\n\n";
   
-  // Step 3: Hessian Calculation
-  output += "Step 3: Hessian Matrix Calculation\n";
-  output += "  The Hessian is the sum over training examples of p*(1-p)*[[x^2, x], [x, 1]].\n";
+  // Label [B]
+  output += "Label [B]: Hessian Matrix Calculation\n";
   const hessResult = hessian(w, b, X_train);
   const H = hessResult.H;
   output += "  Hessian matrix:\n";
   output += "    [[ " + H[0][0].toFixed(6) + ", " + H[0][1].toFixed(6) + " ],\n";
   output += "     [ " + H[1][0].toFixed(6) + ", " + H[1][1].toFixed(6) + " ]]\n\n";
   
-  // Step 4: Inversion of the Hessian
-  output += "Step 4: Inversion of the Hessian\n";
+  // Label [C]
+  output += "Label [C]: Inversion of the Hessian\n";
   const H_inv = invert2x2(H);
-  output += "  The inverse Hessian (needed for influence computation):\n";
+  output += "  Inverted Hessian:\n";
   output += "    [[ " + H_inv[0][0].toFixed(6) + ", " + H_inv[0][1].toFixed(6) + " ],\n";
   output += "     [ " + H_inv[1][0].toFixed(6) + ", " + H_inv[1][1].toFixed(6) + " ]]\n\n";
   
-  // Step 5: Compute Influence for Each Training Point
-  output += "Step 5: Influence Computation for Each Training Point\n";
-  output += "  For each training example, we compute its gradient and then the influence as:\n";
-  output += "    influence = - (test gradient) dot (H_inv * training gradient)\n\n";
+  // Label [D]
+  output += "Label [D]: Influence Computation for Each Training Point\n";
+  output += "  For each training example, influence = - (test gradient) dot (H_inv * training gradient)\n\n";
   
   X_train.forEach((x, i) => {
     const calc = gradSingleExample(w, b, x, y_train[i]);
     output += "  --- Training Point " + i + " (x = " + x + ", y = " + y_train[i] + ") ---\n";
     output += "    Compute z: z = " + w + " * " + x + " + (" + b + ") = " + calc.z.toFixed(6) + "\n";
     output += "    Compute p: p = sigmoid(z) = " + calc.p.toFixed(6) + "\n";
-    output += "    Gradient = (p - y) * [x, 1] = [ " + calc.grad[0].toFixed(6) + ", " + calc.grad[1].toFixed(6) + " ]\n";
+    output += "    Training gradient = (p - y) * [x, 1] = [ " + calc.grad[0].toFixed(6) + ", " + calc.grad[1].toFixed(6) + " ]\n";
     const Hinv_grad = mat2x2TimesVec(H_inv, calc.grad);
-    output += "    Multiplying by the inverse Hessian: H_inv * gradient = [ " + Hinv_grad[0].toFixed(6) + ", " + Hinv_grad[1].toFixed(6) + " ]\n";
+    output += "    H_inv * gradient = [ " + Hinv_grad[0].toFixed(6) + ", " + Hinv_grad[1].toFixed(6) + " ]\n";
     const infl = - dot(testCalc.grad, Hinv_grad);
     output += "    Influence = - (test gradient) dot (H_inv * training gradient) = " + infl.toFixed(6) + "\n\n";
   });
   
-  output += "Note: A negative influence indicates that removing the training point would increase the test loss (i.e., the point is beneficial), while a positive influence indicates that removing it would decrease the test loss (i.e., the point is harmful).\n";
+  output += "Note: A negative influence indicates that removing the training point would increase the test loss (i.e., the point is beneficial),\n";
+  output += "      while a positive influence indicates that removing it would decrease the test loss (i.e., the point is harmful).\n";
   output += "=== End of Detailed Computation ===\n";
   return output;
 }
@@ -391,56 +406,52 @@ function computeInfluences() {
       let output = "";
       output += "=== Influence Function Detailed Computation ===\n\n";
       
-      // Step 1: Parameters and Test Point Gradient
-      output += "Step 1: Fixed Parameters\n";
-      output += "  Parameters: w = " + w + ", b = " + b + "\n\n";
-      
-      output += "Step 2: Test Point Gradient Calculation\n";
-      output += "  For the test point (x = " + X_test + ", y = " + y_test + "):\n";
+      // Label [A]
+      output += "Label [A]: Fixed Parameters & Test Point Gradient\n";
+      output += "  Parameters: w = " + w + ", b = " + b + "\n";
+      output += "  For test point (x = " + X_test + ", y = " + y_test + "):\n";
       const testCalc = gradSingleExample(w, b, X_test, y_test);
       output += "    Compute z: z_test = " + w + " * " + X_test + " + (" + b + ") = " + testCalc.z.toFixed(6) + "\n";
       output += "    Compute p: p_test = sigmoid(z_test) = " + testCalc.p.toFixed(6) + "\n";
-      output += "    Gradient (test) = (p_test - y_test) * [x, 1] = [ " + testCalc.grad[0].toFixed(6) + ", " + testCalc.grad[1].toFixed(6) + " ]\n\n";
+      output += "    Test gradient = (p_test - y_test) * [x, 1] = [ " + testCalc.grad[0].toFixed(6) + ", " + testCalc.grad[1].toFixed(6) + " ]\n\n";
       
-      // Step 3: Hessian Calculation
-      output += "Step 3: Hessian Matrix Calculation\n";
-      output += "  The Hessian is the sum over training examples of p*(1-p)*[[x^2, x], [x, 1]].\n";
+      // Label [B]
+      output += "Label [B]: Hessian Matrix Calculation\n";
       const hessResult = hessian(w, b, X_train);
       const H = hessResult.H;
       output += "  Hessian matrix:\n";
       output += "    [[ " + H[0][0].toFixed(6) + ", " + H[0][1].toFixed(6) + " ],\n";
       output += "     [ " + H[1][0].toFixed(6) + ", " + H[1][1].toFixed(6) + " ]]\n\n";
       
-      // Step 4: Inversion of the Hessian
-      output += "Step 4: Inversion of the Hessian\n";
+      // Label [C]
+      output += "Label [C]: Inversion of the Hessian\n";
       const H_inv = invert2x2(H);
-      output += "  The inverse Hessian (needed for influence computation):\n";
+      output += "  Inverted Hessian:\n";
       output += "    [[ " + H_inv[0][0].toFixed(6) + ", " + H_inv[0][1].toFixed(6) + " ],\n";
       output += "     [ " + H_inv[1][0].toFixed(6) + ", " + H_inv[1][1].toFixed(6) + " ]]\n\n";
       
-      // Step 5: Compute Influence for Each Training Point
-      output += "Step 5: Influence Computation for Each Training Point\n";
-      output += "  For each training example, we compute its gradient and then the influence as:\n";
-      output += "    influence = - (test gradient) dot (H_inv * training gradient)\n\n";
+      // Label [D]
+      output += "Label [D]: Influence Computation for Each Training Point\n";
+      output += "  For each training example, influence = - (test gradient) dot (H_inv * training gradient)\n\n";
       
       X_train.forEach((x, i) => {
         const calc = gradSingleExample(w, b, x, y_train[i]);
         output += "  --- Training Point " + i + " (x = " + x + ", y = " + y_train[i] + ") ---\n";
         output += "    Compute z: z = " + w + " * " + x + " + (" + b + ") = " + calc.z.toFixed(6) + "\n";
         output += "    Compute p: p = sigmoid(z) = " + calc.p.toFixed(6) + "\n";
-        output += "    Gradient = (p - y) * [x, 1] = [ " + calc.grad[0].toFixed(6) + ", " + calc.grad[1].toFixed(6) + " ]\n";
+        output += "    Training gradient = (p - y) * [x, 1] = [ " + calc.grad[0].toFixed(6) + ", " + calc.grad[1].toFixed(6) + " ]\n";
         const Hinv_grad = mat2x2TimesVec(H_inv, calc.grad);
-        output += "    Multiplying by the inverse Hessian: H_inv * gradient = [ " + Hinv_grad[0].toFixed(6) + ", " + Hinv_grad[1].toFixed(6) + " ]\n";
+        output += "    H_inv * gradient = [ " + Hinv_grad[0].toFixed(6) + ", " + Hinv_grad[1].toFixed(6) + " ]\n";
         const infl = - dot(testCalc.grad, Hinv_grad);
         output += "    Influence = - (test gradient) dot (H_inv * training gradient) = " + infl.toFixed(6) + "\n\n";
       });
       
-      output += "Note: A negative influence indicates that removing the training point would increase the test loss (i.e., the point is beneficial), while a positive influence indicates that removing it would decrease the test loss (i.e., the point is harmful).\n";
+      output += "Note: A negative influence indicates that removing the training point would increase the test loss (i.e., the point is beneficial),\n";
+      output += "      while a positive influence indicates that removing it would decrease the test loss (i.e., the point is harmful).\n";
       output += "=== End of Detailed Computation ===\n";
       return output;
     }
 
-    // Attach event listener now that everything is defined
     document.getElementById("btnCompute").addEventListener("click", function() {
       try {
         const res = computeInfluences();

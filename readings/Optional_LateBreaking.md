@@ -101,11 +101,11 @@ Some recent policy-related docs: OpenAI's economic blueprint: https://openai.com
 
 ## Week 3
 
-https://s.mirror.xyz/djByMntM2rQF4tqUISYS2MAO3oCfSWoOZSOpZjsYwaw
+Blog post from Zargham, Moore, and Stephenson: https://s.mirror.xyz/djByMntM2rQF4tqUISYS2MAO3oCfSWoOZSOpZjsYwaw
 
 ## Week 4
 
-https://gradual-disempowerment.ai/
+Kulveit et al. on AI disempowerment: https://gradual-disempowerment.ai/
 
 ## Week 5
 
@@ -114,3 +114,8 @@ https://ieeexplore.ieee.org/document/5197422
 https://arxiv.org/abs/2501.18887
 
 https://github.com/google-research/tuning_playbook
+
+
+## Week 9
+
+BRAND new paper on scaling laws: https://arxiv.org/pdf/2502.18969

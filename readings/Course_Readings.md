@@ -169,15 +169,61 @@ For this week, please list three specific online platforms that are useful for A
 
 ## Week 9 
 
-TBA
+Quiz 2 this week + finish project proposal. No required reading. You're encouraged to find reading that supports
+your project proposal.
+
 
 ## Week 10
 
-TBA 
+This week, we'll do something a bit different. For your "reading time" (i.e. 1-2 hours, hopefully), you should watch this YouTube video:
+https://www.youtube.com/watch?v=zjkBMFhNj_g
+If you absolutely are sure you're not interested in Large Language Models, you can use this time to instead find a video or blog post covering your domain of interest.
+
+For your response, please either:
+1) Describe one thing from the video that surprised you, or
+2) Provide a link to the non-LLM resource you found and describe what you learned from it.
+
 
 ## Week 11
 
-TBA
+For this week, please read:
+
+First 10 pages of https://arxiv.org/abs/2402.00159
+
+Section 2 of https://dl.acm.org/doi/abs/10.1145/3531146.3534637
+
+Skim this webpage: https://weborganizer.allen.ai/ and look at linked sample data on HuggingFace.
+
+For your response, please:
+
+Describe at a high-level three key components in preparing a high quality pre-training dataset.
 
 ## Week 12
-TBAx
+
+Please read the Abstract and Introduction of the following papers. The goal of this set of readings is to get some exposure to different arguments and research directions in the space of data-sharing markets. One reading is from Nature Medicine, one from a data-focused CS conference, and one from an economics journal.
+
+---
+Prainsack, B. and Forgó, N. 2022. Why paying individual people for their health data is a bad idea. Nature medicine. 28, 10 (Oct. 2022), 1989–1991.
+https://www.nature.com/articles/s41591-022-01955-4
+
+
+Fernandez, R.C. 2023. Data-Sharing Markets: Model, Protocol, and Algorithms to Incentivize the Formation of Data-Sharing Consortia. Proceedings ACMSIGMOD International Conference on Management of Data (2023).
+http://raulcastrofernandez.com/papers/data-sharing-consortia-escrow.pdf
+
+Acemoglu, D. et al. 2022. Too Much Data: Prices and Inefficiencies in Data Markets. American Economic Journal: Microeconomics. 14, 4 (Nov. 2022), 218–256.
+https://www.aeaweb.org/articles?id=10.1257/mic.20200200
+
+For your response, describe your planned project and the relevance, if any, of each of these three framings.
+
+
+## Week 13
+
+The goal of this set of readings is to get some exposure to additional perspectives on data governance.
+
+Read: Carroll, S. R., Garba, I., Figueroa-Rodríguez, O. L., Holbrook, J., Lovett, R., Materechera, S., ... & Hudson, M. (2020). The CARE principles for indigenous data governance. Data Science Journal, 19, 43-43.
+Available as HTML at: https://www.adalovelaceinstitute.org/blog/care-principles-operationalising-indigenous-data-governance/
+
+https://data-feminism.mitpress.mit.edu/pub/vi8obxh7/release/4
+
+
+For your response, describe your planned project and the relevance, if any, of each of these three framings.

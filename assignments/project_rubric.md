@@ -6,7 +6,7 @@ This document assumes you've read the details in the Project Proposal.
 
 ### **When is the project due?**
 
-The official project deadline is **TBA**.
+The official project deadline is **April 3 23:59**.
 
 You are encouraged to finish a draft of your project report before the end of the semester. You will have an opportunity to present your project. This is voluntarily but operates under the "it can only help you" rule: if your presentation helps to clarify the contributions or challenges of your project, this may positively affect your grade. In particular, presenting your project can help you increase your "relevance to class themes" score, as I will ask questions and give you a chance to further demonstrate engagement with our key themes.
 

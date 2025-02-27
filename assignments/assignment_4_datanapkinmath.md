@@ -14,3 +14,5 @@ Please assess, to the best of your ability:
 - How much money could this dataset generate (hint: make a reasonable guess about this data could be used to make inferences, predictions, detections etc. and what the business value or other value is. The answer might be: not very much!)
 
 You will need to write down a lot of assumptions. You will marked based on your completeness in listing and justifying the assumptions, not the empirical validity of your estimate (i.e., it is better to make wild guesses than to have unexplained details).
+
+If you are in a project group, you may submit this with your group (will be a "Group Assignment" in CourSys).

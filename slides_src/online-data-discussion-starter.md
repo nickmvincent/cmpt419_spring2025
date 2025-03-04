@@ -22,17 +22,11 @@ Broad q: If tech companies have already "scraped all they can", are we going to 
 
 https://en.wikipedia.org/wiki/AI_winter
 
-![](figs/7/ai_winter_atf.png)
-
 
 ## Ongoing debate about "synthetic data"
 
-- reinvigorated TODAY by the Anthropic Claude 3 release
 
-
-![](figs/7/2024-03-04_twitter_synthetic_data.png)
-
-## What is synthetic data, exactly?
+What is synthetic data, exactly?
 
 - My (current) take: "synthetic" is underspecified; source and generating model matter (not a particularly hot take)
 - This is a very rapdily changing area!
@@ -67,7 +61,6 @@ What do *you* prefer for *your data*?
 
 - Counterproductive to collective action?
 - Old critiques of UBI?
-
 
 ## Data strikes
 

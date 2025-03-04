@@ -202,7 +202,6 @@ Describe at a high-level three key components in preparing a high quality pre-tr
 
 Please read the Abstract and Introduction of the following papers. The goal of this set of readings is to get some exposure to different arguments and research directions in the space of data-sharing markets. One reading is from Nature Medicine, one from a data-focused CS conference, and one from an economics journal.
 
----
 Prainsack, B. and Forgó, N. 2022. Why paying individual people for their health data is a bad idea. Nature medicine. 28, 10 (Oct. 2022), 1989–1991.
 https://www.nature.com/articles/s41591-022-01955-4
 

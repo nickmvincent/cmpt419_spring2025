@@ -119,3 +119,9 @@ https://github.com/google-research/tuning_playbook
 ## Week 9
 
 BRAND new paper on scaling laws: https://arxiv.org/pdf/2502.18969
+
+Nice post on analyzing common crawl, with practical tips: https://trufflesecurity.com/blog/research-finds-12-000-live-api-keys-and-passwords-in-deepseek-s-training-data
+
+## Week 10
+
+Data selection for fine-tuning: https://github.com/hamishivi/automated-instruction-selection

@@ -13,46 +13,12 @@ author: Prof. Nick Vincent
 institute: Simon Fraser University
 date: 
 ---
-# Visible front matter
-
-This slide contains content for March 27, 2024 lecture.
-
-## {auto-animate=true auto-animate-easing="ease-in-out"}
-
-::: {.r-hstack}
-::: {data-id="box1" auto-animate-delay="0" style="background: #00ff9f; width: 200px; height: 150px; margin: 10px;"}
-:::
-
-::: {data-id="box2" auto-animate-delay="0.1" style="background: #00b8ff; width: 200px; height: 150px; margin: 10px;"}
-:::
-
-::: {data-id="box3" auto-animate-delay="0.2" style="background: #001eff; width: 200px; height: 150px; margin: 10px;"}
-:::
-
-::: {data-id="box4" auto-animate-delay="0.2" style="background: #bd00ff; width: 200px; height: 150px; margin: 10px;"}
-:::
-
-:::
-
-## {auto-animate=true auto-animate-easing="ease-in-out"}
-
-::: {.r-stack}
-::: {data-id="box1" style="background: #00ff9f; width: 350px; height: 350px; border-radius: 200px;"}
-:::
-
-::: {data-id="box2" style="background: #00b8ff; width: 250px; height: 250px; border-radius: 200px;"}
-:::
-
-::: {data-id="box3" style="background: #001eff; width: 150px; height: 150px; border-radius: 200px;"}
-:::
-
-::: {data-id="box4" style="background: #bd00ff; width: 50px; height: 50px; border-radius: 200px;"}
-:::
-:::
-
 
 # Data Governance
 
+Note: rather than screenshot most of the paper, we'll pull up our readings directly for much of this lecture. This may make for a worse "reading the PDF version" experience, my apologies!
+
+[link](https://dl.acm.org/doi/abs/10.1145/3531146.3534637)
 
 ## Goals
 
@@ -76,17 +42,20 @@ From the Commission on Global Governance:
 
 Pick your favorite LLM and get an answer like this
 
+---
+
 ## C.f. Global Climate Governance
 
 Can be useful to think about data governance as a paralell to climate governance. 
 
 What are the current processes in place to determine how new climate laws are passed, how they're enforced, how they do (or do not) cascade between states
 
-::: {.callout-tip}
-## Cf.
-Latin for "confer or conferatur", meaning "compare" in English. Abbreviation used for "compare with" [WP](https://en.wikipedia.org/wiki/Cf.)
-:::
+---
 
+
+Latin for "confer or conferatur", meaning "compare" in English. Abbreviation used for "compare with" [WP](https://en.wikipedia.org/wiki/Cf.)
+
+---
 
 ## What's NOT governance...
 
@@ -96,21 +65,20 @@ Latin for "confer or conferatur", meaning "compare" in English. Abbreviation use
 
 Exact categorization of governance or not is not a big deal for our immediate concerns, but the point here is to emphasize the flexibility of the word (and the value of frameworks)
 
+---
+
 ## Outline
 
 - The LLM model from Jernite et al. (with a big et al.!)
 - CARE principles and indigenous data governance
 - (if time) intro to some other perspectives
 
+---
+
 # Data Governance for LLMs
 
 ---
 
-Figures here are from
-
-![](figs/10/gov1.png)
-
-[link](https://dl.acm.org/doi/abs/10.1145/3531146.3534637)
 
 ## How has Data Governance been affected by the LLM era
 
@@ -122,9 +90,7 @@ Key differences of the LLM era are even more
 Jernite et al., Section 1: 
 > "Wikipedia-scale corpora to close to three orders of magnitude more"
 
-## An Overview Figure
-
-![](figs/10/gov_fig1.png)
+---
 
 ## What does it mean to design a new governance structure?
 
@@ -132,17 +98,15 @@ Note: "design a new governance structure" = change the rules or norms (implicitl
 
 It's ambitious!
 
+---
+
 ## The "DSO"
 
 Key idea of this paper is a "Data Stewardship Organization" -- a new org that would act as a facilitator (e.g., talk to data creators and data subjects, but also talk to modelers and legal teams and such)
 
-## Distinction between laws and tools
+Another key idea: laws vs tools
 
-![](figs/10/gov_fig2.png)
-
-## Values and Governance
-
-![](figs/10/gov_fig4.png)
+---
 
 ## Important concerns from the paper to flag
 
@@ -152,11 +116,15 @@ Key idea of this paper is a "Data Stewardship Organization" -- a new org that wo
 - issues with human rights framing (many conflicting documents)
 - Critical perspectives: human rights and decoloniality
 
+---
+
 ## Specifity of data governance
 
 This paper really focuses on language data, with a call out for human-centric data.
 
 How might other modalities disrupt this proposal?
+
+---
 
 ## Another Lifecycle of Data
 
@@ -174,16 +142,19 @@ How might other modalities disrupt this proposal?
 9. Versioning
 10. Deletion
 
+---
 
 ## Actors involved
 
-![](figs/10/gov_tab2_tab3.png)
+---
 
 
 ## Different kinds of work (different kinds of rules)
 
 - Work done with data vs. work done around data access/control
 - My interpretation: stuff you do once you've loaded `data.csv` or `data.parquet` vs. stuff you do that will get you a different `data.csv`
+
+---
 
 ## Contestation
 
@@ -194,10 +165,13 @@ How might other modalities disrupt this proposal?
 removal request depending on the local norms and regulations of
 the requester and data custodian"
 
+---
+
 ## Infrastructure for contestation
 
 Note that if you leave `data.csv` on your work machine for all eternity, this breaks contestation! So you need to either have some kind of periodic (weekly?) check-in ritual to see which rows need to be deleted, or you can't actually leave data on your machine and have to "pull" it at training time
 
+---
 
 # Language data specific considerations
 
@@ -209,15 +183,22 @@ Note that if you leave `data.csv` on your work machine for all eternity, this br
 See e.g. Anjalie Field, Su Lin Blodgett, Zeerak Waseem, and Yulia Tsvetkov. 2021. A
 Survey of Race, Racism, and Anti-Racism in NLP. arXiv:2106.11410 [cs.CL] 
 
+---
+
+
 ## Discussion questions
 
 - How should do you think we should balance training data representation concerns?
 - How do we account for the incentives in a product context, where our boss might want our system to be biased towards language or linguistic patterns of a certain market segment?
 
+---
+
 ## Property rights and privacy rights
 
 - Data governance framework must account for many definitions of property rights (what does a particularl government say about your right to profit from a piece of artwork, your right to remove it from circulation, etc.)
 - Property rights are distinct from privacy rights (require a definition of personal data, typically)
+
+---
 
 ## User rights as well?
 
@@ -226,20 +207,26 @@ Survey of Race, Racism, and Anti-Racism in NLP. arXiv:2106.11410 [cs.CL]
 
 (Lots of open questions here, keep an eye on this space.)
 
+---
+
 ## This seems like a lot of uncertainty!
 
 - A lot of these points have major caveats like "it depends on jurisdiction" or "courts might decide to enforce a particular interpretation of a particular right"
 - This means doing innovative work in this space requires navigating these stormy waters, a bit
 - E.g. you might have to hire some folks to handle cross-border user property rights, privacy rights, or user rights if you're building a model in a high-stakes domain
 
+---
+
 ## One thing that the ML community can do to help: Dataset documentation
 
 - The Jernite et al. paper also includes a major call for documentation
 - Note some potentially really serious issues that have been caught before, e.g. misogyny and very controversial content in computer vision datasets (Birhane et al. ref [19])
 
-::: {.callout-note}
+---
+
 If you're going into ML research, learning dataset documentation practices may give you a leg up as they become more commonly required in paper submissions.
-:::
+
+---
 
 
 ## Existing data management "efforts"
@@ -248,6 +235,8 @@ If you're going into ML research, learning dataset documentation practices may g
 - Public (e.g. UCI ML, HuggingFace -- things we've used in class
 
 > "Our values of autonomy, consent, and contestation are difficult if not practically impossible for public dataset repositories, due to the full reliance on self-governance by dataset submitters"
+
+---
 
 ## Wikimedia as a case study
 
@@ -260,14 +249,20 @@ Wikipedia has a complex governance structure that "works" right now
 
 Potential conflicts between values. Many different languages and geographies.
 
+---
+
 ## OK, so what should we do?
 
 There's a lot of concepts to unpack here. How should we change our behavior going forward? Assuming we agree with all this, what should we do? If we don't agree with this, what should we do?
+
+---
 
 
 ## Actors
 
 Define 6 actors (they can overlap; you can both host data and use it to train models!)
+
+---
 
 ## Data Rights-holders
 
@@ -276,11 +271,15 @@ Define 6 actors (they can overlap; you can both host data and use it to train mo
 
 Example: you put your code on GitHub
 
+---
+
 ## Data providers
 
 - organization to aggregates the data
 
 Example: HuggingFace includes your code on Github in "The Stack" based on it's license (and gives you an opt-out option)
+
+---
 
 ## Data hosts
 
@@ -288,11 +287,15 @@ Example: HuggingFace includes your code on Github in "The Stack" based on it's l
 
 Example: HuggingFace hosts that data. Perhaps an additional research org, like a lab at a university, also hosts a copy.
 
+---
+
 ## Data Modeler
 
 - Organization that does some training!
 
 Example: you train a large language model on a aggregated code data.
+
+---
 
 ## Data Stewardship Organization (DSO) and Data helpers
 
@@ -300,6 +303,8 @@ Example: you train a large language model on a aggregated code data.
 - Helpers might be e.g. lawyers who provide advising
 
 Example: This is the org that needs to be brought into existence!
+
+---
 
 ## Contractual flow-down
 
@@ -309,10 +314,13 @@ Example: This is the org that needs to be brought into existence!
 
 This is part of the proposal: some actors might argue *this isn't currently part of the rules*
 
+---
+
 ## Discussion question
 
 - Who stands to gain from contractual flow-down?
 
+---
 
 # CARE principles
 
@@ -332,6 +340,8 @@ CARE =
 - people come together and draft new set of goals / principles
 - drawing on principles from various Data Sovereigny groups (First Nations, Maori, U.S., Torres Strait)
 
+---
+
 ## What is "Indigenous data sovereignty"
 
 [link](https://www.lib.sfu.ca/help/publish/research-data-management/indigenous-data-sovereignty)
@@ -341,16 +351,22 @@ CARE =
 - Note this a key aspect of Canadian research ethics
 - Take a look at above link to learn more about specific examples
 
+---
+
 ## Data-centric vs. people-centric
 
 the CARE principles are meant to avoid excessively "Data-centric" approach, and be more people and purpose-driven
 
 Example: Collective Benefit is about the ultimate purpose of the data, not selecting a certain observation from a given data file on the basis of some ML peformance metric
 
+---
+
 ## Context: CARE in the previous piece vs. prevailing practice
 
 - Important to note that after having read the Jernite et al. piece, these "people-centric" principles were certainly a part of it. 
 - The real contrast here is the current system
+
+---
 
 
 # Big list of concepts to reflect on

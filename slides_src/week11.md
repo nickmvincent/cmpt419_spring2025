@@ -20,6 +20,8 @@ Note: rather than screenshot most of the paper, we'll pull up our readings direc
 
 [link](https://dl.acm.org/doi/abs/10.1145/3531146.3534637)
 
+---
+
 ## Goals
 
 Today's lecture: gain exposure to a few different frameworks for data governance.
@@ -29,6 +31,7 @@ Some guiding questions (to keep back of mind)
 - How are data governance decisions being made now?
 - What kind of interaction with "governance" will you have in the future? As a voter, as a modeler, as a data creator, etc.
 
+---
 
 ## Recap: What is governance
 
@@ -174,6 +177,8 @@ Note that if you leave `data.csv` on your work machine for all eternity, this br
 ---
 
 # Language data specific considerations
+
+---
 
 ## Issues with "Clean Text"
 
@@ -326,6 +331,8 @@ This is part of the proposal: some actors might argue *this isn't currently part
 
 [link](https://www.adalovelaceinstitute.org/blog/care-principles-operationalising-indigenous-data-governance/)
 
+---
+
 CARE = 
 
 - collective benefit
@@ -333,6 +340,7 @@ CARE =
 - responsibility
 - ethics
 
+---
 
 ## Practice of developing new principles
 

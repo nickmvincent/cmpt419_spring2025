@@ -35,6 +35,7 @@
 <li class="nav-section">
 <div class="nav-section-header">misc</div>
 <ul class="nav-items">
+<li><a href="#misc-Accessing Data Faq">Accessing Data Faq</a></li>
 <li><a href="#misc-Key_Dates">Key Dates</a></li>
 <li><a href="#misc-Lecture_Erratum">Lecture Erratum</a></li>
 <li><a href="#misc-Optional_Deep_Dives">Optional Deep Dives</a></li>
@@ -44,7 +45,6 @@
 <li class="nav-section">
 <div class="nav-section-header">slides_pdfs</div>
 <ul class="nav-items">
-<li><a href="#slides_pdfs-Week 10">Week 10</a></li>
 <li><a href="#slides_pdfs-Week1-Part1">Week1-Part1</a></li>
 <li><a href="#slides_pdfs-Week1-Part2">Week1-Part2</a></li>
 <li><a href="#slides_pdfs-Week2">Week2</a></li>
@@ -52,6 +52,8 @@
 <li><a href="#slides_pdfs-Week4">Week4</a></li>
 <li><a href="#slides_pdfs-Week5">Week5</a></li>
 <li><a href="#slides_pdfs-Week6">Week6</a></li>
+<li><a href="#slides_pdfs-Week9">Week9</a></li>
+<li><a href="#slides_pdfs-week11_term">Week11 Term</a></li>
 </ul></li>
 </ul></nav>
   </div>
@@ -425,6 +427,8 @@ Available as HTML at: https://www.adalovelaceinstitute.org/blog/care-principles-
 <h2 id="week-9">Week 9</h2>
 <p>BRAND new paper on scaling laws: https://arxiv.org/pdf/2502.18969</p>
 <p>Nice post on analyzing common crawl, with practical tips: https://trufflesecurity.com/blog/research-finds-12-000-live-api-keys-and-passwords-in-deepseek-s-training-data</p>
+<h2 id="week-10">Week 10</h2>
+<p>Data selection for fine-tuning: https://github.com/hamishivi/automated-instruction-selection</p>
 </section>
 <section id="readings-Readings_TLDR" class="page-section ">
 <h1>Readings Tldr</h1>
@@ -671,13 +675,15 @@ a single notebook-style report as a PDF file that fulfills all above criteria. Y
 </section>
 <section id="assignments-project_rubric" class="page-section ">
 <h1>Project Rubric</h1>
-<h1 id="project-rubric-draft-tentative-as-of-jan-28">Project Rubric - DRAFT, TENTATIVE AS OF JAN 28</h1>
+<h1 id="project-rubric">Project Rubric</h1>
 <p>Here, you will find detailed instructions for the class project.</p>
 <p>This document assumes you&rsquo;ve read the details in the Project Proposal.</p>
 <h3 id="when-is-the-project-due"><strong>When is the project due?</strong></h3>
 <p>The official project deadline is <strong>April 3 23:59</strong>.</p>
 <p>You are encouraged to finish a draft of your project report before the end of the semester. You will have an opportunity to present your project. This is voluntarily but operates under the &ldquo;it can only help you&rdquo; rule: if your presentation helps to clarify the contributions or challenges of your project, this may positively affect your grade. In particular, presenting your project can help you increase your &ldquo;relevance to class themes&rdquo; score, as I will ask questions and give you a chance to further demonstrate engagement with our key themes.</p>
-<p>If you believe you can make major improvements with some extra time, you can write an &ldquo;extension&rdquo; plan <strong>at least a week in advance</strong> (detailing how your group will use the following time (between 1-5 days). This should be structured much like an email or presentation you might give your boss explaining why a feature needs an extra week of dev time (something that may happen in your career!)</p>
+<p>Furthermore, if you give a presentation, you can opt out of Quiz 4. If you give a presentation that does not meet the quality bar, I will inform you afterwards and can take Quiz 4 (so you will not &ldquo;risk&rdquo; anything by giving a presentation).</p>
+<p>If you believe you can make major improvements with some extra time, you can write an &ldquo;extension&rdquo; plan <strong>at least a week in advance</strong> (detailing how your group will use the following time (between 1-6 days, with April 9 23:59 being the absolute, final, no exceptions, deadline). This should be structured much like an email or presentation you might give your boss explaining why a feature needs an extra week of dev time (something that may happen in your career!)</p>
+<p>Even if you ask for an extension, you must submit a draft of your report on April 3rd.</p>
 <h3 id="how-is-the-class-project-graded"><strong>How is the class project graded?</strong></h3>
 <p>Group-based scaling: I&rsquo;ve mentioned in class that larger groups will have higher overall expectations for what the project accomplishes.</p>
 <p>In practice, this will be implemented based on an assessment of &ldquo;overall contribution&rdquo; and based on your report&rsquo;s &ldquo;contribution statements&rdquo;. You should describe what everyone did and provide evidence that everyone did something. When I assess your output artifact, I will write a “contribution summary” myself with <em>my understanding</em> of what everyone did. If your artifact lacks the details for me to do this, you will lose marks!</p>
@@ -689,60 +695,65 @@ a single notebook-style report as a PDF file that fulfills all above criteria. Y
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Abstract</th>
-<th style="text-align: left;">2 points (5%)</th>
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Points (%)</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align: left;">Abstract</td>
+<td style="text-align: left;">2 points (5%)</td>
+</tr>
 <tr>
 <td style="text-align: left;">Visual Abstract</td>
 <td style="text-align: left;">2 points (5%)</td>
 </tr>
 <tr>
 <td style="text-align: left;">Introduction</td>
-<td style="text-align: left;">4 points</td>
+<td style="text-align: left;">4 points (10%)</td>
 </tr>
 <tr>
 <td style="text-align: left;">Related Work</td>
-<td style="text-align: left;">4 points</td>
+<td style="text-align: left;">4 points (10%)</td>
 </tr>
 <tr>
 <td style="text-align: left;">Methods</td>
-<td style="text-align: left;">4 points</td>
+<td style="text-align: left;">4 points (10%)</td>
 </tr>
 <tr>
 <td style="text-align: left;">Results</td>
-<td style="text-align: left;">4 points</td>
+<td style="text-align: left;">4 points (10%)</td>
 </tr>
 <tr>
 <td style="text-align: left;">Discussion</td>
-<td style="text-align: left;">8 points</td>
+<td style="text-align: left;">8 points (20%)</td>
 </tr>
 <tr>
 <td style="text-align: left;">Connection to class themes</td>
-<td style="text-align: left;">4 points</td>
+<td style="text-align: left;">4 points (20%)</td>
 </tr>
 <tr>
 <td style="text-align: left;">Overall artifact quality</td>
-<td style="text-align: left;">8 points</td>
+<td style="text-align: left;">8 points (40%)</td>
 </tr>
 </tbody>
 </table>
 <p>Total: 40 points</p>
-<p>The marking for the report component will be organized as follows (roughly following the structure of many of our readings):</p>
+<p>The idea behind having each section be some multiple of 2 is because the &ldquo;marking scheme&rdquo; for each section will roughly follow some kind of 0 = bad, 1 = reasonable, 2 = good breakdown. More details follow:</p>
 <p><strong>Abstract: 2 points</strong></p>
 <p>Summarize the key contribution of your project. It should be understandable to all of your classmates, and at least partially understandable to your peers from across a variety of disciplines.</p>
-<p>Marking scheme: 2/2 for clear concise project that explains what your project does and why you were motivated to do it. 1/2 for an abstract that is difficult to read, is vague, or doesn&rsquo;t motivate the work. 0/3 for an abstract that is very vague.</p>
+<p>Marking scheme: 2/2 for clear concise project that explains what your project does and why you were motivated to do it. 1/2 for an abstract that is difficult to read, is vague, or doesn&rsquo;t motivate the work. 0/2 for an abstract that is very vague.</p>
 <p><strong>Visual Abstract: 2 points</strong></p>
 <p>Create a figure or diagram that summarizes the key contribution of your project.</p>
+<p>You can imagine this as a slide in your slide deck with key themes from your abstract. You might show some kind of feedback loop or a basic architectural diagram.</p>
 <p>Same marking scheme as abstract.</p>
 <p><strong>Introduction: 4 points</strong></p>
 <p>State the problem your project solves, which might mean answering a research question (Track 1), providing some value to users (Track 2), or answering a dataset documentation question (Track 3). You should cite some motivating work and situate your project disciplinarily. Who is your audience? You should look at the Introductions of the research papers we read in class to get a sense of the appropriate style and tone. If in doubt, you can explicitly cite your “exemplar papers”.</p>
-<p>Your introduction should also concisely state what your main contributions are. What did you do – did you perform experiments, or conduct a literature review?</p>
+<p>Your introduction should also concisely state what your main contributions are. What did you do – did you perform experiments, or conduct a literature review, or something else entirely? (Note that this is the contributions your overall project, not a &ldquo;contribution statement&rdquo; that describes literally what each team member did. That will come later!)</p>
 <p>Marking scheme: 2 points for clear problem statement. 2 points for a clear high-level description of your main contribution (from the Introduction, I should have a general sense of what you did, and I’ll get the details in Methods).</p>
 <p><strong>Related work: 4 points</strong></p>
 <p>You should conduct a reasonable literature review of related work. You may want to make use of tools like Google Scholar and Semantic Scholar. This does not need to be restricted to peer-reviewed academic works or class readings. You can, and should, cite anything that helped you work on the project or serves as a point of comparison, including software libraries on GitHub, pre-prints on arXiv, blog posts from ML researchers, etc. You should be able to find 3-4 references that you engage with closely, at least one of which is an academic work and itself provides upstream / &ldquo;classics&rdquo; in the subfield of your choice. </p>
-<p>Marking scheme:</p>
+<p>Marking scheme: 2 points for selecting relevant references. 2 points for clear description of their relevance (so, you can get 2 points if you literally just list references, and the remaining two come from your prose).</p>
 <p><strong>Methods / What you did: 4 points</strong></p>
 <p>You should describe what you did. You are encouraged to find and cite an exemplar paper in order to help you structure your Methods section.</p>
 <p>This section will vary heavily amongst different project types.</p>
@@ -754,7 +765,10 @@ a single notebook-style report as a PDF file that fulfills all above criteria. Y
 <li>e.g. just saying “I select this model because it’s popular” will not earn marks – you should specify the criteria you considered for selecting a model  </li>
 </ul>
 </li>
-<li>2 points for appropriateness of methods choice</li>
+<li>2 points for appropriateness of methods choice<ul>
+<li>e.g., if you said your goal is to explore recommender systems but you only did experiments with image classification, you will not earn marks</li>
+</ul>
+</li>
 </ul>
 <p><strong>Results / What you produced: 4 points</strong></p>
 <p>This section will also vary quite a bit based on your project. You are encouraged to find and cite an exemplar paper here, as well.</p>
@@ -790,7 +804,7 @@ a single notebook-style report as a PDF file that fulfills all above criteria. Y
 <p>Marking scheme:</p>
 <ul>
 <li>If you have discussed this with me before, you should earn 4 marks for this category.  </li>
-<li>If not, I will mark on a scale of very connected \&lt;&gt; very much not connected</li>
+<li>If not, I will mark on a scale of &ldquo;very connected&rdquo; to &ldquo;very much not connected&rdquo;.</li>
 </ul>
 <p><strong>Overall artifact quality: 8 points</strong></p>
 <p>You will also earn points for producing high quality artifacts -- this might be code, UI design mock-ups, an actual interface, or a very well formatted report.</p>
@@ -802,12 +816,42 @@ a single notebook-style report as a PDF file that fulfills all above criteria. Y
 <li>4/4: decent effort. Not my first choice to show off to my colleagues.  </li>
 <li>0/4: extremely low effort.</li>
 </ul>
-<p>Note that I don’t expect everyone to produce an 8/8 quality (nor do you need to: if you get 36/40 on your report, 90% on all quizzes, and 90% on all assignments, you will still easily get an </p>
+<p>Note that I don’t expect everyone to produce an 8/8 quality (nor do you need to: if you get 36/40 on your report, 90% on all quizzes, and 90% on all assignments, you can still easily get a great grade).</p>
 <h3 id="what-do-i-turn-in"><strong>What do I turn in?</strong></h3>
 <p>Required: a report as PDF.</p>
 <p>Optional: include a web link to your project materials (e.g. a GitHub link).</p>
 <p>Optional: include a zip file with project materials.</p>
 <p>Optional: Present your project during the final week of class.</p>
+</section>
+<section id="misc-Accessing Data Faq" class="page-section ">
+<h1>Accessing Data Faq</h1>
+<h2 id="accessing-text-data-faq">Accessing Text Data FAQ</h2>
+<p>For Assignment 3 and your project, you&rsquo;ll need to access LLM data. The instructions for both are relatively open-ended. Here are some snippets and tips that might be useful.</p>
+<h3 id="approach-1-just-download-files-from-urls">Approach 1: just download files from urls</h3>
+<p>If you visit the files section of the Dolma dataset (here: https://huggingface.co/datasets/allenai/dolma/tree/main/urls), you&rsquo;ll see a <code>urls</code> directory, with a bunch of text files. Each text files has a list of urls, and (we can assume) those urls contain data.</p>
+<p>(ex: in https://huggingface.co/datasets/allenai/dolma/blob/main/urls/v1_6-sample.txt, we find a link to https://olmo-data.org/dolma-v1_6-8B-sample/v1_5r2_sample-0000.json.gz)</p>
+<p>So one option might be to randomly sample a set of these URLs (perhaps downloading v1_6-sample.txt loading into a Python list or Pandas DF or other structure of your choice, and using something like random.choice(), df.sample(), etc.), then using your favorite approach to make http requests (<code>requests</code> lib, curl from your CLI, your web browser, etc.) to download those files. You&rsquo;ll need to inspect the contents (unzip, then perhaps use <code>head</code> or a Pythons script to take a look at the first few lines) and then can finally load into your preferred data science environment (repl, notebook, etc) to proceed.</p>
+<h3 id="approach-2-download-files-directly-from-hf">Approach 2: download files directly from HF</h3>
+<p>If you visit the files section for RefinedWeb (here: https://huggingface.co/datasets/tiiuae/falcon-refinedweb/tree/main), you&rsquo;ll find directories with the data files directly included. You can go ahead and just start downloading from web browser if you want! Again, a similar approach here might be to select a sample of file names and grab them all.</p>
+<h3 id="approach-3-dataset-library">Approach 3: Dataset library</h3>
+<p>The HuggingFace datasets library supports loading data via a single function call.</p>
+<pre><code>dataset = load_dataset(&quot;your_large_dataset&quot;, streaming=True)
+</code></pre>
+<p>If the dataset is large, getting a true random sample will be hard. But you can explore &ldquo;reservoir sampling&rdquo; (https://en.wikipedia.org/wiki/Reservoir_sampling) or just use a buffer and shuffle that and it&rsquo;s reasonable for this assignment.</p>
+<p>This option is likely fastest if you&rsquo;ve already used/installed <code>datasets</code>, and might be a good idea to play around with if you plan to use this for your project.</p>
+<h2 id="other-faqs">Other FAQS</h2>
+<p>Do I need to convert words to tokens, or how should I count the tokens?</p>
+<ul>
+<li>First of all, you may simply state the assumption that you assume 1 word = 1 token. You may also make a rough estimate based on common ratios (see e.g. https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them and play around yourself here https://platform.openai.com/tokenizer).</li>
+</ul>
+<p>Can I be sure I&rsquo;m getting a true random sample for some target distribution?</p>
+<ul>
+<li>In short, not really (for assignment purposes, any reasonable attempt with accompanying assumptions is ok). We&rsquo;ll discuss when we &ldquo;debrief&rdquo; on the assignment.</li>
+</ul>
+<p>I&rsquo;m not sure my chosen text dataset is acceptable!</p>
+<ul>
+<li>If it&rsquo;s a large text dataset with at least 300,000 words or tokens, you&rsquo;re good to go.</li>
+</ul>
 </section>
 <section id="misc-Key_Dates" class="page-section ">
 <h1>Key Dates</h1>
@@ -1127,10 +1171,6 @@ Exercises:
 &quot;&quot;&quot;)
 </code></pre>
 </section>
-<section id="slides_pdfs-Week 10" class="page-section ">
-<h1>Week 10</h1>
-<p><a href="slides_pdfs/Week 10.pdf" target="_blank">View PDF: Week 10</a></p>
-</section>
 <section id="slides_pdfs-Week1-Part1" class="page-section ">
 <h1>Week1-Part1</h1>
 <p><a href="slides_pdfs/Week1-Part1.pdf" target="_blank">View PDF: Week1-Part1</a></p>
@@ -1158,6 +1198,14 @@ Exercises:
 <section id="slides_pdfs-Week6" class="page-section ">
 <h1>Week6</h1>
 <p><a href="slides_pdfs/Week6.pdf" target="_blank">View PDF: Week6</a></p>
+</section>
+<section id="slides_pdfs-Week9" class="page-section ">
+<h1>Week9</h1>
+<p><a href="slides_pdfs/Week9.pdf" target="_blank">View PDF: Week9</a></p>
+</section>
+<section id="slides_pdfs-week11_term" class="page-section ">
+<h1>Week11 Term</h1>
+<p><a href="slides_pdfs/week11_term.pdf" target="_blank">View PDF: Week11 Term</a></p>
 </section>
   </div>
   <script src="assets/script.js"></script>

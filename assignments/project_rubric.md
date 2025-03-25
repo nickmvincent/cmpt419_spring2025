@@ -1,4 +1,4 @@
-# Project Rubric - DRAFT, TENTATIVE AS OF JAN 28
+# Project Rubric
 
 Here, you will find detailed instructions for the class project.
 
@@ -10,7 +10,11 @@ The official project deadline is **April 3 23:59**.
 
 You are encouraged to finish a draft of your project report before the end of the semester. You will have an opportunity to present your project. This is voluntarily but operates under the "it can only help you" rule: if your presentation helps to clarify the contributions or challenges of your project, this may positively affect your grade. In particular, presenting your project can help you increase your "relevance to class themes" score, as I will ask questions and give you a chance to further demonstrate engagement with our key themes.
 
-If you believe you can make major improvements with some extra time, you can write an "extension" plan **at least a week in advance** (detailing how your group will use the following time (between 1-5 days). This should be structured much like an email or presentation you might give your boss explaining why a feature needs an extra week of dev time (something that may happen in your career!)
+Furthermore, if you give a presentation, you can opt out of Quiz 4. If you give a presentation that does not meet the quality bar, I will inform you afterwards and can take Quiz 4 (so you will not "risk" anything by giving a presentation).
+
+If you believe you can make major improvements with some extra time, you can write an "extension" plan **at least a week in advance** (detailing how your group will use the following time (between 1-6 days, with April 9 23:59 being the absolute, final, no exceptions, deadline). This should be structured much like an email or presentation you might give your boss explaining why a feature needs an extra week of dev time (something that may happen in your career!)
+
+Even if you ask for an extension, you must submit a draft of your report on April 3rd.
 
 ### **How is the class project graded?**
 
@@ -28,30 +32,33 @@ You will submit a report, which will be structured much like an academic paper.
 
 This includes the following components
 
-| Abstract | 2 points (5%) |
+| Category | Points (%) |
 | :---- | :---- |
+| Abstract | 2 points (5%) |
 | Visual Abstract | 2 points (5%) |
-| Introduction | 4 points |
-| Related Work | 4 points |
-| Methods | 4 points |
-| Results | 4 points |
-| Discussion | 8 points |
-| Connection to class themes | 4 points |
-| Overall artifact quality | 8 points |
+| Introduction | 4 points (10%) |
+| Related Work | 4 points (10%) |
+| Methods | 4 points (10%) |
+| Results | 4 points (10%) |
+| Discussion | 8 points (20%) |
+| Connection to class themes | 4 points (20%) |
+| Overall artifact quality | 8 points (40%) |
 
 Total: 40 points
 
-The marking for the report component will be organized as follows (roughly following the structure of many of our readings):
+The idea behind having each section be some multiple of 2 is because the "marking scheme" for each section will roughly follow some kind of 0 = bad, 1 = reasonable, 2 = good breakdown. More details follow:
 
 **Abstract: 2 points**
 
 Summarize the key contribution of your project. It should be understandable to all of your classmates, and at least partially understandable to your peers from across a variety of disciplines.
 
-Marking scheme: 2/2 for clear concise project that explains what your project does and why you were motivated to do it. 1/2 for an abstract that is difficult to read, is vague, or doesn't motivate the work. 0/3 for an abstract that is very vague.
+Marking scheme: 2/2 for clear concise project that explains what your project does and why you were motivated to do it. 1/2 for an abstract that is difficult to read, is vague, or doesn't motivate the work. 0/2 for an abstract that is very vague.
 
 **Visual Abstract: 2 points**
 
 Create a figure or diagram that summarizes the key contribution of your project.
+
+You can imagine this as a slide in your slide deck with key themes from your abstract. You might show some kind of feedback loop or a basic architectural diagram.
 
 Same marking scheme as abstract.
 
@@ -59,7 +66,7 @@ Same marking scheme as abstract.
 
 State the problem your project solves, which might mean answering a research question (Track 1), providing some value to users (Track 2), or answering a dataset documentation question (Track 3). You should cite some motivating work and situate your project disciplinarily. Who is your audience? You should look at the Introductions of the research papers we read in class to get a sense of the appropriate style and tone. If in doubt, you can explicitly cite your “exemplar papers”.
 
-Your introduction should also concisely state what your main contributions are. What did you do – did you perform experiments, or conduct a literature review?
+Your introduction should also concisely state what your main contributions are. What did you do – did you perform experiments, or conduct a literature review, or something else entirely? (Note that this is the contributions your overall project, not a "contribution statement" that describes literally what each team member did. That will come later!)
 
 Marking scheme: 2 points for clear problem statement. 2 points for a clear high-level description of your main contribution (from the Introduction, I should have a general sense of what you did, and I’ll get the details in Methods).
 
@@ -67,7 +74,7 @@ Marking scheme: 2 points for clear problem statement. 2 points for a clear high-
 
 You should conduct a reasonable literature review of related work. You may want to make use of tools like Google Scholar and Semantic Scholar. This does not need to be restricted to peer-reviewed academic works or class readings. You can, and should, cite anything that helped you work on the project or serves as a point of comparison, including software libraries on GitHub, pre-prints on arXiv, blog posts from ML researchers, etc. You should be able to find 3-4 references that you engage with closely, at least one of which is an academic work and itself provides upstream / "classics" in the subfield of your choice. 
 
-Marking scheme:
+Marking scheme: 2 points for selecting relevant references. 2 points for clear description of their relevance (so, you can get 2 points if you literally just list references, and the remaining two come from your prose).
 
 **Methods / What you did: 4 points**
 
@@ -83,6 +90,7 @@ Marking scheme:
   - e.g. just saying “I used sklearn” will not earn marks – you should specify the model you used, how you selected hyperparameters, etc.  
   - e.g. just saying “I select this model because it’s popular” will not earn marks – you should specify the criteria you considered for selecting a model  
 - 2 points for appropriateness of methods choice
+  - e.g., if you said your goal is to explore recommender systems but you only did experiments with image classification, you will not earn marks
 
 **Results / What you produced: 4 points**
 
@@ -117,7 +125,7 @@ Between 0 and 4 points. Outside of your discussion, does your project show engag
 Marking scheme:
 
 - If you have discussed this with me before, you should earn 4 marks for this category.  
-- If not, I will mark on a scale of very connected \<\> very much not connected
+- If not, I will mark on a scale of "very connected" to "very much not connected".
 
 **Overall artifact quality: 8 points**
 
@@ -133,7 +141,7 @@ Marking scheme:
 - 4/4: decent effort. Not my first choice to show off to my colleagues.  
 - 0/4: extremely low effort.
 
-Note that I don’t expect everyone to produce an 8/8 quality (nor do you need to: if you get 36/40 on your report, 90% on all quizzes, and 90% on all assignments, you will still easily get an 
+Note that I don’t expect everyone to produce an 8/8 quality (nor do you need to: if you get 36/40 on your report, 90% on all quizzes, and 90% on all assignments, you can still easily get a great grade).
 
 ### **What do I turn in?**
 

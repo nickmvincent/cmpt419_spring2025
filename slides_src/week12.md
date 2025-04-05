@@ -14,10 +14,9 @@ institute: Simon Fraser University
 date: 
 ---
 
----
-
 # Perspectives on Data Markets
 
+---
 
 ## Guiding questions
 

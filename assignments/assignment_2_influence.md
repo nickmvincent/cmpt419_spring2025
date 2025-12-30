@@ -8,15 +8,15 @@ In this assignment, we'll get some hands-on experience with the concept of train
 
 There are four parts to the assignment. You'll need to write code to train a ML model and produce influence values for some of the training data in the model. Below, the requirements for each part are described.
 
-Each part will have a coding component and a report component. You will turn in one file (or multiple) with code (e.g., a \`.py\` file or \`.ipynb\` file) and one report PDF. If using computational notebooks like a Jupyter notebook, you may combine these two into a single file (e.g. a notebook exported to a PDF with code visible.
+Each part will have a coding component and a report component. You will turn in one file (or multiple) with code (e.g., a `.py` file or `.ipynb` file) and one report PDF. If using computational notebooks like a Jupyter notebook, you may combine these two into a single file (e.g. a notebook exported to a PDF with code visible.
 
 In your code, you can use comments to designate which parts of your code correspond to each part.
 
 Note 1: you may work on this assignment in groups of 1-3.
 
-Note 2: you may use generative AI on this assignment, and must report your use. FYI – the instructor has tried out several models, and they’re definitely useful, but you’ll need to be careful about explaining your choices. In fact, I’ll even provide you some example outputs of what you get from directly copy-pasting the assignment into several strong models\!
+Note 2: you may use generative AI on this assignment, and must report your use. FYI – the instructor has tried out several models, and they’re definitely useful, but you’ll need to be careful about explaining your choices. In fact, I’ll even provide you some example outputs of what you get from directly copy-pasting the assignment into several strong models!
 
-Note 3: Finally, as an additional incentive to avoid literally just copy-pasting the assignment in your favorite consumer AI product, I may randomly select some students to explain their solutions in class.
+Note 3: Finally, as an additional incentive to avoid literally just copy-pasting the assignment into your favorite consumer AI product, I may randomly select some students to explain their solutions in class.
 
 ### **Part 1: Preliminaries**
 
@@ -32,15 +32,17 @@ You are recommended to select a dataset from a domain of your interest and then 
 
 If you select a dataset you are interested in, you may be able to reuse some of your code you write for this assignment for your project.
 
-Suggested approach: I recommend first training several models on the "full dataset" (e.g. logistic regression, basic random forest, KNN, XGBoost). See how long this takes. Then, try subsampling 10% or 1% of your data and see if the training time falls low enough that you think you can reasonably retrain a model at least 50 total times.
+Suggested approach: I recommend first training several models on the "full dataset" (e.g. logistic regression, basic random forest, KNN, XGBoost). See how long this takes. Then, try subsampling 10% or 1% of your data and see if the training time falls low enough that you think you can reasonably retrain a model at least 50 total times. (if a training run takes a day and you have a week left... this is too much training time!)
 
 Specifically, you should write code to do the following:
 
 * Load a dataset into memory. Describe the dataset in your report. (2 marks)  
 * Process into features and labels. Describe the features and labels in your report. (2 marks)  
 * Split into train and test sets. Describe your specific approach (e.g. random 80/20 split, time-based split, etc.) (2 marks)  
-* Train some classifier. It does not need to be the "best" possible performance for your chosen dataset, though you may want to try a few options if feasible to do so. (2 marks)  
-* Report performance of your baseline classifier: accuracy, confusion matrix. You are encouraged to include a precision-recall curve or TPR vs. FPR curve (i.e. AUROC curve), though if you think it isn't helpful you can just mention why not. You must choose a "primary metric" that you will use for your data value estimates, and you should briefly justify this choice. (2 marks)
+* Train some classifier. It does not need to be the "best" possible performance for your chosen dataset, though you may want to try a few options if feasible to do so. (2 marks) 
+  * You should list some reason for your choice of classifier. 
+* Report performance of your baseline classifier: accuracy, confusion matrix. You are encouraged to include a precision-recall curve or TPR vs. FPR curve (i.e. AUROC curve), though if you think it isn't helpful you can just mention why not. You must choose a "primary metric" that you will use for your data value estimates, and you should justify this choice. (2 marks)
+  * Why is this measurement appropriate for the data/task you chose?
 
 10 marks total for part 1
 
@@ -88,7 +90,7 @@ Here, you need only to plot the distribution of all Shapley values. (2 marks)
 
 If you have extra time, you are encouraged to compute more accurate Shapley value estimates by using more permutations and compare the Shapley values to LOO influence from part 2, but this is optional.
 
-6 marks total for part 4\.
+6 marks total for part 4.
 
 ### **Grading**
 
